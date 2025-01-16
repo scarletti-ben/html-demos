@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <a href="../../index.html">Go to the Home Page</a>
+  
+  <script src="script.js"></script>
+
+  <script>
+    // Add event listener for the 'H' key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'h' || event.key === 'H') {
+        window.location.href = '../../index.html';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+#link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#link-container a {
+    color: rgb(0, 0, 255);
+}
+
+#link-container a:visited {
+    color: #ff008c;
+}
