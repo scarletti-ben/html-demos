@@ -72,22 +72,33 @@ import os
 # Print the current working directory
 print("Current directory before writing:", os.getcwd())
 
+# Print the directory structure
+print("\nDirectory structure after writing:")
+for root, dirs, files in os.walk(os.getcwd()):
+  print(root)
+
 # Path to the file
 file_path = "../index.html"
 
 # Write to the file
 print("Writing index.html...")
-with open(file_path, "w", encoding = "utf-8") as file:
-    file.write(html.strip())
+with open(file_path, "w", encoding="utf-8") as file:
+  file.write(html.strip())
 
-# Check if the file was created and print the status
-if os.path.exists(file_path):
-    print(f"{file_path} has been successfully created!")
+# Print the directory structure
+print("\nDirectory structure after writing:")
+for root, dirs, files in os.walk(os.getcwd()):
+  print(root)
+
+# Check if the file was created and print the full path
+full_path = os.path.abspath(file_path)
+if os.path.exists(full_path):
+  print(f"\nFile created successfully at: {full_path}")
 else:
-    print(f"Failed to create {file_path}.")
+  print(f"\nFailed to create the file at: {full_path}")
 
 # Now, read the content of the written file to verify
-print("Reading the written file:")
-with open(file_path, "r", encoding="utf-8") as file:
-    content = file.read()
-    print(content[:100])  # Print first 100 characters of the file to verify content
+print("\nReading the written file:")
+with open(full_path, "r", encoding="utf-8") as file:
+  content = file.read()
+  print(content[:100])  # Print first 100 characters of the file to verify content
