@@ -104,3 +104,8 @@ Give up on trying to add CDNs via JavaScript directly to head, they never seem t
 - System of getting directory structure when hosted on `GitHub pages`
 - Updates to `server-maker.bat`
 - Research external server `python -m http.server`
+- Clean up CSS for root `index.html`
+- Change link to `static.yaml`
+- Paragraph on reading github actions output and runs
+  - raising exceptions in python
+- Add functionality - reading all index.html files and building the unordered list in html
