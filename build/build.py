@@ -71,7 +71,6 @@ import os
 
 # Print the current working directory
 print("Current directory before writing:", os.getcwd())
-
 # Print the directory structure
 for root, dirs, files in os.walk(os.getcwd()):
   # Skip the .git directory
@@ -82,7 +81,7 @@ for root, dirs, files in os.walk(os.getcwd()):
   print(f"Directory: {root}")
   for file in files:
       print(f"  File: {file}")
-      
+
 # Path to the file
 file_path = "../index.html"
 
@@ -92,15 +91,17 @@ with open(file_path, "w", encoding="utf-8") as file:
   file.write(html.strip())
 
 # Print the directory structure
+print("Current directory after writing:", os.getcwd())
+# Print the directory structure
 for root, dirs, files in os.walk(os.getcwd()):
   # Skip the .git directory
   if ".git" in root:
-      continue
+    continue
 
-  # Print the current directory and its files
-  print(f"Directory: {root}")
-  for file in files:
-      print(f"  File: {file}")
+# Print the current directory and its files
+print(f"Directory: {root}")
+for file in files:
+    print(f"  File: {file}")
 
 # Check if the file was created and print the full path
 full_path = os.path.abspath(file_path)
