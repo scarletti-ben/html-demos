@@ -1,7 +1,23 @@
 script: str = f"""
-    <script>
-        console.log('test')
-    </script>
+<script>
+
+    // Find link-container and link-list
+    const linkContainer = document.getElementById('link-container');
+    const linkList = document.getElementById('link-list');
+    
+    // Create the list element and link element
+    const listElement = document.createElement('li');
+    const linkElement = document.createElement('a');
+
+    // Alter link element
+    linkElement.href = 'https://github.com/scarletti-ben';
+    linkElement.textContent = 'test';
+    
+    // Append linkElement to link-list
+    listElement.appendChild(linkElement);
+    linkList.appendChild(listElement);
+
+</script>
 """
 
 html: str = f"""
@@ -19,6 +35,14 @@ html: str = f"""
             background-color: #333;
             color: #fff;
             font-family: monospace;
+        }}
+
+        a {{
+            color: inherit;
+        }}
+
+        a:visited {{
+            color: inherit;
         }}
 
         #link-container {{
@@ -42,6 +66,15 @@ html: str = f"""
             border-radius: 4px;
         }}
 
+        a code {{
+            color: inherit;
+            text-decoration: none;
+        }}
+
+        a code:visited {{
+            color: inherit;
+        }}
+
     </style>
 
 </head>
@@ -51,10 +84,10 @@ html: str = f"""
     <h1>HTML-Demos Homepage (GitHub Pages)</h1>
 
     <p>
-        The HTML for this page is generated in <a href="https://github.com/scarletti-ben/html-demos/blob/main/build/build.py"><code>build.py</code></a> via <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>GitHub Actions</code></a>, which are configured in the custom workflow file <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>static.yml</code></a>. <code>build.py</code> generates links to all <code>index.html</code> files in the <code>demos</code> folder, and its subdirectories, allowing the project to grow exponentially without need for manually adding each link to the body of the root <code>index.html</code>.
+        The HTML for this page is generated in <a href="https://github.com/scarletti-ben/html-demos/blob/main/build/build.py"><code>build.py</code></a> via <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>GitHub Actions</code></a>, which are configured in the custom workflow file <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>static.yml</code></a>. The <code>build.py</code> script generates links to all <code>index.html</code> files in the <code>demos</code> folder, and its subdirectories, allowing the project to grow exponentially without need for manually adding each link to the body of the root <code>index.html</code>.
     </p>
     <p>
-        Because the root <code>index.html</code> is built and not written, it is not tracked by the repository to avoid need for extra syncing. It seems to be inaccessible via the <a href="https://github.com/">GitHub</a> site.
+        Because the root <code>index.html</code> is built and not written, it is not tracked by the repository to avoid need for extra syncing. It seems to be inaccessible via <code>GitHub</code>.
     </p>
     <p>
         The reason <code>build.py</code> is needed is that sites hosted on <a href="https://pages.github.com/">GitHub</a> pages do not offer easy directory access and rely on relative or absolute links to sites in the site structure.
