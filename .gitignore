@@ -1,0 +1,2 @@
+# Do not track index.html as it is build server-side via GitHub actions workflow
+/index.html

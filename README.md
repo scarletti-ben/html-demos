@@ -91,6 +91,8 @@ Give up on trying to add CDNs via JavaScript directly to head, they never seem t
 - `build.yaml`
 - `GitHub Actions`
 - Building `index.html` using `Python` in `build.py`
+- `.gitgub/workflows/static.yml`
+- Don't track `index.html`
 
 # "Empty Cache and Hard Reload"
 
