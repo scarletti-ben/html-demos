@@ -67,5 +67,6 @@ html: str = f"""
 </html>
 """
 
+print("TESTING")
 with open("../index.html", "w", encoding = "utf-8") as file:
   file.write(html.strip())
