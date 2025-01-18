@@ -67,51 +67,8 @@ html: str = f"""
 </html>
 """
 
-import os
-
-# Print the current working directory
-print("Current directory before writing:", os.getcwd())
-# Print the directory structure
-for root, dirs, files in os.walk(os.getcwd()):
-  # Skip the .git directory
-  if ".git" in root:
-      continue
-
-  # Print the current directory and its files
-  print(f"Directory: {root}")
-  for file in files:
-      print(f"  File: {file}")
-
-# Path to the file
 file_path = "index.html"
-
-# Write to the file
-print("Writing index.html...")
-with open(file_path, "w", encoding="utf-8") as file:
+with open(file_path, "w", encoding = "utf-8") as file:
   file.write(html.strip())
 
-# Print the current working directory
-print("Current directory after writing:", os.getcwd())
-# Print the directory structure
-for root, dirs, files in os.walk(os.getcwd()):
-  # Skip the .git directory
-  if ".git" in root:
-      continue
-
-  # Print the current directory and its files
-  print(f"Directory: {root}")
-  for file in files:
-      print(f"  File: {file}")
-
-# Check if the file was created and print the full path
-full_path = os.path.abspath(file_path)
-if os.path.exists(full_path):
-  print(f"\nFile created successfully at: {full_path}")
-else:
-  print(f"\nFailed to create the file at: {full_path}")
-
-# Now, read the content of the written file to verify
-print("\nReading the written file:")
-with open(full_path, "r", encoding="utf-8") as file:
-  content = file.read()
-  print(content[:100])  # Print first 100 characters of the file to verify content
+raise UserWarning("This is a custom error message")
