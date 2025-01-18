@@ -83,7 +83,7 @@ for root, dirs, files in os.walk(os.getcwd()):
       print(f"  File: {file}")
 
 # Path to the file
-file_path = "../index.html"
+file_path = "index.html"
 
 # Write to the file
 print("Writing index.html...")
