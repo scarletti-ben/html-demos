@@ -36,6 +36,11 @@ function readMarkdownFileToHTML(filename) {
   return html;
 }
 
+// Go to homepage / root, regardless of current page
+function goHome() {
+  window.location.href = "/";
+}
+
 // Listener to run once the HTML DOM has fully loaded
 document.addEventListener('DOMContentLoaded', function () {
 
