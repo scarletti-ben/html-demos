@@ -67,6 +67,27 @@ html: str = f"""
 </html>
 """
 
-print("TESTING")
-with open("../index.html", "w", encoding = "utf-8") as file:
-  file.write(html.strip())
+import os
+
+# Print the current working directory
+print("Current directory before writing:", os.getcwd())
+
+# Path to the file
+file_path = "../index.html"
+
+# Write to the file
+print("Writing index.html...")
+with open(file_path, "w", encoding = "utf-8") as file:
+    file.write(html.strip())
+
+# Check if the file was created and print the status
+if os.path.exists(file_path):
+    print(f"{file_path} has been successfully created!")
+else:
+    print(f"Failed to create {file_path}.")
+
+# Now, read the content of the written file to verify
+print("Reading the written file:")
+with open(file_path, "r", encoding="utf-8") as file:
+    content = file.read()
+    print(content[:100])  # Print first 100 characters of the file to verify content

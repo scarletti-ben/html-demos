@@ -94,6 +94,7 @@ Give up on trying to add CDNs via JavaScript directly to head, they never seem t
 - `.gitgub/workflows/static.yml`
 - Don't track `index.html`
 - `git rm --cached index.html`
+- https://github.com/scarletti-ben/html-demos/actions/runs/12847175179/job/35823182750
 
 # "Empty Cache and Hard Reload"
 
