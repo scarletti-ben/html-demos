@@ -85,3 +85,5 @@ function synchronousFetch(url) {
 - You can host a folder as as server with python -m http.server
 
 Give up on trying to add CDNs via JavaScript directly to head, they never seem to load correctly
+
+# "Empty Cache and Hard Reload"
