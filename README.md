@@ -77,6 +77,7 @@ function synchronousFetch(url) {
 ```
 
 # Issues
+- You can never access a file above the root where the server is run or above the root `index.html` on `GitHub pages`
 - Tools script has asynchronous code, causing issues
 
 - I do not believe you can access files above the root of the local server you created
@@ -86,4 +87,16 @@ function synchronousFetch(url) {
 
 Give up on trying to add CDNs via JavaScript directly to head, they never seem to load correctly
 
+# Things
+- `build.yaml`
+- `GitHub Actions`
+- Building `index.html` using `Python` in `build.py`
+
 # "Empty Cache and Hard Reload"
+
+# TODO
+
+- Update main README
+- System of getting directory structure when hosted on `GitHub pages`
+- Updates to `server-maker.bat`
+- Research external server `python -m http.server`

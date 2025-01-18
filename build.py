@@ -1,3 +1,10 @@
+script: str = f"""
+  <script>
+    console.log('test')
+  </script>
+"""
+
+html: str = f"""
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -8,32 +15,32 @@
 
   <style>
 
-    html, body {
+    html, body {{
       background-color: #333;
       color: #fff;
       font-family: monospace;
-    }
+    }}
 
-    #link-container {
+    #link-container {{
       display: flex;
       flex-direction: column;
       gap: 10px;
-    }
+    }}
   
-    #link-container a {
+    #link-container a {{
       color: rgb(0, 0, 255);
-    }
+    }}
   
-    #link-container a:visited {
+    #link-container a:visited {{
       color: #ff008c;
-    }
+    }}
     
-    code {
+    code {{
       font-family: monospace;
       background-color: #616161;
       padding: 2px 3px;
       border-radius: 4px;
-    }
+    }}
 
   </style>
 
@@ -53,12 +60,12 @@
     </ul>
   </div>
 
-
-  <script>
-    console.log('test')
-  </script>
-
+{script}
 
 </body>
 
 </html>
+"""
+
+with open("index.html", "w", encoding = "utf-8") as file:
+  file.write(html.strip())
