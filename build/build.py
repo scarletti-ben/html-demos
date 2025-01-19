@@ -90,14 +90,14 @@ html: str = f"""
         Because the root <code>index.html</code> is built and not written, it is not tracked by the repository to avoid need for extra syncing. It seems to be inaccessible via <code>GitHub</code>.
     </p>
     <p>
-        The reason <code>build.py</code> is needed is that sites hosted on <a href="https://pages.github.com/">GitHub</a> pages do not offer easy directory access and rely on relative or absolute links to sites in the site structure.
+        The reason <code>build.py</code> is needed is that sites hosted on <a href="https://pages.github.com/">GitHub Pages</a>  do not offer easy directory access and rely on relative or absolute links to sites in the site structure.
     </p>
         If testing locally, this page is not needed, you can instead setup a local server via <code>python -m http.server</code> in the <code>demos</code> folder. Doing so opens <code>demos</code> as a directory and will give easy access to all demo sites.
     </p>
 
     <div id='link-container'>
         <ul id='link-list'>
-
+            <li><a href="https://github.com/scarletti-ben/html-demos">Project README</a></li>
         </ul>
     </div>
 

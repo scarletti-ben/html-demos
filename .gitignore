@@ -1,2 +1,5 @@
-# Do not track index.html as it is build server-side via GitHub actions workflow
+# Do not track index.html as it is built server-side via GitHub actions workflow
 /index.html
+
+# Do not track TODO file, it is for local use
+TODO
