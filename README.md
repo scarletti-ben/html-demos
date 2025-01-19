@@ -139,3 +139,23 @@ window.location.pathname => '/html-demos/demos/test/'
 window.location.origin => 'https://scarletti-ben.github.io'
 window.location.href => 'https://scarletti-ben.github.io/html-demos/demos/test/'
 ```
+
+- You can close an open issue via a commit message using the syntax `Fixes #N - Message` where N is the number of the open issue
+
+- You can alter the most recent commit message via `git commit --amend`, it will open a file you can edit, and once you close it it will create the new commit, which can be pushed via `git push --force origin main`
+```powershell
+PS E:\code\github\repositories\active\html-demos> git commit --amend
+[main a3027e1] Fixes #1 - resolve issue with goHome function
+ Date: Sun Jan 19 11:39:53 2025 +0000
+ 2 files changed, 24 insertions(+), 1 deletion(-)
+PS E:\code\github\repositories\active\html-demos> git push --force origin main
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 786 bytes | 786.00 KiB/s, done. 
+Total 5 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/scarletti-ben/html-demos
+ + 42b7309...a3027e1 main -> main (forced update)
+```

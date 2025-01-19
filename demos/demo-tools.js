@@ -36,7 +36,7 @@ function readMarkdownFileToHTML(filename) {
   return html;
 }
 
-// Go to homepage / root, regardless of current page
+// Go to homepage / root, on local server or on GitHub pages
 function goHome() {
 
   var link = "/";
