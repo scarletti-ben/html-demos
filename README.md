@@ -1,8 +1,6 @@
 # html-demos
 A Frankenstein's Monster of random, often unconnected, HTML demos attached together
 
-### WORK IN PROGRESS: Currently `build.py` has limited functionality
-
 # Project Information
 ## `demos`
 - Located at `root/demos`

@@ -36,6 +36,14 @@ function readMarkdownFileToHTML(filename) {
   return html;
 }
 
+// Add the README.md for the current site as HTML in a new div element in body
+function showREADME() {
+  const div = document.createElement('div');
+  const html = readMarkdownFileToHTML("README.md");
+  div.innerHTML = html
+  document.body.appendChild(div);  
+}
+
 // Go to homepage / root, on local server or on GitHub pages
 function goHome() {
 

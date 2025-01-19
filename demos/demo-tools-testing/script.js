@@ -1,8 +1,8 @@
-// Test function to be called
+// Test function that shows alert with invoker argument
 function test(invoker = null) {
     var message = `${invoker} invoked function 'test'`
+    alert(message)
     console.log(message)
-    goHome()
 }
 
 // Listener to run once the HTML DOM has fully loaded
