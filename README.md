@@ -126,3 +126,16 @@ function synchronousFunction() {
 
 }
 ```
+- Log in developer tools for `demos/test` when running locally
+```
+window.location.pathname => '/test/'
+window.location.origin => 'http://localhost:8000'
+window.location.href => 'http://localhost:8000/test/'
+```
+
+- Log in developer tools for `demos/test` when running on `GitHub`
+```
+window.location.pathname => '/html-demos/demos/test/'
+window.location.origin => 'https://scarletti-ben.github.io'
+window.location.href => 'https://scarletti-ben.github.io/html-demos/demos/test/'
+```
