@@ -1,24 +1,54 @@
+
+# < ========================================================
+# < Imports
+# < ========================================================
+
+from os import listdir
+from os.path import isdir, join
+
+# < ========================================================
+# < Check for Subfolders in Demos
+# < ========================================================
+
+folder: str = "demos"
+paths: list[str] = listdir(folder)
+subfolders: list[str] = [path for path in paths if isdir(join(folder, path))]
+print(f"Subfolders in Demos: {subfolders}")
+
+# < ========================================================
+# < Script Tag
+# < ========================================================
+
 script: str = f"""
-<script>
+    <script>
 
-    // Find link-container and link-list
-    const linkContainer = document.getElementById('link-container');
-    const linkList = document.getElementById('link-list');
-    
-    // Create the list element and link element
-    const listElement = document.createElement('li');
-    const linkElement = document.createElement('a');
+        // Find link-container and link-list
+        const linkContainer = document.getElementById('link-container');
+        const linkList = document.getElementById('link-list');
+        
+        // List of subfolders
+        const subfolders = {str(subfolders)};
 
-    // Alter link element
-    linkElement.href = 'https://github.com/scarletti-ben';
-    linkElement.textContent = 'test';
-    
-    // Append linkElement to link-list
-    listElement.appendChild(linkElement);
-    linkList.appendChild(listElement);
+        // Loop through subfolders and create links
+        subfolders.forEach(subfolder => {{
+        
+            const listElement = document.createElement('li');
+            const linkElement = document.createElement('a');
 
-</script>
+            linkElement.href = '{folder}/' + subfolder;
+            linkElement.textContent = subfolder;
+
+            listElement.appendChild(linkElement);
+            linkList.appendChild(listElement);
+
+        }});
+
+    </script>
 """
+
+# < ========================================================
+# < Core HTML
+# < ========================================================
 
 html: str = f"""
 <!DOCTYPE html>
@@ -108,7 +138,18 @@ html: str = f"""
 </html>
 """
 
+# < ========================================================
+# < Create 'index.html' File
+# < ========================================================
+
 filepath: str = "index.html"
 stripped: str = html.strip()
 with open(filepath, "w", encoding = "utf-8") as file:
   file.write(stripped)
+
+# < ========================================================
+# < Print Current Directory
+# < ========================================================
+
+items: list[str] = listdir()
+print(f"\nGitHub Pages Root Directory: {items}")

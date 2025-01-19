@@ -3,3 +3,6 @@
 
 # Do not track TODO file, it is for local use
 TODO
+
+# Do not track test.py files they are for local use
+**/test.py
