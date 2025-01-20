@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Toaster</title>
+
+  <!-- ! Imports -->
+  <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+  <script src="../demo-tools.js"></script> <!-- Tools -->
+
+  <!-- ! CSS -->
+  <style>
+
+    html,
+    body {
+      margin: 2px;
+      padding: 2px;
+      background-color: #1D1E22;
+      color: white;
+      height: 100%;
+      font-family: monospace, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    code {
+      font-family: monospace;
+      background-color: #616161;
+      padding: 2px 3px;
+      border-radius: 4px;
+    }
+
+    dialog {
+      color: white;
+      background-color: inherit;
+      filter: brightness(1.2);
+      max-width: 80%;
+      margin: auto;
+    }
+
+    #toaster {
+      color: white;
+      width: 240px;
+      height: 100px;
+      box-sizing: border-box;
+      padding: 16px;
+      box-shadow: inset 0 0 0 2px white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(24, 24, 24, 0.7);
+      flex-direction: column;
+      border-radius: 8px;
+      opacity: 1;
+      position: fixed; /* Make the toaster fixed within the viewport */
+      left: 50%;
+      top: 5%;
+      transform: translate(-50%, -0%); /* Adjust for true centering */
+    }
+
+    .invisible {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .filler-box {
+      height: 200px;
+      background-color: #333;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <!-- ! HTML -->
+  <h1 align="center">Simple Toaster</h1>
+
+  <div id="toaster">
+    <p>This toaster should follow the viewport when scrolling</p>
+  </div>
+
+  <button type="button" onclick="toggleInvisible()">Toggle Toaster</button>
+  <button type="button" onclick="showREADME()">Show README</button>
+
+  <div class="filler">
+    <div class="filler-box">The button will make the toaster visible / invisible, not collapsed</div>
+    <div class="filler-box">Box 2</div>
+    <div class="filler-box">Box 3</div>
+    <div class="filler-box">Box 4</div>
+    <div class="filler-box">Box 5</div>
+    <div class="filler-box">Box 6</div>
+    <div class="filler-box">Box 7</div>
+    <div class="filler-box">Box 8</div>
+  </div>
+
+  <!-- ! JavaScript -->
+  <script>
+
+    // Toggle invisible class for the toaster element
+    function toggleInvisible() {
+        document.getElementById("toaster").classList.toggle("invisible");
+    }
+
+  </script>
+</body>
+</html>
