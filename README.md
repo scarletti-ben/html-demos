@@ -167,4 +167,20 @@ To https://github.com/scarletti-ben/html-demos
   - They can be closed using `.close()`
   - You cannot interact with the site while a `<dialog>` is open
   - They can be closed using the `Escape` key, this can be disabled
-- The `:modal` psuedo-class can also be applied 
+- The `:modal` psuedo-class can also be applied
+- You cannot style the default `<option>` element used in dropdowns, it is rendered by the OS
+
+# WIP
+`<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>`
+
+`<span class="material-symbols-outlined">keyboard_backspace</span>`
+
+`<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M360-240 120-480l240-240 56 56-144 144h568v80H272l144 144-56 56Z"/></svg>`
+
+```javascript
+// Function to change id='stylesheet' file
+function switchStylesheet(url) {
+    const stylesheet = document.getElementById('stylesheet')
+    stylesheet.href = url;
+}
+```

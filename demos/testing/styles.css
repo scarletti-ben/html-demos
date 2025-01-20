@@ -11,6 +11,13 @@ html, body {
   gap: 10px;
 }
 
+#button-container {
+  display: flex; /* Enables flexbox layout */
+  flex-direction: row; /* Aligns items horizontally (default, can be omitted) */
+  align-items: center; /* Vertically centers the items */
+  gap: 10px; /* Adds space between items */
+}
+
 button {
   padding: 4px 6px;
   font-size: 12px;

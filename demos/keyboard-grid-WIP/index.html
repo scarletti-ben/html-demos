@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Grid</title>
+  <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+  <link id="stylesheet" rel="stylesheet" href="styles.css"> <!-- CSS -->
+  <script src="../demo-tools.js"></script> <!-- Tools -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+  
+</head>
+
+<body>
+
+  <!-- Stylesheet Selector -->
+  <select id="stylesheetSelector" onchange="switchStylesheet()">
+    <option value="styles.css" selected>styles.css</option>
+    <option value="styles2.css">styles2.css</option>
+    <option value="styles3.css">styles3.css</option>
+  </select>
+
+  <!-- HTML -->
+
+  <div class="site-wrapper">
+    
+    <div class="test-grid">
+      <div class="test-item">Q</div>
+      <div class="test-item">W</div>
+      <div class="test-item">E</div>
+      <div class="test-item">R</div>
+      <div class="test-item">T</div>
+      <div class="test-item">Y</div>
+      <div class="test-item">U</div>
+      <div class="test-item">I</div>
+      <div class="test-item">O</div>
+      <div class="test-item">P</div>
+      <div class="test-item">A</div>
+      <div class="test-item">S</div>
+      <div class="test-item">D</div>
+      <div class="test-item">F</div>
+      <div class="test-item">G</div>
+      <div class="test-item">H</div>
+      <div class="test-item">J</div>
+      <div class="test-item">K</div>
+      <div class="test-item">L</div>
+    </div>
+  
+    <div class="keyboard-grid">
+      <div class="key">Q</div>
+      <div class="key">W</div>
+      <div class="key">E</div>
+      <div class="key">R</div>
+      <div class="key">T</div>
+      <div class="key">Y</div>
+      <div class="key">U</div>
+      <div class="key">I</div>
+      <div class="key">O</div>
+      <div class="key">P</div>
+      
+      <div class="key gap"></div>
+      <div class="key">A</div>
+      <div class="key">S</div>
+      <div class="key">D</div>
+      <div class="key">F</div>
+      <div class="key">G</div>
+      <div class="key">H</div>
+      <div class="key">J</div>
+      <div class="key">K</div>
+      <div class="key">L</div>
+      <div class="key gap"></div>
+    
+      <div class="key return">
+        <span class="material-symbols-outlined">check_box</span>
+      </div>
+      <div class="key">Z</div>
+      <div class="key">X</div>
+      <div class="key">C</div>
+      <div class="key">V</div>
+      <div class="key">B</div>
+      <div class="key">N</div>
+      <div class="key">M</div>
+      <div class="key backspace">
+        <span class="material-symbols-outlined">keyboard_backspace</span>
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
