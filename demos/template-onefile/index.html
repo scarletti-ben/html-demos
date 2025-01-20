@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Onefile</title>
+
+  <!-- ! Imports -->
+  <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+  <script src="../demo-tools.js"></script> <!-- Tools -->
+
+  <!-- ! CSS -->
+  <style>
+
+    html, body {
+      margin: 8px;
+      padding: 8px;
+      background-color: rgb(64, 64, 64);
+      font-family: monospace;
+    }
+
+    button {
+      background-color: #fbeee0;
+      border: 2px solid #331c3e;
+      border-radius: 16px;
+      box-shadow: #630f78 4px 4px 0 0;
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 18px;
+      line-height: 32px;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #fff;
+      /* filter: invert(1); */
+    }
+
+    button:active {
+      box-shadow: #ab15d0 2px 2px 0 0;
+      transform: translate(2px, 2px);
+    }
+
+    dialog {
+      box-shadow: none;
+      color: white;
+      background-color: inherit;
+      max-width: 80%;
+      margin: auto;
+    }
+
+    dialog::backdrop {
+      all: unset;
+    }
+
+    code {
+      font-family: monospace;
+      background-color: #616161;
+      padding: 2px 3px;
+      border-radius: 4px;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <!-- ! HTML -->
+  <div id="core">
+
+    <button role="button" id="test-button">Test</button>
+    <button role="button" id="other-button">Other</button>
+    <button role="button" id="readme-button" onclick="showREADME()">Show Readme</button>
+
+  </div>
+
+  <!-- ! JavaScript -->
+  <script>
+
+    // Test function to be called
+    function test(invoker = null) {
+        var message = `${invoker} invoked function 'test'`
+        alert(message)
+        console.log(message)
+    }
+
+    // Listener to run once the HTML DOM has fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // Add event listener for 'click' event to button
+      let element = document.getElementById("test-button");
+      element.addEventListener("click", () => {
+        test(element)
+      });
+
+    })
+
+  </script>
+</body>
+</html>

@@ -17,10 +17,19 @@
   <!-- HTML -->
 
   <div id="core">
+
     <h1>Demo Tools Testing</h1>
-    <p>If testing locally make sure its on a local server via <code>http.server</code></p>
-    <button role="button" onclick="showREADME()">Show README</button>
-    <button role="button" onclick="goHome()">Go to Homepage</button>
+    <p>If testing locally make sure you setup a local server via <code>http.server</code></p>
+
+    <div id="button-container">
+      
+      <button role="button" id="test-button" onclick="console.log(this)">Test Button</button>
+      <button role="button" id="show-readme">Show README</button>
+      <button role="button" id="go-home">Go to Homepage</button>
+      <button role="button" id="show-dialog">Show Dialog</button>
+
+    </div>
+
   </div>
 
   <!-- JavaScript -->

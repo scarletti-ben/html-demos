@@ -36,12 +36,40 @@ function readMarkdownFileToHTML(filename) {
   return html;
 }
 
-// Add the README.md for the current site as HTML in a new div element in body
+// Function to show text in <dialog id="modal-dialog"> that can be closed via Escape key
+function showModalDialog(text) {
+  let dialog = document.getElementById("modal-dialog");
+  if (!dialog) {
+    dialog = document.createElement('dialog');
+    dialog.id = "modal-dialog";
+    document.body.appendChild(dialog);
+  }
+  dialog.innerHTML = '';
+  let message = 'Press Escape to Exit'
+  dialog.innerText = message + '\n\n' + text;
+  dialog.showModal();
+}
+
+// Function to show HTML in <dialog id="modal-dialog"> that can be closed via Escape key
+function showModalDialogHTML(html) {
+  let dialog = document.getElementById("modal-dialog");
+  if (!dialog) {
+    dialog = document.createElement('dialog');
+    dialog.id = "modal-dialog";
+    document.body.appendChild(dialog);
+  }
+  dialog.innerHTML = html;
+  let message = 'Press Escape to Exit'
+  let notice = document.createElement('span');
+  notice.innerText = message;
+  dialog.prepend(notice);
+  dialog.showModal();
+}
+
+// Show README.md in <dialog id="modal-dialog">
 function showREADME() {
-  const div = document.createElement('div');
-  const html = readMarkdownFileToHTML("README.md");
-  div.innerHTML = html
-  document.body.appendChild(div);  
+  let html = readMarkdownFileToHTML("README.md");
+  showModalDialogHTML(html)
 }
 
 // Go to homepage / root, on local server or on GitHub pages

@@ -157,3 +157,11 @@ remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
 To https://github.com/scarletti-ben/html-demos
  + 42b7309...a3027e1 main -> main (forced update)
 ```
+
+# More Learnings
+- The `<dialog>` element is used for modal and non-modal dialog boxes in HTML
+  - They can be shown using `.show()` and `.showModal()`
+  - They can be closed using `.close()`
+  - You cannot interact with the site while a `<dialog>` is open
+  - They can be closed using the `Escape` key, this can be disabled
+- The `:modal` psuedo-class can also be applied 
