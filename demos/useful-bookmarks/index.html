@@ -27,6 +27,10 @@
       margin: auto;
     }
 
+    a {
+      color: inherit;
+    }
+
     dialog::backdrop {
       all: unset;
     }
@@ -38,44 +42,17 @@
       border-radius: 4px;
     }
 
-    a {
-      color: inherit;
-    }
-
   </style>
 </head>
 <body>
-  
-  <!-- ! HTML -->
-  <div id="core">
-
-    <button role="button" id="test-button">Test</button>
-    <button role="button" id="other-button">Other</button>
-    <button role="button" onclick="showREADME()">Show Readme</button>
-
-  </div>
 
   <!-- ! JavaScript -->
   <script>
-
-    // Test function to be called
-    function test(invoker = null) {
-        var message = `${invoker} invoked function 'test'`
-        alert(message)
-        console.log(message)
-    }
-
     // Listener to run once the HTML DOM has fully loaded
     document.addEventListener('DOMContentLoaded', function () {
-
-      // Add event listener for 'click' event to button
-      let element = document.getElementById("test-button");
-      element.addEventListener("click", () => {
-        test(element)
-      });
-
+      showREADME()
     })
-
   </script>
+  
 </body>
 </html>

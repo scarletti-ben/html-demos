@@ -110,4 +110,11 @@ document.addEventListener('DOMContentLoaded', function () {
     alert(message)
   }
 
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'h') {
+      event.preventDefault();
+      goHome()
+    }
+  });
+
 })
