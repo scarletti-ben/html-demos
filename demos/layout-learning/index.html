@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Learning</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+
+    :root {
+      --debug-outline: 2px;
+    }
+
+    * { 
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      height: 100%;
+      box-shadow: inset 0 0 0 var(--debug-outline) magenta;
+    }
+    body {
+      height: 100vh;
+      box-shadow: inset 0 0 0 var(--debug-outline) khaki;
+    }
+
+    #outer {
+      height: 100%;
+      width: 95%;
+      margin: 0 auto;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 0 var(--debug-outline) red;
+    }
+
+    #inner {
+      height: 100%;
+      width: 95%;
+      margin: 0 auto;
+      box-sizing: border-box;
+      background-color: grey;
+      box-shadow: inset 0 0 0 var(--debug-outline) green;
+      overflow-y: auto;
+    }
+
+    #bar {
+      height: 8%;
+      display: flex;
+      width: 85%;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 0 var(--debug-outline) blue;
+    }
+
+    #content {
+      height: 100%;
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 0 var(--debug-outline) cyan;
+    }
+
+    span {
+      box-shadow: inset 0 0 0 var(--debug-outline) orange;
+    }
+
+    pre {
+      height: 80%;
+      width: 80%;
+      overflow-y: scroll;
+      padding: 8px;
+      box-sizing: border-box;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      word-break: break-word;
+      box-shadow: inset 0 0 0 var(--debug-outline) salmon;
+    }
+
+    .hidden-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .hidden-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media only screen and (max-width: 800px) {
+
+      #bar {
+        height: 8%;
+      }
+
+      #content {
+        height: 92%;
+      }
+
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div id="outer">
+
+    <div id="inner">
+
+      <div id="bar"><span>Hotkeys: [F1, F2, F3]</span></div>
+
+      <div id="content">
+        <pre>
+This is just a mess of testing things, my main aim was to figure out the best boilerplate for responsive `CSS` which seemed here to be something like:
+
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100vh;
+}
+
+Where setting `box-sizing: border-box` for all elements helps to avoid some annoying interactions, especially with `padding` in which padding an item changes its size in the layout.
+
+Setting `height: 100%` for the HTML seemed to work best, don't ask me why it's working better than `vh`
+
+Setting `height: 100vh` for the body seemed to work best, don't ask me why it's working better than `%`
+
+Supposedly     
+- 100vw : Full width including the scrollbar
+- 100% : Full width excluding the scrollbar
+
+When actually testing things make sure scrollbars for that element are not disabled as it makes it hard to see what is overflowing its container
+
+Elements can control their positioning in their parent layout using `margin: 0 auto`
+
+Toggle outlines (`box-shadow` is an alternative to `outline` that do not affect layout) using `box-shadow: inset 0 0 0 var(--debug-outline) blue` where they are toggled by the CSS variable `--debug-outline` declared in `root`
+
+Media query that makes it so that `#bar` and `#content` are guaranteed to fit in their parent, `#inner`, when viewport size is below 800px
+```
+@media only screen and (max-width: 800px) {
+
+  #bar {
+    height: 8%;
+  }
+
+  #content {
+    height: 92%;
+  }
+
+}
+```
+
+Applying the class below to an element (with other classes) gives a useful hidden scroll to elements that have `overflow-y: auto` or `overflow-y: scroll` already enabled
+```
+.hidden-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+```
+
+There are some useful functions bound to hotkeys [F1 - F...], such as F3 = Toggle scrollbar for `#inner` element (green outline)
+
+# Miscellaneous
+`flex-grow: 1` causes an object to fill available space in a parent flex container
+You can hard reload a page on `Firefox` using `Control + Shift + R`
+        </pre>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+
+    // Toggle scrollbar for an HTML element
+    function toggleScrollbar (id) {
+
+      const element = document.getElementById(id);
+      element.classList.toggle('hidden-scrollbar');
+
+    }
+
+    // Toggle debug outlines for HTML elements
+    function toggleDebugOutlines () {
+
+      var root = document.querySelector(':root');
+      var rootStyle = getComputedStyle(root);
+      const currentOutline = rootStyle.getPropertyValue('--debug-outline')
+      const newOutline = currentOutline === '2px' ? '0px' : '2px';
+      root.style.setProperty('--debug-outline', newOutline);
+
+    }
+
+    // Function to return certain element dimensions as a single string
+    function getValues() {
+
+      const viewportWidth = window.innerWidth.toFixed(1);
+      const viewportHeight = window.innerHeight.toFixed(1);
+      var message = `Viewport: ${viewportWidth}x${viewportHeight}`;
+
+      var element = document.getElementById('outer');
+      var rect = element.getBoundingClientRect();
+      message += `\nOuter [Red]: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}`;
+      message += ` => [~${(rect.width / viewportWidth).toFixed(1)}vw, ~${(rect.height / viewportHeight).toFixed(1)}vh]`;
+
+      var element = document.getElementById('inner');
+      var rect = element.getBoundingClientRect();
+      message += `\nInner [Green]: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}`;
+      message += ` => [~${(rect.width / viewportWidth).toFixed(2)}vw, ~${(rect.height / viewportHeight).toFixed(2)}vh]`;
+
+      var element = document.getElementById('bar');
+      var rect = element.getBoundingClientRect();
+      message += `\nBar [Blue]: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}`;
+      message += ` => [~${(rect.width / viewportWidth).toFixed(2)}vw, ~${(rect.height / viewportHeight).toFixed(2)}vh]`;
+
+      var element = document.getElementById('content');
+      var rect = element.getBoundingClientRect();
+      message += `\nContent [Cyan]: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}`;
+      message += ` => [~${(rect.width / viewportWidth).toFixed(2)}vw, ~${(rect.height / viewportHeight).toFixed(2)}vh]`;
+
+      return message
+
+    }
+
+    document.addEventListener('keydown', function (event) {
+      
+      event.preventDefault()
+
+      if (event.key === 'F1') {
+        var message = getValues()
+        alert(message);
+      }
+      else if (event.key === 'F2'){
+        toggleDebugOutlines()
+      }
+      else if (event.key === 'F3'){
+        toggleScrollbar('inner')
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
