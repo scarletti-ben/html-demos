@@ -184,3 +184,22 @@ function switchStylesheet(url) {
     stylesheet.href = url;
 }
 ```
+
+```javascript
+// Add hotkey to toggle HTML element outlines (via CTRL + F1)
+document.addEventListener('keydown', function (event) {
+
+  if (event.ctrlKey && event.key === 'F1') {
+
+    event.preventDefault();
+
+    var root = document.querySelector(':root');
+    var rootStyle = getComputedStyle(root);
+    const currentOutline = rootStyle.getPropertyValue('--debug-outline')
+    const newOutline = currentOutline === '2px' ? '0px' : '2px';
+    root.style.setProperty('--debug-outline', newOutline);
+
+  };
+
+});
+```

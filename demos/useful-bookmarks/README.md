@@ -10,3 +10,4 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Can also be used for image transitions
 - [Viewport Size Checker](https://whatismyviewport.com/)
     - Check viewport size, test with zoom and fullscreen via `F11`
+- [Contrast Ration Checker](https://webaim.org/resources/contrastchecker)
