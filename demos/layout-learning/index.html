@@ -48,7 +48,7 @@
       height: 8%;
       display: flex;
       width: 85%;
-      margin: 0 auto;
+      /* margin: 0 auto; */
       justify-content: center;
       align-items: center;
       box-sizing: border-box;
@@ -141,7 +141,7 @@ Supposedly
 
 When actually testing things make sure scrollbars for that element are not disabled as it makes it hard to see what is overflowing its container
 
-Elements can control their positioning in their parent layout using `margin: 0 auto`
+Elements can control their positioning in their parent layout using `margin: 0 auto`, `#bar` has disabled it to show that it sits on the right within its parent, instead of in the center
 
 Toggle outlines (`box-shadow` is an alternative to `outline` that do not affect layout) using `box-shadow: inset 0 0 0 var(--debug-outline) blue` where they are toggled by the CSS variable `--debug-outline` declared in `root`
 
@@ -236,7 +236,7 @@ You can hard reload a page on `Firefox` using `Control + Shift + R`
 
     document.addEventListener('keydown', function (event) {
       
-      event.preventDefault()
+      var prevent = true;
 
       if (event.key === 'F1') {
         var message = getValues()
@@ -247,6 +247,13 @@ You can hard reload a page on `Firefox` using `Control + Shift + R`
       }
       else if (event.key === 'F3'){
         toggleScrollbar('inner')
+      }
+      else {
+        prevent = false
+      }
+
+      if (prevent === true) {
+        event.preventDefault()
       }
 
     });

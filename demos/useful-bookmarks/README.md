@@ -3,11 +3,19 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
 - [CSS Buttons](https://getcssscan.com/css-buttons-examples)
 - [CodePen](https://codepen.io/)
 - [GitHub CSS Buttons](https://buttons.github.io/)
-- [Google Material SVG Icons](https://fonts.google.com/icons)
+- [Open Source Google Fonts](https://fonts.google.com/)
+- [Open Source Google SVG Icons](https://fonts.google.com/icons)
     - You can get the actual SVG code, rather than a reference to their stylesheet, if you press copy on the SVG icon itself
 - [W3 CSS Playground](https://www.w3schools.com/cssref/playdemo.php?filename=playcss_accent-color)
 - [Image Clip Paths](https://bennettfeely.com/clippy/)
     - Can also be used for image transitions
 - [Viewport Size Checker](https://whatismyviewport.com/)
     - Check viewport size, test with zoom and fullscreen via `F11`
-- [Contrast Ration Checker](https://webaim.org/resources/contrastchecker)
+- [Contrast Ratio Checker](https://webaim.org/resources/contrastchecker)
+- [Free Dictionary API](https://dictionaryapi.dev/)
+- [Colour Palette Generator](https://coolors.co/)
+- [Flask App Tester](https://sippycup.app/)
+    - `Pyodide` powered site with an editor for `app.py`, `index.html` and `styles.css` to build a test site with `Flask`
+- [Gemini AI](https://gemini.google.com/app)
+    - Alternative to `ChatGPT`
+- [Pure Python Web Apps](https://anvil.works/)
