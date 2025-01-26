@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pyodide Test</title>
+  
+  <!-- ! Import Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
+
+  <!-- ! Local CSS -->
+  <link rel="stylesheet" href="styles.css" id="stylesheet">
+
+</head>
+<body>
+
+  <!-- ! HTML -->
+  <form id='form' onsubmit="evaluateInput(); return false;">
+    <textarea id="terminal" rows="18" disabled></textarea>
+    <input id="input">
+  </form>
+
+  <!-- ! Local JavaScript Containing Pyodide Functionality -->
+  <script src="script.js"></script>
+
+</body>
+</html>
