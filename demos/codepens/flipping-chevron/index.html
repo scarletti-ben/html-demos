@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Onefile</title>
+  <!-- ! CSS -->
+  <style>
+    /* Styling for the highest level HTML element */
+    :root {
+      --background-colour: grey;
+      --accent-colour: lightgrey;
+      --held-colour: darkgrey;
+      --stroke-alternate: red;
+      --font-colour: white;
+      --font-family: "Courier New", Courier, monospace;
+      --font-size: 22px;
+      --font-weight: 500;
+    }
+
+    /* Styling for the body element */
+    body {
+      font-size: var(--font-size);
+      font-weight: var(--font-weight);
+      font-family: var(--font-family);
+      background-color: var(--background-colour);
+      color: var(--font-colour);
+    }
+
+    /* Styling for the chevron-button element */
+    #chevron-button {
+      color: var(--font-colour);
+      background-color: transparent;
+      border-radius: 18px;
+      border: 2px solid var(--accent-colour);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      width: 96px;
+      height: 96px;
+    }
+
+    /* Hide the checkbox input itself */
+    #chevron-button input {
+      display: none;
+    }
+
+    /* Style the chevron by default */
+    #chevron-button svg {
+      width: 80%;
+      height: 80%;
+      transition: transform 0.1s linear;
+      stroke: var(--font-colour);
+      stroke-width: 1;
+      fill: none;
+      transform-origin: center;
+    }
+
+    /* When the checkbox is checked, flip the chevron */
+    #chevron-button input:checked + svg {
+      transform: scaleY(-1); /* Flip the chevron vertically */
+    }
+
+    /* Styling for elements in the hierarchy of chevron-button<>svg<>path<> when chevron-button is hovered by mouse */
+    #chevron-button:hover svg path {
+      stroke: var(--stroke-alternate);
+      stroke-width: 2;
+    }
+
+    /* Styling for the chevron-button element when held by mouse */
+    #chevron-button:active {
+      background-color: var(--held-colour);
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ! HTML -->
+  <div>
+    <label for="toggle-button" id="chevron-button">
+      <input type="checkbox" id="toggle-button" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M8 14 l4 -4 4 4" />
+      </svg>
+    </label>
+  </div>
+</body>
+</html>

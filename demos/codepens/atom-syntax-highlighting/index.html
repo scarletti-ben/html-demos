@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atom One Syntax Highlighting</title>
+  <!-- ! CSS -->
+  <style>
+    div.highlight button {
+      color: #adb5bd;
+      box-sizing: border-box;
+      transition: 0.2s ease-out;
+      cursor: pointer;
+      user-select: none;
+      background: rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0);
+      padding: 5px 10px;
+      font-size: 0.8em;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 0 0.15rem;
+    }
+    .centered {
+      display: flex;
+      justify-content: center;
+    }
+    body {
+      background: #222;
+      font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+    }
+    div.highlight {
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      border-radius: 0.2rem;
+      padding: 10px;
+      margin: 1.5rem 0;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      box-sizing: border-box;
+    }
+    .highlight pre {
+      background: #282c34;
+    }
+    pre.highlight {
+      margin: 0;
+    }
+    .highlight,
+    pre.highlight {
+      background: #282c34;
+      color: #abb2bf;
+    }
+    /* atom one dark css for code blocks */
+    .highlight .c {
+      color: #5c6370; /* Comment (Gray) */
+    }
+    .highlight .err {
+      color: #960050; /* Error (Dark Red) */
+      background-color: #1e0010;
+    }
+    .highlight .k {
+      color: #c678dd; /* Keyword (Purple) */
+    }
+    .highlight .l {
+      color: #98c379; /* Literal (Green) */
+    }
+    .highlight .n {
+      color: #abb2bf; /* Name (Gray) */
+    }
+    .highlight .o {
+      color: #abb2bf; /* Operator (Gray) */
+    }
+    .highlight .p {
+      color: #abb2bf; /* Punctuation (Gray) */
+    }
+    .highlight .cm {
+      color: #5c6370; /* Comment.Multiline (Gray) */
+      font-style: italic;
+    }
+    .highlight .cp {
+      color: #5c6370; /* Comment.Preproc (Gray) */
+      font-style: italic;
+    }
+    .highlight .c1 {
+      color: #5c6370; /* Comment.Single (Gray) */
+      font-style: italic;
+    }
+
+    /* ... */
+    .highlight .cs {
+      color: #5c6370; /* Comment.Special (Gray) */
+      font-style: italic;
+    }
+    .highlight .ge {
+      font-style: italic; /* Generic.Emph (Italic) */
+    }
+    .highlight .gs {
+      font-weight: 700; /* Generic.Strong (Bold) */
+    }
+    .highlight .kc {
+      color: #c678dd; /* Keyword.Constant (Purple) */
+    }
+    .highlight .kd {
+      color: #c678dd; /* Keyword.Declaration (Purple) */
+    }
+    .highlight .kn {
+      color: #c678dd; /* Keyword.Namespace (Purple) */
+    }
+    .highlight .kp {
+      color: #c678dd; /* Keyword.Pseudo (Purple) */
+    }
+    .highlight .kr {
+      color: #c678dd; /* Keyword.Reserved (Purple) */
+    }
+    .highlight .kt {
+      color: #c678dd; /* Keyword.Type (Purple) */
+    }
+    .highlight .ld {
+      color: #98c379; /* Literal.Date (Green) */
+    }
+    .highlight .m {
+      color: #d19a66; /* Literal.Number (Orange) */
+    }
+    .highlight .s {
+      color: #98c379; /* Literal.String (Green) */
+    }
+    .highlight .na {
+      color: #d19a66; /* Name.Attribute (Orange) */
+    }
+    .highlight .nb {
+      color: #e5c07b; /* Name.Builtin (Light Orange) */
+    }
+    .highlight .nc {
+      color: #e5c07b; /* Name.Class (Light Orange) */
+    }
+    .highlight .no {
+      color: #e5c07b; /* Name.Constant (Light Orange) */
+    }
+    .highlight .nd {
+      color: #e5c07b; /* Name.Decorator (Light Orange) */
+    }
+    .highlight .ni {
+      color: #e5c07b; /* Name.Entity (Light Orange) */
+    }
+    .highlight .ne {
+      color: #e5c07b; /* Name.Exception (Light Orange) */
+    }
+    .highlight .nf {
+      color: #61afef; /* Name.Function (Blue) */
+    }
+    .highlight .nl {
+      color: #e5c07b; /* Name.Label (Light Orange) */
+    }
+    .highlight .nn {
+      color: #abb2bf; /* Name.Namespace (Gray) */
+    }
+    .highlight .nx {
+      color: #abb2bf; /* Name.Other (Gray) */
+    }
+    .highlight .py {
+      color: #e5c07b; /* Name.Property (Light Orange) */
+    }
+    .highlight .nt {
+      color: #e06c75; /* Name.Tag (Red) */
+    }
+    .highlight .nv {
+      color: #e5c07b; /* Name.Variable (Light Orange) */
+    }
+    .highlight .ow {
+      font-weight: 700; /* Operator.Word (Bold) */
+    }
+    .highlight .w {
+      color: #f8f8f2; /* Text (White) */
+    }
+    .highlight .mf {
+      color: #d19a66; /* Literal.Number.Float (Orange) */
+    }
+    .highlight .mh {
+      color: #d19a66; /* Literal.Number.Hex (Orange) */
+    }
+    .highlight .mi {
+      color: #d19a66; /* Literal.Number.Integer (Orange) */
+    }
+    .highlight .mo {
+      color: #d19a66; /* Literal.Number.Oct (Orange) */
+    }
+    .highlight .sb {
+      color: #98c379; /* Literal.String.Backtick (Green) */
+    }
+    .highlight .sc {
+      color: #98c379; /* Literal.String.Char (Green) */
+    }
+    .highlight .sd {
+      color: #98c379; /* Literal.String.Doc (Green) */
+    }
+    .highlight .s2 {
+      color: #98c379; /* Literal.String.Double (Green) */
+    }
+    .highlight .se {
+      color: #98c379; /* Literal.String.Escape (Green) */
+    }
+    .highlight .sh {
+      color: #98c379; /* Literal.String.Heredoc (Green) */
+    }
+    .highlight .si {
+      color: #98c379; /* Literal.String.Interpol (Green) */
+    }
+    .highlight .sx {
+      color: #98c379; /* Literal.String.Other (Green) */
+    }
+    .highlight .sr {
+      color: #56b6c2; /* Literal.String.Regex (Light Cyan) */
+    }
+    .highlight .s1 {
+      color: #98c379; /* Literal.String.Single (Green) */
+    }
+    .highlight .ss {
+      color: #56b6c2; /* Literal.String.Symbol (Light Cyan) */
+    }
+    .highlight .bp {
+      color: #e5c07b; /* Name.Builtin.Pseudo (Light Orange) */
+    }
+    .highlight .vc {
+      color: #e5c07b; /* Name.Variable.Class (Light Orange) */
+    }
+    .highlight .vg {
+      color: #e5c07b; /* Name.Variable.Global (Light Orange) */
+    }
+    .highlight .vi {
+      color: #e06c75; /* Name.Variable.Instance (Red) */
+    }
+    .highlight .il {
+      color: #d19a66; /* Literal.Number.Integer.Long (Orange) */
+    }
+    .highlight .gu {
+      color: #75715e; /* Generic.Subheading (Dark Gray) */
+    }
+    .highlight .gd {
+      color: #f92672; /* Generic.Deleted (Pink) */
+    }
+    .highlight .gi {
+      color: #a6e22e; /* Generic.Inserted (Light Green) */
+    }
+
+    .highlight .MY1 {
+      color: #56b6c2; /* builtin.Function (Light Cyan Blue) */
+    }
+
+    .highlight .MY2 {
+      color: #FFFF00; /* parentheses (Yellow) */
+    }
+  </style>
+</head>
+<body>
+  <!-- ! HTML -->
+  <div>
+    <div class="centered">
+      <div class="highlight">
+        <pre class="highlight python"><code><span class="kd">def</span> <span class="nf">hello_world</span><span class="MY2">()</span><span class="w">:</span>
+        <span class="MY1">print</span><span class="p">(</span><span class="s2">"Hello, world!"</span><span class="p">)</span></code></pre>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

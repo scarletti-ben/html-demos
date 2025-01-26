@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Onefile</title>
+  <!-- ! Imports -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- ! CSS -->
+  <style>
+    pre {
+      box-sizing: border-box;
+      width: 80%;
+      max-width: 600px;
+      height: 60%;
+      max-height: 600px;
+      tab-size: 4;
+      white-space: pre-wrap;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      padding: 20px;
+      font-family: monospace;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #333;
+      word-wrap: break-word;
+    }
+    code {
+      box-sizing: border-box;
+      max-width: 600px;
+      max-height: 400px;
+      tab-size: 4;
+      white-space: pre-wrap;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      padding: 40px;
+      font-family: monospace;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #333;
+      word-wrap: break-word;
+      overflow: scroll;
+    }
+  </style>
+</head>
+<body>
+  <!-- ! HTML -->
+  <div style="display: flex; justify-content: center;">
+    <pre>
+      <code class="language-python">
+
+def test(x, y):
+  return x ** y
+  
+z = text(5, 4)
+    
+while True:
+  if z > 10:
+    output: list = []
+    break
+  
+class Testing:
+  def __init__(self, data):
+    """Test docstring"""
+    self.data = data
+
+      </code>
+    </pre>
+  </div>
+
+  <!-- ! JavaScript -->
+  <script>
+    hljs.highlightAll();
+  </script>
+</body>
+</html>
