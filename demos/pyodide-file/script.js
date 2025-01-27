@@ -20,7 +20,7 @@ quantity = 2
 
 for i in range(quantity):
     result = roll(lowest, highest)
-    print(f"You rolled a {result}")
+    print(f"[{i}] You rolled a {result}")
 
 `;
 
@@ -69,7 +69,7 @@ async function evaluatePython(code) {
         addLine("[Run Start]", 2)
         let output = pyodide.runPython(code);
         processOutput(output);
-        addLine("[Run End]", 1)
+        addLine("[Run Ended]", 1)
     } 
     catch (error) {
         processError(error);
