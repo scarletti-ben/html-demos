@@ -19,6 +19,7 @@ class Die:
 die = Die()
 value = die.get_value()
 print(f"You rolled a {value}!")
+
 `;
 
 
@@ -101,6 +102,9 @@ async function init () {
 
     file = document.getElementById("file");
     terminal = document.getElementById("terminal");
+
+    file.value = '';
+    terminal.value = '';
 
     // Function to initialise Pyodide and provide pyodidePromise
     async function initialisePyodide() {
