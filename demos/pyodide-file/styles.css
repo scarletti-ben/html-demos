@@ -20,6 +20,7 @@ html, body {
 
 button {
   width: 50%;
+  font-size: 14px;
   aspect-ratio: 1;
   background-color: rgb(12, 12, 12);
   color: white;
@@ -86,4 +87,14 @@ button {
   border: none;
   color: green;
   resize: none;
+}
+
+@media (orientation: portrait), (max-width: 1200px) {
+  #sidebar {
+    width: 8%;
+  }
+  
+  button {
+    font-size: 12px;
+  }
 }
