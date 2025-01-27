@@ -1,6 +1,6 @@
 // Constants and Global Declarations
 const DEBUG_LEVEL = 0;
-let topLine = "Press F1 to run code, F2 to clear terminal\n\n";
+let topLine = "Press F1 to run code, F2 to clear terminal, F3 to add 4 spaces\n\n";
 let pyodidePromise;
 let terminal;
 let file;
@@ -51,6 +51,18 @@ function hijackPrint(pyodide) {
     pyodide.globals.set('print', text => processPrint(text));
 }
 
+// Add 4 spaces to file.value
+function addTab() {
+    const spaces = '    ';
+    const cursorPosition = file.selectionStart;
+    const textBefore = file.value.substring(0, cursorPosition);
+    const textAfter = file.value.substring(cursorPosition);
+    const textFinal = textBefore + spaces + textAfter;
+    file.value = textFinal;
+    file.selectionStart = file.selectionEnd = cursorPosition + spaces.length;
+    file.focus()
+}
+
 // Initialisation function to run on 'DOMContentLoaded' event
 async function init () {
 
@@ -84,7 +96,8 @@ async function init () {
                 evaluateFile()
             }
             else if (event.key === 'F2') {
-                terminal.value = topLine;
+                // terminal.value = topLine;
+                terminal.value = '';
             }
         });
 
@@ -95,20 +108,20 @@ async function init () {
 
         // Add functionality to the F2 button, for mobile users
         document.getElementById("buttonF2").onclick = function() {
-            terminal.value = topLine;
+            // terminal.value = topLine;
+            terminal.value = '';
+        };
+
+        // Add functionality to the F3 button, for mobile users
+        document.getElementById("buttonF3").onclick = function() {
+            addTab()
         };
 
         // Add event listener to conver Tab press into 4 spaces
         file.addEventListener('keydown', function(event) {
             if (event.key == 'Tab') {
                 event.preventDefault()
-                const spaces = '    ';
-                const cursorPosition = file.selectionStart;
-                const textBefore = file.value.substring(0, cursorPosition);
-                const textAfter = file.value.substring(cursorPosition);
-                const textFinal = textBefore + spaces + textAfter;
-                file.value = textFinal;
-                file.selectionStart = file.selectionEnd = cursorPosition + spaces.length;
+                addTab()
             }
         });
 
