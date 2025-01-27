@@ -23,7 +23,7 @@ print(f"You rolled a {value}!")
 
 
 // Function to add a line to the terminal
-function addLine(line, newlines = 2) {
+function addLine(line, newlines = 1) {
     if (terminal.value === '') {
         terminal.value = line;
     }
@@ -35,11 +35,15 @@ function addLine(line, newlines = 2) {
 
 // Function to process Python output from pyodide.runPython(code)
 function processOutput(output) {
-    if (output === undefined) {
-        output = "None"
-    }
-    let line = `[Output] ${[output]}`
-    addLine(line)
+
+    console.log("Python output has been disabled, use print statements instead");
+
+    // if (output === undefined) {
+    //     output = "None"
+    // }
+    // let line = `[Output] ${[output]}`
+    // addLine(line)
+    
 }
 
 // Function to process Python errors from pyodide.runPython(code)
@@ -59,8 +63,10 @@ async function evaluatePython(code) {
     let pyodide = await pyodidePromise;
     
     try {
+        addLine("[Run Start]", 2)
         let output = pyodide.runPython(code);
         processOutput(output);
+        addLine("[Run End]", 1)
     } 
     catch (error) {
         processError(error);
