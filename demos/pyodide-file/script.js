@@ -20,7 +20,7 @@ quantity = 2
 
 for i in range(quantity):
     result = roll(lowest, highest)
-    print(f"[{i}] You rolled a {result}")
+    print(f"[{i}] You rolled {result}")
 
 `;
 
