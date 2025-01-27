@@ -1,6 +1,12 @@
 // Constants and Global Declarations
 const DEBUG_LEVEL = 0;
-let topLine = "\nButtons\n    Green [R]: Run code\n    Red [C]: Clear terminal\n    Blue [S]: Add four spaces";
+let topLine = `
+Buttons
+    Green [R]: Run code
+    Red   [C]: Clear terminal
+    Blue  [S]: Add four spaces
+`
+
 let pyodidePromise;
 let terminal;
 let file;
@@ -107,7 +113,7 @@ async function init () {
         terminal.value += "Python loading...\n";
         let pyodide = await loadPyodide();
         terminal.value += "Python loading complete\n";
-        terminal.value += topLine;
+        terminal.value += topLine.trim();
         return pyodide;
     }
     pyodidePromise = initialisePyodide();
