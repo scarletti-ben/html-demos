@@ -1,30 +1,41 @@
 // Constants and Global Declarations
 const DEBUG_LEVEL = 0;
-let topLine = "Press F1 to run code, F2 to clear terminal, F3 to add 4 spaces\n\n";
+let topLine = "\nHotkeys\n    F1 [R]: Run code\n    F2 [C]: Clear terminal\n    F3 [S]: Add four spaces";
 let pyodidePromise;
 let terminal;
 let file;
 let fileContents = "import random\nrandom.random()";
+
+// Function to add a line to the terminal
+function addLine(line, newlines = 2) {
+    if (terminal.value === '') {
+        terminal.value = line;
+    }
+    else {
+        terminal.value += '\n'.repeat(newlines) + line
+    }
+    terminal.scrollTop = terminal.scrollHeight;
+}
 
 // Function to process Python output from pyodide.runPython(code)
 function processOutput(output) {
     if (output === undefined) {
         output = "None"
     }
-    terminal.value += '\n\n[Output] ' + output;
-    terminal.scrollTop = terminal.scrollHeight;
+    let line = `[Output] ${[output]}`
+    addLine(line)
 }
 
 // Function to process Python errors from pyodide.runPython(code)
 function processError(error) {
-    terminal.value += '\n\n[Error] ' + error;
-    terminal.scrollTop = terminal.scrollHeight;
+    let line = `[Error] ${[error]}`
+    addLine(line)
 }
 
 // Function to process Python print calls from pyodide.runPython(code)
 function processPrint(text) {
-    terminal.value += '\n\n[Print] ' + text;
-    terminal.scrollTop = terminal.scrollHeight;
+    let line = `[Print] ${[text]}`
+    addLine(line)
 }
 
 // Function to evaluate a given string of Python code
@@ -96,8 +107,13 @@ async function init () {
                 evaluateFile()
             }
             else if (event.key === 'F2') {
+                event.preventDefault()
                 // terminal.value = topLine;
                 terminal.value = '';
+            }
+            else if (event.key === 'F3') {
+                event.preventDefault()
+                addTab()
             }
         });
 

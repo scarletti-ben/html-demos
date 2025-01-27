@@ -1,6 +1,9 @@
 :root {
   --colourBackground: rgb(32,32,32);
   --colourFont: rgb(200,200,200);
+  --colourRed: rgb(200,0,0);
+  --colourGreen: rgb(0,200,0);
+  --colourBlue: rgb(0,0,200);
   --family: monospace, 'Courier New', Courier, sans-serif;
   /* --family: fantasy; */
 }
@@ -29,9 +32,21 @@ button {
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
-  align-items: center;    /* Vertically centers the text */
-  justify-content: center; /* Horizontally centers the text */
+  align-items: center;
+  justify-content: center;
   box-shadow: inset 0 0 0 1px white;
+}
+
+#buttonF1 {
+  box-shadow: inset 0 0 0 1px var(--colourGreen);
+}
+
+#buttonF2 {
+  box-shadow: inset 0 0 0 1px var(--colourRed);
+}
+
+#buttonF3 {
+  box-shadow: inset 0 0 0 1px var(--colourBlue);
 }
 
 #container {
