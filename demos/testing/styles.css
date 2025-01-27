@@ -24,6 +24,7 @@ button {
   letter-spacing: 1px;
   word-spacing: -1px;
   cursor: pointer;
+  user-select: none;
 }
 
 dialog {
