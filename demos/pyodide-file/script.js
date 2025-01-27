@@ -4,7 +4,23 @@ let topLine = "\nHotkeys\n    F1 [R]: Run code\n    F2 [C]: Clear terminal\n    
 let pyodidePromise;
 let terminal;
 let file;
-let fileContents = "import random\nrandom.random()";
+let pythonCode = `
+
+from random import randint as roll
+
+class Die:
+    def __init__(self):
+        self.lowest = 1
+        self.highest = 6
+    
+    def get_value(self):
+        return roll(self.lowest, self.highest)
+    
+die = Die()
+value = die.get_value()
+print(f"You rolled a {value}!")
+`;
+
 
 // Function to add a line to the terminal
 function addLine(line, newlines = 2) {
@@ -96,7 +112,7 @@ async function init () {
         hijackPrint(pyodide);
 
         file.disabled = false;
-        file.value = fileContents;
+        file.value = pythonCode.trim();
         file.focus();
         file.setSelectionRange(file.value.length, file.value.length);
 
