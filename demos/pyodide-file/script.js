@@ -8,17 +8,13 @@ let pythonCode = `
 
 from random import randint as roll
 
-class Die:
-    def __init__(self):
-        self.lowest = 1
-        self.highest = 6
-    
-    def get_value(self):
-        return roll(self.lowest, self.highest)
-    
-die = Die()
-value = die.get_value()
-print(f"You rolled a {value}!")
+lowest = 1
+highest = 20
+times = 2
+
+for i in range(times):
+    result = roll(lowest, highest)
+    print(f"You rolled a {result}")
 
 `;
 
