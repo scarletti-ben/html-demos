@@ -19,12 +19,12 @@ html, body {
 }
 
 button {
-  width: 50%;
+  width: 85%;
   font-size: 14px;
   aspect-ratio: 1;
   background-color: rgb(12, 12, 12);
   color: white;
-  margin-bottom: 8px;
+  margin-bottom: 50%;
   border: none;
   box-sizing: border-box;
   cursor: pointer;
