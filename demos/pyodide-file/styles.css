@@ -1,11 +1,10 @@
 :root {
   --colourBackground: rgb(32,32,32);
-  --colourFont: rgb(200,200,200);
+  --colourFont: rgb(0,255,0);
   --colourRed: rgb(200,0,0);
   --colourGreen: rgb(0,200,0);
   --colourBlue: rgb(0,0,200);
   --family: monospace, 'Courier New', Courier, sans-serif;
-  /* --family: fantasy; */
 }
 
 html, body {
@@ -84,7 +83,7 @@ button {
   padding: 20px;
   background: rgb(30,30,30);
   border: none;
-  color: green;
+  color: var(--colourFont);
   resize: none;
 }
 #file:focus {
@@ -100,7 +99,7 @@ button {
   padding: 20px;
   background: black;
   border: none;
-  color: green;
+  color: var(--colourFont);
   resize: none;
 }
 
