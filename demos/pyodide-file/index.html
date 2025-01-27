@@ -16,8 +16,14 @@
 
   <!-- ! HTML -->
   <div id="container">
-    <textarea id="terminal" disabled></textarea>
-    <textarea id="file" disabled></textarea>
+    <div id="core">
+      <textarea id="terminal" disabled></textarea>
+      <textarea id="file" disabled autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+    </div>
+    <div id="sidebar">
+      <button id="buttonF1">F1</button>
+      <button id="buttonF2">F2</button>
+    </div>
   </div>
 
   <!-- ! Local JavaScript Containing Pyodide Functionality -->

@@ -88,6 +88,16 @@ async function init () {
             }
         });
 
+        // Add functionality to the F1 button, for mobile users
+        document.getElementById("buttonF1").onclick = function() {
+            evaluateFile()
+        };
+
+        // Add functionality to the F2 button, for mobile users
+        document.getElementById("buttonF2").onclick = function() {
+            terminal.value = topLine;
+        };
+
         // Add event listener to conver Tab press into 4 spaces
         file.addEventListener('keydown', function(event) {
             if (event.key == 'Tab') {
