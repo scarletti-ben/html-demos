@@ -1,9 +1,10 @@
 :root {
   --colourBackground: rgb(32,32,32);
   --colourFont: rgb(0,255,0);
-  --colourRed: rgb(200,0,0);
-  --colourGreen: rgb(0,200,0);
-  --colourBlue: rgb(0,0,200);
+  --colourRed: rgb(255,0,0);
+  --colourGreen: rgb(0,255,0);
+  --colourBlue: rgb(0,0,255);
+  --colourOrange: rgb(255,128,0);
   --family: monospace, 'Courier New', Courier, sans-serif;
 }
 
@@ -33,19 +34,23 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 0 1px white;
+  box-shadow: inset 0 0 0 2px white;
 }
 
 #buttonF1 {
-  box-shadow: inset 0 0 0 1px var(--colourGreen);
+  box-shadow: inset 0 0 0 2px var(--colourGreen);
 }
 
 #buttonF2 {
-  box-shadow: inset 0 0 0 1px var(--colourRed);
+  box-shadow: inset 0 0 0 2px var(--colourRed);
 }
 
 #buttonF3 {
-  box-shadow: inset 0 0 0 1px var(--colourBlue);
+  box-shadow: inset 0 0 0 2px var(--colourBlue);
+}
+
+#buttonF4 {
+  box-shadow: inset 0 0 0 2px var(--colourOrange);
 }
 
 #container {

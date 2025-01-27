@@ -1,7 +1,6 @@
 # TODO
 - Add button to hide the sidebar
 
-
 # Code
 
 ```python

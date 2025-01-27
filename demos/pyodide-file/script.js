@@ -2,9 +2,10 @@
 const DEBUG_LEVEL = 0;
 let topLine = `
 Buttons
-    Green [R]: Run code
-    Red   [C]: Clear terminal
-    Blue  [S]: Add four spaces
+    Green   [R]: Run code
+    Red     [C]: Clear terminal
+    Blue    [S]: Add four spaces
+    Orange [CR]: Clear terminal and run code
 `
 
 let pyodidePromise;
@@ -143,6 +144,11 @@ async function init () {
                 event.preventDefault()
                 addTab()
             }
+            else if (event.key === 'F4') {
+                event.preventDefault()
+                terminal.value = '';
+                evaluateFile()
+            }
         });
 
         // Add functionality to the F1 button, for mobile users
@@ -160,6 +166,13 @@ async function init () {
         document.getElementById("buttonF3").onclick = function() {
             addTab()
         };
+
+        // Add functionality to the F4 button, for mobile users
+        document.getElementById("buttonF4").onclick = function() {
+            terminal.value = '';
+            evaluateFile()
+        };
+        
 
         // Add event listener to conver Tab press into 4 spaces
         file.addEventListener('keydown', function(event) {
