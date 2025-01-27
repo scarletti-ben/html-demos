@@ -108,17 +108,16 @@ async function evaluateInput() {
     addToHistory(code)
 }
 
+// Function to allow 'print' statements from Python to be passed to JavaScript
+function hijackPrint(pyodide) {
+    pyodide.globals.set('print', text => processPrint(text));
+}
+
 // Initialisation function to run on 'DOMContentLoaded' event
 async function init () {
 
     input = document.getElementById("input");
     terminal = document.getElementById("terminal");
-
-    // Function to allow 'print' statements from Python to be passed to JavaScript
-    async function hijackPrint() {
-        let pyodide = await pyodidePromise;
-        pyodide.globals.set('print', text => processPrint(text));
-    }
 
     // Function to initialise Pyodide and provide pyodidePromise
     async function initialisePyodide() {
@@ -129,27 +128,33 @@ async function init () {
     }
     pyodidePromise = initialisePyodide();
 
-    await hijackPrint();
+    // Callback code to run on the success of pyodidePromise
+    pyodidePromise.then(pyodide => {
 
-    // Set text and focus on the #input element
-    input.value = "sum([1, 2, 3])";
-    input.focus();
-    input.setSelectionRange(input.value.length, input.value.length);
+        hijackPrint(pyodide)
 
-    // Add event listener for hotkeys
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowDown') {
-            event.preventDefault()
-            cycleHistory("down")
-        }
-        else if (event.key === 'ArrowUp') {
-            event.preventDefault()
-            cycleHistory("up")
-        }
-        else if (event.key === 'Escape') {
-            input.value = '';
-        }
-    });
+        // Set text and focus on the #input element
+        input.disabled = false;
+        input.value = "sum([1, 2, 3])";
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+
+        // Add event listener for hotkeys
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault()
+                cycleHistory("down")
+            }
+            else if (event.key === 'ArrowUp') {
+                event.preventDefault()
+                cycleHistory("up")
+            }
+            else if (event.key === 'Escape') {
+                input.value = '';
+            }
+        });
+
+    })
 
 }
 
