@@ -1,6 +1,6 @@
 // Constants and Global Declarations
 const DEBUG_LEVEL = 0;
-let topLine = "\nHotkeys\n    F1 [R]: Run code\n    F2 [C]: Clear terminal\n    F3 [S]: Add four spaces";
+let topLine = "\nButtons\n    Green [R]: Run code\n    Red [C]: Clear terminal\n    Blue [S]: Add four spaces";
 let pyodidePromise;
 let terminal;
 let file;
