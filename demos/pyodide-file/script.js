@@ -10,9 +10,9 @@ from random import randint as roll
 
 lowest = 1
 highest = 20
-times = 2
+quantity = 2
 
-for i in range(times):
+for i in range(quantity):
     result = roll(lowest, highest)
     print(f"You rolled a {result}")
 
