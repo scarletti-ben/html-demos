@@ -3,17 +3,20 @@
 # < Imports
 # < ========================================================
 
-from os import listdir
+from os import listdir, walk
 from os.path import isdir, join
 
 # < ========================================================
-# < Check for Subfolders in Demos
+# < Check for Paths in Demos
 # < ========================================================
 
 folder: str = "demos"
-paths: list[str] = listdir(folder)
-subfolders: list[str] = [path for path in paths if isdir(join(folder, path))]
-print(f"Subfolders in Demos: {subfolders}")
+paths = []
+for path, subfolders, files in walk(folder):
+  for file in files:
+    if file == "index.html":
+      paths.append(join(path))
+print(f"Paths in Demos: {paths}")
 
 # < ========================================================
 # < Style Tag Contents
@@ -108,17 +111,24 @@ script_tag_contents: str = f"""
 // Find link-list
 const linkList = document.getElementById('link-list');
 
-// List of subfolders
-const subfolders = {str(subfolders)};
+// List of paths
+const paths = {str(paths)};
 
-// Loop through subfolders and create links
-subfolders.forEach(subfolder => {{
+// Sort paths so deeper paths are shown last
+sortedPaths = paths.sort((a, b) => {{
+  const partsA = a.split('\\\\').length;
+  const partsB = b.split('\\\\').length;
+  return partsA - partsB;
+}});
+
+// Loop through paths and create links
+sortedPaths.forEach(subfolder => {{
 
     const listElement = document.createElement('li');
     const linkElement = document.createElement('a');
 
-    linkElement.href = '{folder}/' + subfolder;
-    linkElement.textContent = subfolder;
+    linkElement.href = subfolder;
+    linkElement.textContent = subfolder.replace('demos\\\\', '');
 
     listElement.appendChild(linkElement);
     linkList.appendChild(listElement);
