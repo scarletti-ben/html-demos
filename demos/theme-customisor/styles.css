@@ -1,0 +1,222 @@
+:root {
+
+  --debug-outline: 0px;
+
+  --colourA: rgba(255, 255, 255, 1.0);
+  --colourB: rgb(18, 18, 18);
+  --colourC: rgb(255, 255, 255);
+  --colourD: rgb(130, 130, 130);
+  --colourE: rgb(58, 58, 58);
+  --colourF: rgb(108, 108, 108);
+  --colourG: rgb(80, 140, 80);
+  --colourH: rgb(184, 164, 64);
+  --colourI: rgb(0, 0, 0);
+  --colourJ: rgb(24, 124, 124);
+  --colourK: rgba(0, 0, 0, 0);
+
+  --colour-background: rgb(21, 18, 12);
+  --colour-active: var(--colourF);
+  --colour-absent: var(--colourE);
+  --colour-correct: var(--colourG);
+  --colour-present: var(--colourH);
+  --colour-hinted: var(--colourJ);
+  --colour-default: var(--colourE);
+  /* --colour-font: rgb(218, 215, 210); */
+  --colour-font: rgb(255, 255, 255);
+  --colour-orange: rgb(220, 131, 41);
+
+  --core-margin: 0px;
+  --core-padding: 0px;
+  --core-font-size: 16px;
+  --core-font-weight: 600;
+  --core-font-family: "Fira Code", monospace, sans-serif;
+
+  --outer-width: 100%;
+  --outer-height: 100%;
+
+}
+* { 
+
+  margin: var(--core-margin);
+  padding: var(--core-padding);
+  font-family: var(--core-font-family);
+  font-size: var(--core-font-size);
+  font-weight: var(--core-font-weight);
+  color: var(--colour-font);
+
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga", "tnum", "ss01", "locl";
+  font-variant-ligatures: contextual;
+  text-size-adjust: 100%;
+
+  box-sizing: border-box;
+
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga", "tnum", "ss01", "locl";
+  font-variant-ligatures: contextual;
+  text-size-adjust: 100%;
+  letter-spacing: -0.01em;
+
+  margin: 0px;
+  padding: 0px;
+
+  overflow: hidden;
+
+  background-color: var(--colour-background);
+}
+.hidden-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+#container {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  margin: 32px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 var(--debug-outline) cyan;
+}
+
+
+
+
+
+#test-button {
+  all: unset;
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  color: var(--colour-font);
+  cursor: pointer;
+  margin: 0px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+#test-button:hover {
+  border: 1px solid var(--colour-orange);
+  outline: 1px solid var(--colour-orange);
+  outline-offset: 2px;
+}
+
+.dropdown-container {
+  width: 100px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-button {
+  all: unset;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  color: var(--colour-font);
+  margin: 0px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+.dropdown-options {
+  margin-top: 0px;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: inherit;
+  border: 1px solid var(--colour-orange);
+  outline: 1px solid var(--colour-orange);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.dropdown-options span {
+  color: white;
+  background: rgb(30, 30, 30);
+  padding: 12px 16px;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  display: block;
+  user-select: none;
+  cursor: pointer;
+}
+
+.dropdown-options span:hover {
+  background-color: grey;
+}
+
+.dropdown-container:hover .dropdown-options {
+  display: block;
+}
+
+.dropdown-container:hover .dropdown-button {
+  border: 1px solid var(--colour-orange);
+  outline: 1px solid var(--colour-orange);
+  outline-offset: 2px;
+}
+
+table {
+  border-collapse: collapse;
+  box-shadow: inset 0 0 0 var(--debug-outline) var(--colour-orange);
+}
+
+table, th, td {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  border: 2px solid #363B3D;
+}
+
+th {
+  padding: 8px;
+}
+
+td {
+  padding: 10px;
+}
+
+
+input {
+  all: unset;
+  width: 300px;
+  height: 40px;
+  text-align: left;
+  align-items: center;
+  color: var(--colour-font);
+  cursor: pointer;
+  margin: 0px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+input:hover {
+  border: 1px solid var(--colour-orange);
+  outline: 1px solid var(--colour-orange);
+  outline-offset: 2px;
+}
+
+input:focus {
+  border: 1px solid var(--colour-orange);
+  outline: 1px solid var(--colour-orange);
+  outline-offset: 2px;
+}
