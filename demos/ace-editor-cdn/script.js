@@ -3,7 +3,11 @@ var editor = ace.edit("editor");
 editor.getSession().setMode("ace/mode/python");
 editor.setShowPrintMargin(false);
 editor.setShowInvisibles(false);
-// editor.container.style.padding = "20px";
+// editor.renderer.setScrollMargin(top, bottom, left, right)
+editor.renderer.setPadding(8);
+editor.renderer.setScrollMargin(16, 0, 0, 0);
+// editor.session.setWrapLimitRange(null, null);
+editor.session.setOption("wrap", true);
 
 editor.setValue(`
 
@@ -141,19 +145,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function goFullscreen() {
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-      document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-      document.documentElement.msRequestFullscreen();
+function toggleFullscreen() {
+    if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+      // If already in fullscreen, exit fullscreen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) { // Firefox
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { // IE/Edge
+        document.msExitFullscreen();
+      }
+    } else {
+      // If not in fullscreen, request fullscreen
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        document.documentElement.webkitRequestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+      }
     }
-  }
+}
   
-document.getElementById('fullscreen-button').addEventListener('click', goFullscreen);
+document.getElementById('fullscreen-button').addEventListener('click', toggleFullscreen);
 
 window.addEventListener('load', function() {
     window.scrollTo(0, 1);
