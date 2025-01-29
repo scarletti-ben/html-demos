@@ -4,61 +4,39 @@ let pythonCode = `
 import asyncio
 import sys
 import pygame
+import js
 
-screen_dims = [640, 480]
-
-async def main(
-    update_rects = True,
-    use_layered_dirty = False,
-    screen_dims = [640, 480],
-    flags = 0
-    ):
-
-    if use_layered_dirty:
-        update_rects = True
+async def main():
 
     pygame.init()
     pygame.display.init()
-    screen = pygame.display.set_mode(screen_dims, flags, vsync="-vsync" in sys.argv)
-
-    pygame.joystick.init()
-    num_joysticks = pygame.joystick.get_count()
-    if num_joysticks > 0:
-        stick = pygame.joystick.Joystick(0)
-        stick.init()
-
+    screen = pygame.display.set_mode([640, 480], vsync = "-vsync" in sys.argv)
     screen.fill([0, 0, 0])
     pygame.display.flip()
-
-    frames = 0
-    background = pygame.Surface(screen.get_size())
-    background = background.convert()
-    background.fill([0, 0, 0])
 
     screen_rect = screen.get_rect()
     green_rect = pygame.Rect(0, 0, screen_rect.w // 2, screen_rect.h // 2)
     green_rect.center = screen_rect.center
 
+    fps = 60
+    tick = 1 / fps
     running = True
+
     while running:
 
         screen.fill([0, 0, 0])
 
-        pygame.draw.rect(screen, (0,255,0), green_rect)
-
-        pygame.display.flip()
-
         for event in pygame.event.get():
-            if event.type in [
-                pygame.QUIT,
-                pygame.KEYDOWN,
-                pygame.JOYBUTTONDOWN,
-            ]:
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
                 running = False
 
-        frames += 1
+        pygame.draw.rect(screen, (0, 255, 0), green_rect)
+        pygame.display.flip()
+        await asyncio.sleep(tick)
 
-        await asyncio.sleep(0.01)
+    js.alert("running = False")
 
     pygame.quit()
 
