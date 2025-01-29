@@ -8,6 +8,8 @@ editor.renderer.setPadding(8);
 editor.renderer.setScrollMargin(16, 0, 0, 0);
 // editor.session.setWrapLimitRange(null, null);
 editor.session.setOption("wrap", true);
+editor.setOption("displayIndentGuides", false)
+editor.setOption("showInvisibles", false);
 
 editor.setValue(`
 
@@ -182,3 +184,10 @@ function toggleReadonly() {
 }
 
 document.getElementById('readonly-button').addEventListener('click', toggleReadonly);
+
+function copyAll() {
+  var text = editor.getValue();
+  navigator.clipboard.writeText(text)
+}
+
+document.getElementById('copy-button').addEventListener('click', copyAll);
