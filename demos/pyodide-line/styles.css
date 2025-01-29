@@ -1,6 +1,7 @@
 :root {
   --colourBackground: rgb(32,32,32);
   --colourFont: rgb(200,200,200);
+  --colourGreen: rgb(0,255,0);
   --family: monospace, 'Courier New', Courier, sans-serif;
   /* --family: fantasy; */
 }
@@ -35,7 +36,7 @@ html, body {
   padding: 20px;
   background: black;
   border: none;
-  color: green;
+  color: var(--colourGreen);
   resize: none;
 }
 
@@ -44,7 +45,7 @@ html, body {
   box-sizing: border-box;
   padding: 20px;
   background: black;
-  color: green;
+  color: var(--colourGreen);
   box-shadow: none;
   border: none;
 }
