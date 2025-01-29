@@ -4,6 +4,7 @@ editor.getSession().setMode("ace/mode/python");
 editor.setShowPrintMargin(false);
 editor.setShowInvisibles(false);
 // editor.container.style.padding = "20px";
+
 editor.setValue(`
 
 def test():
@@ -157,3 +158,9 @@ document.getElementById('fullscreen-button').addEventListener('click', goFullscr
 window.addEventListener('load', function() {
     window.scrollTo(0, 1);
 });
+
+function toggleReadonly() {
+    editor.setReadOnly(!editor.getReadOnly());
+}
+
+document.getElementById('readonly-button').addEventListener('click', toggleReadonly);
