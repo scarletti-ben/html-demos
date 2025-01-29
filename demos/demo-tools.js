@@ -87,6 +87,25 @@ function goHome() {
 
 }
 
+// Toggle fullscreen on or off
+function toggleFullscreen() {
+  let fullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement
+
+  if (fullscreen) {
+    if (document.exitFullscreen) document.exitFullscreen(); 
+    else if (document.mozCancelFullScreen) document.mozCancelFullScreen(); 
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    else if (document.msExitFullscreen) document.msExitFullscreen();
+  } 
+  else {
+    if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+    else if (document.documentElement.mozRequestFullScreen) document.documentElement.mozRequestFullScreen();
+    else if (document.documentElement.webkitRequestFullscreen) document.documentElement.webkitRequestFullscreen();
+    else if (document.documentElement.msRequestFullscreen) document.documentElement.msRequestFullscreen();
+  }
+
+}
+
 // Listener to run once the HTML DOM has fully loaded
 document.addEventListener('DOMContentLoaded', function () {
 
