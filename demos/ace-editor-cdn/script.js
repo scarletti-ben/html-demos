@@ -11,7 +11,7 @@ editor.session.setOption("wrap", true);
 editor.setOption("displayIndentGuides", false)
 editor.setOption("showInvisibles", false);
 
-editor.setValue(`
+let pythonCode = `
 
 def test():
     return 5
@@ -31,9 +31,22 @@ try:
     5 / 0
 except Exception as e:
     print(e)
+    
+`
 
-`.trim());
-editor.clearSelection()
+// Reset text to demo text
+function resetText() {
+    editor.setValue(pythonCode.trim());
+    editor.clearSelection()
+    console.log("test reset")
+}
+
+resetText()
+
+setInterval(() => {
+    localStorage.setItem('userCode', editor.getValue());
+    console.log("autosaved")
+}, 10000); // Saves every 10 seconds
 
 // List of Dark Theme Codes
 const darkThemes = [
@@ -185,12 +198,22 @@ window.addEventListener('load', function() {
         setTheme("mono_industrial");
     }
 
+    let userCode = localStorage.getItem('userCode');
+    if (userCode) {
+        editor.setValue(userCode.trim());
+        editor.clearSelection()
+        console.log("test set to saved userCode")
+    } 
+    else {
+      resetText();
+    }
+
 });
 
 function toggleReadonly() {
     editor.setReadOnly(!editor.getReadOnly());
     let setting = editor.getReadOnly() ? "on" : "off";
-    let message = `Readonly is ${setting}`
+    let message = `Readonly ${setting}`
     showToast(message)
 }
 
@@ -203,6 +226,8 @@ function copyAll() {
 }
 
 document.getElementById('copy-button').addEventListener('click', copyAll);
+
+document.getElementById('reset-button').addEventListener('click', resetText);
 
 // Toasting function to add a temporary toast message
 function showToast(message) {
