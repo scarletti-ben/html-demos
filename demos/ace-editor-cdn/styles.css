@@ -99,6 +99,15 @@ br {
         width: 95%;
     }
     #topbar {
-        padding: 12px;
+        padding: 8px 2px 8px 2px;
+        
+    }
+    button {
+        font-size: 8px;
+        margin-left: 2px;
+    }
+    select {
+        width: 80px;
+        font-size: 8px;
     }
 }
