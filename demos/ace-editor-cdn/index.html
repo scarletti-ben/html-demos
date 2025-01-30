@@ -16,12 +16,17 @@
 <body>
 
   <!-- ! HTML -->
+
+  <div id="toaster" style="visibility: hidden;"></div>
+
   <div id="outer">
 
-    <div>
+    <div id="topbar">
       <select id="themeSelector">
       </select>
-      
+      <button id="fullscreen-button">Fullscreen</button>
+      <button id="readonly-button">Read Only</button>
+      <button id="copy-button">Copy</button>
     </div>
 
     <br>
@@ -29,14 +34,6 @@
     <div id="editorContainer">
       <div id="editor"></div>
     </div>
-
-    <br>
-    <button id="fullscreen-button">Fullscreen</button>
-    <br>
-    <button id="readonly-button">Toggle Readonly</button>
-    <br>
-    <button id="copy-button">Copy All</button>
-    <br>
 
   </div>
 

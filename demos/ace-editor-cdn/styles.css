@@ -1,5 +1,69 @@
 html, body {
     background: rgb(30, 30, 30);
+    margin: 0px;
+    padding: 0px;
+    font-family: monospace, sans-serif;
+    font-weight: bold;
+}
+
+#topbar {
+    height: 8%;
+    width: 100%;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 -1px 0 rgb(66, 66, 66);
+    box-sizing: border-box;
+}
+
+button {
+    all: unset;
+    box-sizing: border-box;
+    background: rgb(66, 66, 66);
+    color: rgb(240, 240, 240);
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 4px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+}
+
+select {
+    all: unset;
+    box-sizing: border-box;
+    width: 160px;
+    background: rgb(66, 66, 66);
+    color: rgb(240, 240, 240);
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 4px;
+    text-align: left;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    appearance: none;
+}
+
+#toaster {
+    width: 120px;
+    height: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    z-index: 999;
+    position: fixed;
+    left: 50%;
+    top: 11%;
+    transform: translate(-50%, -0%);
 }
 
 #outer {
@@ -13,11 +77,9 @@ html, body {
     width: 70%;
     height: 400px;
     position: relative;
-    background-color: red;
+    outline: 2px solid rgb(116, 116, 116);
 }
 #editor { 
-    /* padding-top: 40px;
-    box-sizing: border-box; */
     position: absolute;
     top: 0;
     right: 0;
@@ -29,28 +91,6 @@ br {
     display: block;
     margin-bottom: 1em;
 }
-
-/* .ace_gutter {
-    transform: translate(0px, 10px);
-} */
-
-/* .ace_content {
-    transform: translate(0px, 10px);
-} */
-
-/* .ace_gutter {
-    padding-top: 8px;
-} */
-
-/* .ace_content {
-    padding-top: 8px;
-    padding-left: 8px;
-} */
-/* 
-.scrollmargin {
-    height: 100px;
-    width: 40px;
-} */
 
 @media only screen and (max-width: 600px) {
     #editorContainer {

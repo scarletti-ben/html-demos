@@ -181,6 +181,9 @@ window.addEventListener('load', function() {
 
 function toggleReadonly() {
     editor.setReadOnly(!editor.getReadOnly());
+    let setting = editor.getReadOnly() ? "on" : "off";
+    let message = `Readonly is ${setting}`
+    showToast(message)
 }
 
 document.getElementById('readonly-button').addEventListener('click', toggleReadonly);
@@ -188,6 +191,22 @@ document.getElementById('readonly-button').addEventListener('click', toggleReado
 function copyAll() {
   var text = editor.getValue();
   navigator.clipboard.writeText(text)
+  showToast("Copied!")
 }
 
 document.getElementById('copy-button').addEventListener('click', copyAll);
+
+// Toasting function to add a temporary toast message
+function showToast(message) {
+
+  const toaster = document.getElementById('toaster');
+  toaster.textContent = message;
+  toaster.style.visibility = 'visible';
+
+  // Hide toaster after 3 seconds
+  setTimeout(() => {
+      toaster.style.visibility = 'hidden';
+      toaster.textContent = '';
+  }, 1200);
+
+}

@@ -6,6 +6,8 @@ import sys
 import pygame
 import js
 
+js.console.log("inside python code")
+
 async def main():
 
     pygame.init()
@@ -18,13 +20,16 @@ async def main():
     green_rect = pygame.Rect(0, 0, screen_rect.w // 2, screen_rect.h // 2)
     green_rect.center = screen_rect.center
 
-    fps = 60
+    fps = 30
     tick = 1 / fps
     running = True
 
     while running:
 
         screen.fill([0, 0, 0])
+
+        mouse = pygame.mouse.get_pos()
+        green_rect.center = mouse
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -33,7 +38,8 @@ async def main():
                 running = False
 
         pygame.draw.rect(screen, (0, 255, 0), green_rect)
-        pygame.display.flip()
+        # pygame.display.flip()
+        pygame.display.update(green_rect)
         await asyncio.sleep(tick)
 
     js.alert("running = False")
