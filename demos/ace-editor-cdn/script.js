@@ -112,6 +112,7 @@ function setTheme(themeCode) {
     themeCode = themeCode.toLowerCase().replace(/ /g, '_');
     let theme = "ace/theme/" + themeCode
     editor.setTheme(theme);
+    localStorage.setItem('selectedTheme', themeCode);
     if (themeSelector.value !== themeCode) {
         themeSelector.value = themeCode
     }
@@ -122,8 +123,6 @@ themeSelector.addEventListener('change', function () {
     const themeCode = themeSelector.value;
     setTheme(themeCode)
 });
-
-setTheme("mono industrial")
 
 editor.setShowInvisibles(false);
 
@@ -177,6 +176,15 @@ document.getElementById('fullscreen-button').addEventListener('click', toggleFul
 
 window.addEventListener('load', function() {
     window.scrollTo(0, 1);
+
+    // Retrieve and apply saved theme
+    const savedTheme = localStorage.getItem('selectedTheme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        setTheme("mono_industrial");
+    }
+
 });
 
 function toggleReadonly() {
