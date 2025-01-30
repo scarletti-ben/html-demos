@@ -3,13 +3,10 @@ var editor = ace.edit("editor");
 editor.getSession().setMode("ace/mode/python");
 editor.setShowPrintMargin(false);
 editor.setShowInvisibles(false);
-// editor.renderer.setScrollMargin(top, bottom, left, right)
 editor.renderer.setPadding(8);
 editor.renderer.setScrollMargin(16, 0, 0, 0);
-// editor.session.setWrapLimitRange(null, null);
 editor.session.setOption("wrap", true);
 editor.setOption("displayIndentGuides", false)
-editor.setOption("showInvisibles", false);
 editor.setOption("showInvisibles", false);
 editor.getSession().setTabSize(4);
 editor.getSession().setUseSoftTabs(true);
@@ -43,13 +40,14 @@ function resetText() {
     editor.clearSelection()
     console.log("test reset")
 }
-
+document.getElementById('reset-button').addEventListener('click', resetText);
 resetText()
 
+// Autosave every 10 seconds
 setInterval(() => {
     localStorage.setItem('userCode', editor.getValue());
     console.log("autosaved")
-}, 10000); // Saves every 10 seconds
+}, 10000);
 
 // List of Dark Theme Codes
 const darkThemes = [
@@ -140,14 +138,13 @@ themeSelector.addEventListener('change', function () {
     setTheme(themeCode)
 });
 
-editor.setShowInvisibles(false);
-
 document.addEventListener('click', function() {
     var position = editor.getCursorPosition();
     var token = editor.session.getTokenAt(position.row, position.column);
     console.log(token)
 });
 
+// Add hotkeys when the document is fully loaded
 document.addEventListener('DOMContentLoaded', function () {
 
     document.addEventListener('keydown', function(event) {
@@ -162,38 +159,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+// Toggle fullscreen
 function toggleFullscreen() {
+
     if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-      // If already in fullscreen, exit fullscreen
       if (document.exitFullscreen) {
         document.exitFullscreen();
-      } else if (document.mozCancelFullScreen) { // Firefox
+      } else if (document.mozCancelFullScreen) {
         document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+      } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) { // IE/Edge
+      } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
       }
     } else {
-      // If not in fullscreen, request fullscreen
       if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+      } else if (document.documentElement.mozRequestFullScreen) {
         document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+      } else if (document.documentElement.webkitRequestFullscreen) {
         document.documentElement.webkitRequestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+      } else if (document.documentElement.msRequestFullscreen) {
         document.documentElement.msRequestFullscreen();
       }
     }
+    
 }
-  
 document.getElementById('fullscreen-button').addEventListener('click', toggleFullscreen);
 
 window.addEventListener('load', function() {
+
     window.scrollTo(0, 1);
 
-    // Retrieve and apply saved theme
     const savedTheme = localStorage.getItem('selectedTheme');
     if (savedTheme) {
         setTheme(savedTheme);
@@ -213,81 +210,80 @@ window.addEventListener('load', function() {
 
 });
 
+// Toggle readonly mode to stop automatic keyboard popup on mobile
 function toggleReadonly() {
     editor.setReadOnly(!editor.getReadOnly());
     let setting = editor.getReadOnly() ? "on" : "off";
     let message = `Readonly ${setting}`
     showToast(message)
 }
-
 document.getElementById('readonly-button').addEventListener('click', toggleReadonly);
 
+// Copy all text in the editor to clipboard
 function copyAll() {
-  var text = editor.getValue();
-  navigator.clipboard.writeText(text)
-  showToast("Copied!")
+    var text = editor.getValue();
+    navigator.clipboard.writeText(text)
+    showToast("Copied!")
 }
-
 document.getElementById('copy-button').addEventListener('click', copyAll);
-
-document.getElementById('reset-button').addEventListener('click', resetText);
 
 // Toasting function to add a temporary toast message
 function showToast(message) {
 
-  const toaster = document.getElementById('toaster');
-  toaster.textContent = message;
-  toaster.style.visibility = 'visible';
+    const toaster = document.getElementById('toaster');
+    toaster.textContent = message;
+    toaster.style.visibility = 'visible';
 
-  // Hide toaster after 3 seconds
-  setTimeout(() => {
-      toaster.style.visibility = 'hidden';
-      toaster.textContent = '';
-  }, 1200);
+    // Hide toaster after 3 seconds
+    setTimeout(() => {
+        toaster.style.visibility = 'hidden';
+        toaster.textContent = '';
+    }, 1200);
 
 }
 
+// Save editor text to a .txt file
 function saveFile() {
 
-  const code = editor.getValue();
+    const code = editor.getValue();
 
-  const blob = new Blob([code], { type: 'text/plain' });
+    const blob = new Blob([code], { type: 'text/plain' });
 
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'file.txt';
-  link.click();
-  URL.revokeObjectURL(link.href);
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'file.txt';
+    link.click();
+    URL.revokeObjectURL(link.href);
 
 }
 document.getElementById('save-button').addEventListener('click', saveFile);
 
-
-
+// Load .txt file to editor
 function loadFile() {
-  // Create an input element for file selection
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = '.txt, .py'; // Allow only .txt and .py files
 
-  input.addEventListener('change', function(event) {
-    const file = event.target.files[0];
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.txt, .py';
 
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            editor.setValue(e.target.result, -1);
-            editor.focus()
-            const row = editor.getSession().getLength() - 1
-            const column = editor.getSession().getLine(row).length;
-            editor.getSession().selection.moveTo(row, column);
-        };
-        reader.readAsText(file);
-    }
+    input.addEventListener('change', function(event) {
+        
+        const file = event.target.files[0];
 
-  });
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                editor.setValue(e.target.result, -1);
+                editor.focus()
+                const row = editor.getSession().getLength() - 1
+                const column = editor.getSession().getLine(row).length;
+                editor.getSession().selection.moveTo(row, column);
+            };
+            reader.readAsText(file);
+        }
 
-  input.click();
+    });
+
+    input.click();
+
 }
-
 document.getElementById('load-button').addEventListener('click', loadFile);
