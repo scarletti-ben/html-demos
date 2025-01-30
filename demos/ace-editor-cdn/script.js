@@ -10,6 +10,9 @@ editor.renderer.setScrollMargin(16, 0, 0, 0);
 editor.session.setOption("wrap", true);
 editor.setOption("displayIndentGuides", false)
 editor.setOption("showInvisibles", false);
+editor.setOption("showInvisibles", false);
+editor.getSession().setTabSize(4);
+editor.getSession().setUseSoftTabs(true);
 
 let pythonCode = `
 
