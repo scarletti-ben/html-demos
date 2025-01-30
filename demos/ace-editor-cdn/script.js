@@ -11,6 +11,14 @@ editor.setOption("showInvisibles", false);
 editor.getSession().setTabSize(4);
 editor.getSession().setUseSoftTabs(true);
 
+editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true
+});
+
+// editor.getSession().completer.autoSelect = true;
+
 let pythonCode = `
 
 def test():

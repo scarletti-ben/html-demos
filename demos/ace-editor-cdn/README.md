@@ -24,6 +24,15 @@ https://github.com/ajaxorg/ace-builds/).
 There is also a demo site where you can toggle different `ace` settings, called `ace kitchen sink` found 
 [here](https://ace.c9.io/build/kitchen-sink.html).
 
+You can enable `autocomplete` by adding the second `CDN` of `<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ext-language_tools.js"></script>` to `index.html`
+```javascript
+editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true
+});
+```
+
 ### Information
 It can be hard to style the `ace` editor, and while you can pinpoint the different `CSS` classes, you can have issues with alignment if you manually change things, this is why most of the settings are best left to `script.js` eg. `editor.renderer.setScrollMargin(16, 0, 0, 0);` will move the editor down `16px` which is the default line size, wheras attempting to manually set padding will create alignment issues for the cursor.
 
@@ -42,3 +51,4 @@ It can be hard to style the `ace` editor, and while you can pinpoint the differe
 
 # TODO
 - Clean up `index.html`, `styles.css` and `script.js`
+- Disable `Enter` key accepting autocomplete suggestions
