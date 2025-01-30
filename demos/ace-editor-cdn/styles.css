@@ -4,6 +4,8 @@ html, body {
     padding: 0px;
     font-family: monospace, sans-serif;
     font-weight: bold;
+    height: 100%;
+    width: 100%;
 }
 #topbar {
     height: 8%;
@@ -64,18 +66,21 @@ select {
     transform: translate(-50%, -0%);
 }
 #outer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
     align-items: center;
+    height: 100%;
 }
 #editorContainer {
-    width: 70%;
-    height: 400px;
+    width: 75%;
+    height: 85%;
+    margin: auto;
     position: relative;
     outline: 2px solid rgb(116, 116, 116);
 }
 #editor {
+    height: 100%;
     position: absolute;
     top: 0;
     right: 0;
