@@ -246,3 +246,48 @@ function showToast(message) {
   }, 1200);
 
 }
+
+function saveFile() {
+
+  const code = editor.getValue();
+
+  const blob = new Blob([code], { type: 'text/plain' });
+
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'file.txt';
+  link.click();
+  URL.revokeObjectURL(link.href);
+
+}
+document.getElementById('save-button').addEventListener('click', saveFile);
+
+
+
+function loadFile() {
+  // Create an input element for file selection
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.txt, .py'; // Allow only .txt and .py files
+
+  input.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            editor.setValue(e.target.result, -1);
+            editor.focus()
+            const row = editor.getSession().getLength() - 1
+            const column = editor.getSession().getLine(row).length;
+            editor.getSession().selection.moveTo(row, column);
+        };
+        reader.readAsText(file);
+    }
+
+  });
+
+  input.click();
+}
+
+document.getElementById('load-button').addEventListener('click', loadFile);
