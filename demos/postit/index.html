@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postit Notes</title>
+
+  <!-- ! Imports -->
+
+  <!-- ! CSS -->
+  <style>
+
+    :root {
+      --debugOutline: 0px;
+      --fontSize: 16px;
+      --foregroundColour: rgb(255, 255, 255);
+      --backgroundColour: rgb(48, 48, 48);
+      --fontFamily: monospace, sans-serif;
+      --fontWeight: 400;
+      --boxWidth: 200px;
+      --boxHeight: 200px;
+      --scroll-slider-colour: rgb(84, 93, 103);
+      --postit-background: darkslategray;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: var(--backgroundColour);
+      color: var(--foregroundColour);
+      font-family: var(--fontFamily);
+      font-size: var(--fontSize);
+      font-weight: var(--fontWeight);
+      scrollbar-color: var(--scroll-slider-colour) var(--backgroundColour);
+      /* box-shadow: inset 0 0 0 var(--debugOutline) orange; */
+    }
+
+    #page {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      background-color: transparent;
+      box-sizing: border-box;
+      overflow: auto;
+      flex-wrap: wrap;
+      padding: 16px;
+      /* box-shadow: inset 0 0 0 var(--debugOutline) cyan; */
+    }
+
+    .postit-container {
+      width: var(--boxWidth);
+      height: var(--boxHeight);
+      background-color: transparent;
+      box-sizing: border-box;
+      padding: 2px;
+      margin: 0px;
+      box-shadow: inset 0 0 0 var(--debugOutline) teal;
+      flex-shrink: 0;
+      flex-grow: 0;
+      cursor: grab;
+    }
+
+    .postit-curve {
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      box-sizing: border-box;
+      padding: 0px;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .postit-content {
+      width: 100%;
+      height: 100%;
+      background-color: var(--postit-background);
+      box-sizing: border-box;
+      padding: 18px 20px;
+      overflow-y: auto;
+      scrollbar-color: var(--scroll-slider-colour) var(--postit-background);
+    }
+
+    .postit-content:focus {
+      outline: none;
+      box-shadow: none;
+      border: none;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <!-- ! HTML -->
+  <div id="page">
+
+    <div class="postit-container" style="--boxWidth: 400px; --boxHeight: 400px;">
+      <div class="postit-curve">
+        <div class="postit-content"></div>
+      </div>
+    </div>  
+
+    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 400px;">
+      <div class="postit-curve">
+        <div class="postit-content"></div>
+      </div>
+    </div>
+
+    <div class="postit-container" style="--boxWidth: 400px; --boxHeight: 200px;">
+      <div class="postit-curve">
+        <div class="postit-content"></div>
+      </div>
+    </div>
+
+    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+      <div class="postit-curve">
+        <div class="postit-content"></div>
+      </div>
+    </div>
+
+    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+      <div class="postit-curve">
+        <div class="postit-content"></div>
+      </div>
+    </div>
+
+    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+      <div class="postit-curve">
+        <div class="postit-content"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ! JavaScript -->
+  <script>
+
+    let draggedElement = null;
+
+    // Make a given element draggable
+    function setDraggable(element) {
+      element.draggable = true;
+
+      element.addEventListener("dragstart", (event) => {
+        draggedElement = element;
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setDragImage(new Image(), 0, 0);
+      });
+      
+      element.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        element.style.filter = "brightness(1.4)";
+      });
+
+      // element.addEventListener("dragenter", (event) => {
+      //   element.style.filter = "brightness(1.4)";
+      // });
+
+      element.addEventListener("dragleave", (event) => {
+        element.style.filter = "";
+      });
+
+      element.addEventListener("drop", (event) => {
+        event.preventDefault();
+        let receiver = element;
+        let dropping = draggedElement;
+        if (dropping && dropping !== receiver) {
+          let parent = receiver.parentNode;
+          let adjacentOnLeft = dropping.previousElementSibling === receiver;
+          if (adjacentOnLeft) {
+            parent.insertBefore(dropping, receiver);
+          }
+          else {
+            parent.insertBefore(dropping, receiver.nextSibling);
+          }
+        }
+        receiver.style.filter = "";
+      });
+
+    };
+
+    // Make a given element text editable
+    function setEditable(element) {
+      element.contentEditable = "true";
+    }
+
+    // Initialisation function to be called when the DOM has loaded
+    function init() {
+
+      let postits = document.querySelectorAll(".postit-content");
+      for (const postit of postits) {
+        setEditable(postit); 
+      }
+
+      let containers = document.querySelectorAll(".postit-container");
+      for (const container of containers) {
+        setDraggable(container); 
+      }
+
+    }
+
+    // Add listener to call init function when the DOM has loaded
+    document.addEventListener('DOMContentLoaded', init);
+
+  </script>
+
+</body>
+</html>
