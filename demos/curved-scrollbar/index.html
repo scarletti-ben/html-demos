@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template</title>
+
+  <!-- ! Imports -->
+
+  <!-- ! CSS -->
+  <style>
+
+    :root {
+      --debugOutline: 2px;
+      --fontSize: 16px;
+      --foregroundColour: rgb(255, 255, 255);
+      --backgroundColour: rgb(48, 48, 48);
+      --fontFamily: monospace, sans-serif;
+      --fontWeight: 400;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: var(--backgroundColour);
+      color: var(--foregroundColour);
+      font-family: var(--fontFamily);
+      font-size: var(--fontSize);
+      font-weight: var(--fontWeight);
+    }
+
+    #page {
+      width: 80%;
+      height: 80%;
+      background-color: transparent;
+      box-sizing: border-box;
+      padding: 0px;
+      box-shadow: inset 0 0 0 var(--debugOutline) cyan;
+    }
+
+    #modal-wrapper {
+      width: 80%;
+      height: 80%;
+      background-color: transparent;
+      box-sizing: border-box;
+      padding: 0px;
+
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    #modal-core {
+      width: 100%;
+      height: 100%;
+      background-color: darkslategray;
+      box-sizing: border-box;
+      padding: 18px 20px;
+      overflow-y: auto;
+      scrollbar-color: rgb(84, 93, 103) darkslategray;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <!-- ! HTML -->
+  <div id="page">
+    <div id="modal-wrapper">
+      <div id="modal-core"></div>
+    </div>
+    <br>
+  </div>
+
+  <!-- ! JavaScript -->
+  <script>
+
+    // Add multiple lines of filler to an element for testing
+    function addFiller(element) {
+      element.innerHTML = '<span>text<span><br>'.repeat(36);
+    }
+
+    // Initialisation function to be called when the DOM has loaded
+    function init() {
+      let core = document.getElementById("modal-core");
+      addFiller(core);
+    }
+
+    // Add listener to call init function when the DOM has loaded
+    document.addEventListener('DOMContentLoaded', init);
+
+  </script>
+
+</body>
+</html>
