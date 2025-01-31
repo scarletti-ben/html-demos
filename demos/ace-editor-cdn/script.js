@@ -17,6 +17,35 @@ editor.setOptions({
     enableLiveAutocompletion: true
 });
 
+// Define custom highlight rules
+// ace.define("custom_highlight_rules", ["require", "exports", "module", "ace/lib/oop", "ace/mode/text_highlight_rules"], function (require, exports, module) {
+//     var oop = require("ace/lib/oop");
+//     var TextHighlightRules = require("ace/mode/text_highlight_rules").TextHighlightRules;
+  
+//     var CustomHighlightRules = function () {
+//       this.$rules = {
+//         start: [
+//           {
+//             token: "keyword", // Keywords (highlighted in bold)
+//             regex: "\\b(if|else|for|while|return)\\b",
+//           },
+//           {
+//             token: "string", // Strings (highlighted in green)
+//             regex: '".*?"',
+//           },
+//           {
+//             token: "comment", // Single-line comments (highlighted in gray)
+//             regex: "//.*$",
+//           },
+//         ],
+//       };
+//     };
+  
+//     oop.inherits(CustomHighlightRules, TextHighlightRules);
+//     exports.CustomHighlightRules = CustomHighlightRules;
+// });
+// editor.getSession().setMode("ace/mode/python");
+
 // editor.getSession().completer.autoSelect = true;
 
 let pythonCode = `

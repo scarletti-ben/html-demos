@@ -52,3 +52,4 @@ It can be hard to style the `ace` editor, and while you can pinpoint the differe
 # TODO
 - Clean up `index.html`, `styles.css` and `script.js`
 - Disable `Enter` key accepting autocomplete suggestions
+- https://ace.c9.io/tool/mode_creator.html
