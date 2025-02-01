@@ -18,8 +18,7 @@
       --backgroundColour: rgb(48, 48, 48);
       --fontFamily: monospace, sans-serif;
       --fontWeight: 400;
-      --boxWidth: 200px;
-      --boxHeight: 200px;
+      --unit: 80px;
       --scroll-slider-colour: rgb(84, 93, 103);
       --postit-background: darkslategray;
     }
@@ -57,8 +56,8 @@
     }
 
     .postit-container {
-      width: var(--boxWidth);
-      height: var(--boxHeight);
+      width: var(--unit);
+      height: var(h--unit);
       background-color: transparent;
       box-sizing: border-box;
       padding: 2px;
@@ -67,6 +66,30 @@
       flex-shrink: 0;
       flex-grow: 0;
       cursor: grab;
+    }
+    .postit-container.h1 {
+      height: calc(var(--unit) * 1);
+    }
+    .postit-container.h2 {
+      height: calc(var(--unit) * 2);
+    }
+    .postit-container.h3 {
+      height: calc(var(--unit) * 3);
+    }
+    .postit-container.h4 {
+      height: calc(var(--unit) * 4);
+    }
+    .postit-container.w1 {
+      width: calc(var(--unit) * 1);
+    }
+    .postit-container.w2 {
+      width: calc(var(--unit) * 2);
+    }
+    .postit-container.w3 {
+      width: calc(var(--unit) * 3);
+    }
+    .postit-container.w4 {
+      width: calc(var(--unit) * 4);
     }
 
     .postit-curve {
@@ -95,6 +118,12 @@
       border: none;
     }
 
+    @media screen and (max-width: 600px) {
+      :root {
+        --unit: 90px;
+      }
+    }
+
   </style>
 
 </head>
@@ -103,50 +132,49 @@
   <!-- ! HTML -->
   <div id="page">
 
-    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+    <div class="postit-container w2 h2">
       <div class="postit-curve">
         <div class="postit-content">a</div>
       </div>
     </div>  
 
-    <div class="postit-container" style="--boxWidth: 400px; --boxHeight: 400px;">
+    <div class="postit-container w4 h4">
       <div class="postit-curve">
         <div class="postit-content">b</div>
       </div>
     </div>
 
-    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+    <div class="postit-container w2 h2">
       <div class="postit-curve">
         <div class="postit-content">c</div>
       </div>
     </div>
 
-    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+    <div class="postit-container w2 h2">
       <div class="postit-curve">
         <div class="postit-content">d</div>
       </div>
     </div>
 
-    
-    <div class="postit-container" style="--boxWidth: 400px; --boxHeight: 200px;">
+    <div class="postit-container w4 h2">
       <div class="postit-curve">
         <div class="postit-content">e</div>
       </div>
     </div>
 
-    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 400px;">
+    <div class="postit-container w2 h4">
       <div class="postit-curve">
         <div class="postit-content">f</div>
       </div>
     </div>
 
-    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+    <div class="postit-container w2 h2">
       <div class="postit-curve">
         <div class="postit-content">g</div>
       </div>
     </div>
 
-    <div class="postit-container" style="--boxWidth: 200px; --boxHeight: 200px;">
+    <div class="postit-container w2 h2">
       <div class="postit-curve">
         <div class="postit-content">h</div>
       </div>
