@@ -3,182 +3,77 @@
 # < Imports
 # < ========================================================
 
-from os import listdir, walk
-from os.path import isdir, join
+import os
 
 # < ========================================================
-# < Check for Paths in Demos
+# < Constants
 # < ========================================================
 
-folder: str = "demos"
-paths = []
-for path, subfolders, files in walk(folder):
-  for file in files:
-    if file == "index.html":
-      paths.append(join(path))
-print(f"Paths in Demos: {paths}")
+OUTPUT_PATH: str = "index.html"
+DEMOS_DIRECTORY: str = "demos/"
+BUILD_DIRECTORY: str = "build/"
+CSS_PLACEHOLDER: str = "/* STYLE_PLACEHOLDER */"
+DESCRIPTION_PLACEHOLDER: str = "<!-- DESCRIPTION_PLACEHOLDER -->"
+LINKS_PLACEHOLDER: str = "<!-- LINKS_PLACEHOLDER -->"
+SCRIPT_PLACEHOLDER: str = "// SCRIPT_PLACEHOLDER"
 
 # < ========================================================
-# < Style Tag Contents
+# < Functionality
 # < ========================================================
 
-style_tag_contents: str = r"""
-html, body {
-    background-color: #333;
-    color: #fff;
-    font-family: monospace;
-    margin: 0px;
-    padding: 0px;
-}
+def read_file(path: str) -> str:
+    """Read a file to string, ensuring ROOT path is followed"""
+    path = BUILD_DIRECTORY + path
+    with open(path, 'r', encoding='utf-8') as file:
+        output: str = file.read()
+    return output
 
-#container {
-    padding: 12px 24px 12px 24px;
-}
+def write_output_file(content: str) -> str:
+    """Write string content to index.html"""
+    content = content.strip()
+    with open(OUTPUT_PATH, 'w', encoding='utf-8') as file:
+        file.write(content)
 
-a {
-    color: #fff;
-}
+def join_to_url(*parts: list[str]) -> str:
+    """Join parts of a directory path into a single URL safe path"""
+    return os.path.join(*parts).replace(os.sep, '/')
 
-h1 {
-    margin-top: 8px;
-    padding: 0px;
-}
-
-a:visited {
-    color: #fff;
-}
-
-p {
-    line-height: 1.6;
-    margin-bottom: 4px;
-    margin-top: 8px;
-}
-
-code {
-    font-family: monospace;
-    background-color: #616161;
-    padding: 1px 2px;
-    border-radius: 4px;
-}
-
-a code {
-    color: inherit;
-    text-decoration: none;
-}
-
-a code:visited {
-    color: inherit;
-}
-
-#link-list {
-    line-height: 1.7;
-    padding-left: 14px;
-}
-"""
+def generate_html_list(directory: str, depth = 1):
+    """"""
+    html = "<ul class='link-list'>\n"
+    items = sorted(os.listdir(directory))
+    heading_tag = f"h{depth + 1}"
+    for item in items:
+        full_path = join_to_url(directory, item)
+        if os.path.isdir(full_path):
+            text = item
+            children = os.listdir(full_path)
+            for child in children:
+                child_path = join_to_url(full_path, child)
+                if os.path.isfile(child_path) and child == "index.html":
+                    name = child_path.split("/")[-2]
+                    text = f'<a href="{child_path}">{name}</a>'
+                    break
+            html += f"    <li>\n"
+            html += f"        <{heading_tag}>{text}</{heading_tag}>\n"
+            html += generate_html_list(full_path, depth + 1)
+            html += f"    </li>\n"
+    html += "</ul>\n"
+    return html
 
 # < ========================================================
-# < Container Div Contents
+# < Execution
 # < ========================================================
 
-container_div_contents: str = r"""
-<h1>HTML-Demos Homepage (GitHub Pages)</h1>
+html = read_file("index.html")
+css = read_file("styles.css")
+description = read_file("description.html")
+script = read_file("script.js")
+links = generate_html_list(DEMOS_DIRECTORY)
 
-<p>
-    The HTML for this page is generated in <a href="https://github.com/scarletti-ben/html-demos/blob/main/build/build.py"><code>build.py</code></a> via <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>GitHub Actions</code></a>, which are configured in the custom workflow file <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>static.yml</code></a>. The <code>build.py</code> script generates links to all <code>index.html</code> files in the <code>demos</code> folder, and its subdirectories, allowing the project to grow exponentially without need for manually adding each link to the body of the root <code>index.html</code>.
-</p>
-<p>
-    Because the root <code>index.html</code> is built and not written, it is not tracked by the repository to avoid need for extra syncing. It seems to be inaccessible via <code>GitHub</code>.
-</p>
-<p>
-    The reason <code>build.py</code> is needed is that sites hosted on <a href="https://pages.github.com/">GitHub Pages</a>  do not offer easy directory access and rely on relative or absolute links to sites in the site structure.
-</p>
-<p>
-    If testing locally, this page is not needed, you can instead setup a local server via <code>python -m http.server</code> in the <code>demos</code> folder. Doing so opens <code>demos</code> as a directory and will give easy access to all demo sites.
-</p>
+html = html.replace(CSS_PLACEHOLDER, css)
+html = html.replace(DESCRIPTION_PLACEHOLDER, description)
+html = html.replace(SCRIPT_PLACEHOLDER, script)
+html = html.replace(LINKS_PLACEHOLDER, links)
 
-<h2>Links</h1>
-
-<ul id='link-list'>
-    <li><a href="https://github.com/scarletti-ben/html-demos">Project README</a></li>
-</ul>
-"""
-
-# < ========================================================
-# < Script Tag Contents
-# < ========================================================
-
-script_tag_contents: str = f"""
-// Find link-list
-const linkList = document.getElementById('link-list');
-
-// List of paths
-const paths = {str(paths)};
-
-// Sort paths so deeper paths are shown last
-sortedPaths = paths.sort((a, b) => {{
-  const partsA = a.split('\\\\').length;
-  const partsB = b.split('\\\\').length;
-  return partsA - partsB;
-}});
-
-// Loop through paths and create links
-sortedPaths.forEach(subfolder => {{
-
-    const listElement = document.createElement('li');
-    const linkElement = document.createElement('a');
-
-    linkElement.href = subfolder;
-    linkElement.textContent = subfolder.replace('demos\\\\', '');
-
-    listElement.appendChild(linkElement);
-    linkList.appendChild(listElement);
-
-}});
-"""
-
-# < ========================================================
-# < Core HTML
-# < ========================================================
-
-html: str = f"""
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>HTML Demos Homepage</title>
-
-    <style>
-{style_tag_contents}
-    </style>
-
-</head>
-<body>
-
-    <div id="container">
-{container_div_contents}
-    </div>
-
-    <script>
-{script_tag_contents}
-    </script>
-
-</body>
-</html>
-"""
-
-# < ========================================================
-# < Create 'index.html' File
-# < ========================================================
-
-filepath: str = "index.html"
-stripped: str = html.strip()
-with open(filepath, "w", encoding = "utf-8") as file:
-  file.write(stripped)
-
-# < ========================================================
-# < Print Current Directory
-# < ========================================================
-
-items: list[str] = listdir()
-print(f"\nGitHub Pages Root Directory: {items}")
+write_output_file(html)
