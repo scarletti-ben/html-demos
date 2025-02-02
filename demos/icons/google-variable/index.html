@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template</title>
+
+  <!-- ! Imports -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+  <!-- ! CSS -->
+  <style>
+    :root {
+      --debug-outline: 0px;
+      --font-size: 16px;
+      --foreground-colour: rgb(255, 255, 255);
+      --background-colour: rgb(48, 48, 48);
+      --font-family: monospace, sans-serif;
+      --font-weight: 400;
+      --scrollbar-colour: rgb(84, 93, 103) var(--background-colour);
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: var(--background-colour);
+      color: var(--foreground-colour);
+      font-family: var(--font-family);
+      font-size: var(--font-size);
+      font-weight: var(--font-weight);
+      scrollbar-color: var(--scrollbar-colour);
+      box-shadow: inset 0 0 0 var(--debug-outline) var(--foreground-colour);
+    }
+
+    #page {
+      height: 100%;
+      width: 100%;
+      padding: 16px 32px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      box-sizing: border-box;
+      line-height: 1.4;
+    }
+  
+    a {
+      all: unset;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 700,
+        'GRAD' 200,
+        'opsz' 28
+    }
+
+    .filled {
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 700,
+        'GRAD' 200,
+        'opsz' 28
+    }
+
+    .opsz-test {
+      font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 200, 'opsz' 20;
+    }
+
+
+    .big {
+      font-size: 48px;
+      color: red;
+    }
+
+    .dynamic {
+      font-size: 24px;
+      font-variation-settings: 'opsz' 28
+    }
+
+    .dynamic-large {
+      font-size: 48px;
+      font-variation-settings: 'opsz' 28
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ! HTML -->
+  <div id="page">
+
+    <span class="material-symbols-outlined">close</span>
+    <span class="material-symbols-outlined">home</span>
+    <span class="material-symbols-outlined">add</span>
+    <span class="material-symbols-outlined">add_circle</span>
+
+    <br>
+
+    <span class="material-symbols-outlined">close</span>
+    <span class="material-symbols-outlined filled">home</span>
+    <span class="material-symbols-outlined big">add</span>
+    <span class="material-symbols-outlined filled">add_circle</span>
+
+    <br>
+
+    <span class="material-symbols-outlined opsz-test">close</span>
+    <span class="material-symbols-outlined opsz-test">home</span>
+    <span class="material-symbols-outlined opsz-test">add</span>
+    <span class="material-symbols-outlined opsz-test">add_circle</span>
+
+    <br>
+
+    <span class="material-symbols-outlined dynamic">home</span>
+    <span class="material-symbols-outlined dynamic-large">home</span>
+    <span class="material-symbols-outlined">home</span>
+    <span class="material-symbols-outlined">home</span>
+    <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
+
+    <br>
+
+    
+    <a href="https://fonts.google.com/icons">Google Material Icons</a>
+    <a href="https://developers.google.com/fonts/docs/material_symbols">Google Material Icons Documentation</a>
+
+    <br>
+
+    
+    <p>FILL axis is either 0 or 1, unfilled or filled</p>
+    <p>wght axis controls the stroke weight between 100 and 700, thin to bold, it can also affect the overall size of the symbol</p>
+    <p>GRAD axis is a more granular change to the thickness of the symbol between -25 and 200, it has a smaller impact on the overall size. A low grade is often used for a light symbol on a dark background</p>
+    <p>opsz axis is used to improve readability at different sizes, it does not change the size of the icon</p>
+    <p>font-size applies to these fonts, the default is 24px</p>
+
+    <p>&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add_circle"/&gt;</p>
+
+    
+    <p>&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,200&icon_names=add_circle"/&gt;</p>
+
+  </div>
+
+</body>
+</html>
