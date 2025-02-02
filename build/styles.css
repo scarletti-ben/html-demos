@@ -1,27 +1,35 @@
+:root {
+    --font-size: 14px;
+}
+
 html, body {
     background-color: #333;
     color: #fff;
     font-family: monospace;
+    font-size: var(--font-size);
     margin: 0px;
     padding: 0px;
 }
 
 #container {
-    padding: 12px 24px 12px 24px;
+    padding: 18px 28px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     padding: 0px;
     margin: 0px;
+    font-size: var(--font-size);
 }
 
-#main-heading {
-    margin: 16px 0px;
-    padding: 0px;
+.main-heading {
+    margin: 12px 0px;
+    padding: 0px 0px;
+    font-size: 28px;
 }
 
 pre {
-    margin-bottom: 16px;
+    line-height: 1.5;
+    margin: 0px 0px;
     padding: 0px;
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
@@ -55,7 +63,7 @@ a code:visited {
 }
 
 .link-list {
-    line-height: 1.7;
+    line-height: 1.8;
     padding-left: 16px;
     margin: 0px;
 }

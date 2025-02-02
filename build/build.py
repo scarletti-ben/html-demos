@@ -71,9 +71,9 @@ description = read_file("description.html")
 script = read_file("script.js")
 links = generate_html_list(DEMOS_DIRECTORY)
 
-html = html.replace(CSS_PLACEHOLDER, css)
-html = html.replace(DESCRIPTION_PLACEHOLDER, description)
-html = html.replace(SCRIPT_PLACEHOLDER, script)
-html = html.replace(LINKS_PLACEHOLDER, links)
+html = html.replace(CSS_PLACEHOLDER, css.strip())
+html = html.replace(DESCRIPTION_PLACEHOLDER, description.strip())
+html = html.replace(SCRIPT_PLACEHOLDER, script.strip())
+html = html.replace(LINKS_PLACEHOLDER, links.strip())
 
 write_output_file(html)

@@ -1,13 +1,11 @@
-<h1 id="main-heading">HTML-Demos Homepage (GitHub Pages)</h1>
+<h1 class="main-heading">HTML-Demos</h1>
 
-<pre>
+<pre>The HTML for this page is generated in <a href="https://github.com/scarletti-ben/html-demos/blob/main/build/build.py"><code>build.py</code></a> via <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>GitHub Actions</code></a>, which are configured in the custom workflow file <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>static.yml</code></a>. The <code>build.py</code> script generates links to all <code>index.html</code> files in the <code>demos</code> folder, and its subdirectories, allowing the project to grow exponentially without need for manually adding each link to the body of the root <code>index.html</code>.
 
-The HTML for this page is generated in <a href="https://github.com/scarletti-ben/html-demos/blob/main/build/build.py"><code>build.py</code></a> via <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>GitHub Actions</code></a>, which are configured in the custom workflow file <a href="https://github.com/scarletti-ben/html-demos/actions/workflows/static.yml"><code>static.yml</code></a>. The <code>build.py</code> script generates links to all <code>index.html</code> files in the <code>demos</code> folder, and its subdirectories, allowing the project to grow exponentially without need for manually adding each link to the body of the root <code>index.html</code>.
+Because the root <code>index.html</code> is built and not written, it is not tracked by the repository to avoid need for extra syncing. It is inaccessible via <code>GitHub</code>.
 
-Because the root <code>index.html</code> is built and not written, it is not tracked by the repository to avoid need for extra syncing. It seems to be inaccessible via <code>GitHub</code>.
+The reason <code>build.py</code> is needed is that sites hosted on <code></code><a href="https://pages.github.com/">GitHub Pages</a></code> do not offer easy directory access and rely on relative or absolute links to sites in the site structure.
 
-The reason <code>build.py</code> is needed is that sites hosted on <a href="https://pages.github.com/">GitHub Pages</a> do not offer easy directory access and rely on relative or absolute links to sites in the site structure.
+If testing locally, this page is not needed, you can instead set up a local server via <code>python -m http.server</code> in the <code>demos</code> folder. Doing so opens <code>demos</code> as a directory and will give easy access to all demo sites.</pre>
 
-If testing locally, this page is not needed, you can instead set up a local server via <code>python -m http.server</code> in the <code>demos</code> folder. Doing so opens <code>demos</code> as a directory and will give easy access to all demo sites.
-
-</pre>
+<h1 class="main-heading">Links</h1>
