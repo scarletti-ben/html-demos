@@ -18,8 +18,7 @@ print(value)
 
 // Long press on page to open settings menu
 pageContainer.addEventListener("touchstart", () => {
-    let id = `editor_${editorCount}`;
-    longPressTimer = setTimeout(() => openSettingsMenu(id), 1000);
+    longPressTimer = setTimeout(() => openSettingsMenu(), 1000);
 });
 
 // Long press on page to open settings menu
@@ -34,7 +33,7 @@ pageContainer.addEventListener("touchmove", () => {
 
 // Open the settings menu for a given editor id
 function openSettingsMenu(id) {
-    let editor = ace.edit(id);
+    let editor = ace.edit('editor');
     editor.execCommand("showSettingsMenu");;
 }
 
