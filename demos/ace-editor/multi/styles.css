@@ -15,7 +15,7 @@ body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
   background-color: var(--background-colour);
   color: var(--foreground-colour);
   font-family: var(--font-family);
@@ -28,20 +28,17 @@ body {
 #page {
   height: 100%;
   width: 100%;
-}
-
-.spacer {
-  display: block;
-  height: 1em;
-  width: 100%;
+  text-align: center;
+  overflow: auto;
 }
 
 .ace_editor {
   position: relative !important;
   border: 1px solid rgb(60, 65, 68);
-  margin: auto;
+  margin: 24px auto 0px auto;
   height: 200px;
   width: 80%;
+  overflow-x: hidden;
 }
 
 .ace_editor.fullScreen {
@@ -57,7 +54,44 @@ body {
   z-index: 10;
 }
 
+/* ! VVV WORK IN PROGRESS BELOW VVV */
+.ace_tooltip {
+  position: absolute !important;
+  z-index: 1000;
+}
+.ace_autocomplete {
+  position: absolute !important;
+}
+.ace_editor.ace_autocomplete {
+  z-index: 1000000;
+}
+/* ! ^^^ WORK IN PROGRESS ABOVE ^^^ */
+
 body.fullScreen {
   overflow: hidden;
   transform: none !important;
+}
+
+#new-button {
+  color: lightblue;
+  cursor: pointer;
+  font: 30px arial;
+  padding: 16px;
+  text-align: center;
+  margin: 24px auto;
+  border: medium solid transparent;
+  display: inline-block;
+  user-select: none;
+}
+
+#new-button:hover {
+  border: medium solid lightgray;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0 0 12px 0 lightblue;
+}
+
+@media only screen and (max-width: 600px) {
+  .ace_editor {
+    width: 95%;
+  }
 }
