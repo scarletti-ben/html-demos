@@ -1,0 +1,45 @@
+html, body {
+    background: rgb(30, 30, 30);
+    margin: 0px;
+    padding: 0px;
+    font-family: monospace, sans-serif;
+    font-weight: bold;
+    height: 100%;
+    width: 100%;
+    
+}
+
+#page {
+    align-items: center;
+    height: 100%;
+    
+}
+
+#editor-container {
+    width: 75%;
+    height: 85%;
+    margin: auto;
+    position: relative;
+    outline: 2px solid rgb(116, 116, 116);
+    
+}
+
+#editor {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;    
+}
+
+.ace_tooltip {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    line-height: 1.2;
+    font-size: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
