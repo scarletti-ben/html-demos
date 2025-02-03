@@ -1,6 +1,6 @@
 // Variables, Constants and Declarations
 let pageContainer = document.getElementById('page');
-let newButton = document.getElementById("new-button");
+let bottomButton = document.getElementById("new-button");
 let editorCount = 0;
 let longPressTimer = null;
 const defaultText = `
@@ -15,18 +15,18 @@ print(value)
 `
 
 // Long press on new-button to open settings menu
-newButton.addEventListener("touchstart", () => {
+bottomButton.addEventListener("touchstart", () => {
     let id = `editor_${editorCount}`;
     longPressTimer = setTimeout(() => openSettingsMenu(id), 1000);
 });
 
 // Long press on new-button to open settings menu
-newButton.addEventListener("touchend", () => {
+bottomButton.addEventListener("touchend", () => {
     clearTimeout(longPressTimer);
 });
 
 // Long press on new-button to open settings menu
-newButton.addEventListener("touchmove", () => {
+bottomButton.addEventListener("touchmove", () => {
     clearTimeout(longPressTimer);
 });
 
@@ -49,13 +49,21 @@ function toggleCursor(id) {
     }
 }
 
+// Function to add a new spacer element, to avoid margin on ace editors
+function addSpacer() {
+    var element = document.createElement('div');
+    element.classList.add("spacer");
+    pageContainer.insertBefore(element, bottomButton);
+}
+
 // Function to add a new ace editor to pageContainer, with incremented id
 function addEditor() {
     
     let id = `editor_${++editorCount}`;
     var element = document.createElement('pre');
     element.id = id;
-    pageContainer.insertBefore(element, newButton)
+    addSpacer();
+    pageContainer.insertBefore(element, bottomButton);
     let editor = ace.edit(id);
     editor.session.setMode("ace/mode/python");
     editor.renderer.setScrollMargin(16, 0);
