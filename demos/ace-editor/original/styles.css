@@ -87,6 +87,19 @@ select {
     bottom: 0;
     left: 0;
 }
+
+.ace_tooltip {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    line-height: 1.2;
+    font-size: 10px;
+    /* max-width: 300px; */
+    /* white-space: normal; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
 br {
     display: block;
     margin-bottom: 1em;

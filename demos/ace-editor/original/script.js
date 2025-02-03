@@ -11,11 +11,26 @@ editor.setOption("showInvisibles", false);
 editor.getSession().setTabSize(4);
 editor.getSession().setUseSoftTabs(true);
 
+// enableSnippets gives the description window that is quite unsightly
 editor.setOptions({
     enableBasicAutocompletion: true,
     enableSnippets: true,
-    enableLiveAutocompletion: true
+    enableLiveAutocompletion: true,
+    // tooltipFollowsMouse: false
 });
+
+// editor.completers = [ {
+//     getCompletions: function(editor, session, pos, prefix, callback) {
+//         callback(null, []);
+//     }
+// }];
+
+// editor.commands.on('afterExec', function(e) {
+//     if (e.command.name === 'insertstring' && editor.completionWidget) {
+//         editor.completionWidget.hide();
+//         console.log("run")
+//     }
+// });
 
 // Define custom highlight rules
 // ace.define("custom_highlight_rules", ["require", "exports", "module", "ace/lib/oop", "ace/mode/text_highlight_rules"], function (require, exports, module) {
@@ -244,6 +259,15 @@ window.addEventListener('load', function() {
     else {
       resetText();
     }
+
+    // // Get the editor's background color
+    // var editorBackgroundColor = editor.container.style.backgroundColor;
+
+    // // Apply the editor's background color to the ace_tooltip
+    // var tooltip = document.querySelector('.ace_tooltip');
+    // if (tooltip) {
+    //     tooltip.style.backgroundColor = editorBackgroundColor;
+    // }
 
 });
 
