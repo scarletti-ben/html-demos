@@ -68,7 +68,7 @@ async function evaluatePython(code) {
     
     try {
         addLine("[Run Start]", 2)
-        let output = pyodide.runPython(code);
+        let output = await pyodide.runPython(code);
         processOutput(output);
         addLine("[Run Ended]", 1)
     } 

@@ -92,7 +92,7 @@ async function evaluatePython(code) {
     }
 
     try {
-        let output = pyodide.runPython(code);
+        let output = await pyodide.runPython(code);
         processOutput(output);
     } 
     catch (error) {
