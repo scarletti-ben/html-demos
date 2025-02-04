@@ -6,6 +6,8 @@
   --colourBlue: rgb(0,0,255);
   --colourOrange: rgb(255,128,0);
   --family: monospace, 'Courier New', Courier, sans-serif;
+  --scroll-slider: rgb(64, 73, 83);
+  --scroll-gutter: var(--colour-background);
 }
 
 html, body {
@@ -15,6 +17,7 @@ html, body {
   color: var(--colourFont);
   margin: 0px;
   padding: 0;
+  scrollbar-color: var(--scroll-slider) var(--scroll-gutter);
 }
 * {
   font-family: var(--family);
@@ -86,10 +89,11 @@ button {
   font-family: var(--family);
   box-sizing: border-box;
   padding: 20px;
-  background: rgb(30,30,30);
+  background: rgb(30, 30, 30);
   border: none;
   color: var(--colourFont);
   resize: none;
+  scrollbar-color: var(--scroll-slider) rgb(30,30,30);
 }
 #file:focus {
   outline: none;
@@ -106,6 +110,7 @@ button {
   border: none;
   color: var(--colourFont);
   resize: none;
+  scrollbar-color: var(--scroll-slider) black;
 }
 
 @media (max-width: 900px) {

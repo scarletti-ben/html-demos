@@ -3,7 +3,8 @@
   --colourFont: rgb(200,200,200);
   --colourGreen: rgb(0,255,0);
   --family: monospace, 'Courier New', Courier, sans-serif;
-  /* --family: fantasy; */
+  --scroll-slider: rgb(64, 73, 83);
+  --scroll-gutter: var(--colour-background);
 }
 
 html, body {
@@ -13,6 +14,7 @@ html, body {
   color: var(--colourFont);
   margin: 0px;
   padding: 0;
+  scrollbar-color: var(--scroll-slider) var(--scroll-gutter);
 }
 * {
   font-family: var(--family);
@@ -38,6 +40,7 @@ html, body {
   border: none;
   color: var(--colourGreen);
   resize: none;
+  scrollbar-color: var(--scroll-slider) black;
 }
 
 #input {

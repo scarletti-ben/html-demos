@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pyodide Async Defer Test</title>
+  <title>Pyodide Micropip</title>
 
   <!-- ! Import Pyodide -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
@@ -12,27 +12,30 @@
   <!-- ! CSS -->
   <style>
     :root {
-      --colourBackground: rgb(32, 32, 32);
-      --colourFont: rgb(0, 255, 0);
-      --colourRed: rgb(255, 0, 0);
-      --colourGreen: rgb(0, 255, 0);
-      --colourBlue: rgb(0, 0, 255);
-      --colourOrange: rgb(255, 128, 0);
-      --family: monospace, 'Courier New', Courier, sans-serif;
+      --colour-background: rgb(32, 32, 32);
+      --colour-font: rgb(0, 255, 0);
+      --colour-red: rgb(255, 0, 0);
+      --colour-green: rgb(0, 255, 0);
+      --colour-blue: rgb(0, 0, 255);
+      --colour-orange: rgb(255, 128, 0);
+      --font-family: monospace, 'Courier New', Courier, sans-serif;
+      --scroll-slider: rgb(64, 73, 83);
+      --scroll-gutter: var(--colour-background);
     }
 
     html,
     body {
       width: 100%;
       height: 100%;
-      background: var(--colourBackground);
-      color: var(--colourFont);
+      background: var(--colour-background);
+      color: var(--colour-font);
       margin: 0px;
       padding: 0;
+      scrollbar-color: var(--scroll-slider) var(--scroll-gutter);
     }
 
     * {
-      font-family: var(--family);
+      font-family: var(--font-family);
       font-size: 14px;
     }
 
@@ -53,19 +56,19 @@
     }
 
     #buttonF1 {
-      box-shadow: inset 0 0 0 2px var(--colourGreen);
+      box-shadow: inset 0 0 0 2px var(--colour-green);
     }
 
     #buttonF2 {
-      box-shadow: inset 0 0 0 2px var(--colourRed);
+      box-shadow: inset 0 0 0 2px var(--colour-red);
     }
 
     #buttonF3 {
-      box-shadow: inset 0 0 0 2px var(--colourBlue);
+      box-shadow: inset 0 0 0 2px var(--colour-blue);
     }
 
     #buttonF4 {
-      box-shadow: inset 0 0 0 2px var(--colourOrange);
+      box-shadow: inset 0 0 0 2px var(--colour-orange);
     }
 
     #container {
@@ -98,13 +101,14 @@
     #file {
       width: 100%;
       flex: 1;
-      font-family: var(--family);
+      font-family: var(--font-family);
       box-sizing: border-box;
       padding: 20px;
       background: rgb(30, 30, 30);
       border: none;
-      color: var(--colourFont);
+      color: var(--colour-font);
       resize: none;
+      scrollbar-color: var(--scroll-slider) rgb(30, 30, 30);
     }
 
     #file:focus {
@@ -115,13 +119,14 @@
     #terminal {
       width: 100%;
       flex: 1;
-      font-family: var(--family);
+      font-family: var(--font-family);
       box-sizing: border-box;
       padding: 20px;
       background: black;
       border: none;
-      color: var(--colourFont);
+      color: var(--colour-font);
       resize: none;
+      scrollbar-color: var(--scroll-slider) black;
     }
 
     @media (max-width: 900px) {
