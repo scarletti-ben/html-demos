@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Test Value</title>
+</head>
+<body>
+  <h1>Test Value from the Other Site: <span id="received-test-value"></span></h1>
+
+  <script>
+    // Function to fetch the test value from the first site
+    async function fetchTestValue() {
+      const response = await fetch('https://scarletti-ben.github.io/html-demos/demos/experimental/communicating-sites/replying-site/index.html?test=testValue');
+      
+      const text = await response.text();
+      alert(text);
+
+      // Extract the test value from the response
+      const match = text.match(/Test Value: <span id="test-value">(.+?)<\/span>/);
+      if (match) {
+        document.getElementById('received-test-value').textContent = match[1];
+      }
+    }
+
+    // Call the function
+    fetchTestValue();
+  </script>
+</body>
+</html>
