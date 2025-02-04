@@ -6,22 +6,24 @@
   <title>Test Value</title>
 </head>
 <body>
-  <h1>Test Value: <span id="test-value"></span></h1>
+  
+  <h1 id="test-value"></h1>
 
   <script>
-    const test = "Hello, world!"; // The constant 'test'
 
-    // Function to retrieve URL argument by name
+    const defaultValue = "No arguments passed!";
+
     function getUrlParameter(name) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(name);
     }
 
-    // Get the 'test' argument from the URL
-    const testValue = getUrlParameter('test') || test;
+    const text = getUrlParameter('test') || defaultValue;
 
-    // Display the value
-    document.getElementById('test-value').textContent = testValue;
+    `https://scarletti-ben.github.io/html-demos/demos/experimental/communicating-sites/responding-site/index.html?test=thingy`
+
+    document.getElementById('test-value').textContent = text;
+
   </script>
 </body>
 </html>

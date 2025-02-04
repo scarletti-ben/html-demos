@@ -17,7 +17,7 @@
       alert(text);
 
       // Extract the test value from the response
-      const match = text.match(/Test Value: <span id="test-value">(.+?)<\/span>/);
+      const match = text.match(/<h1 id="test-value">(.+?)<\/h1>/);
       if (match) {
         document.getElementById('received-test-value').textContent = match[1];
       }
