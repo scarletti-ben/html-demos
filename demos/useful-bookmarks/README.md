@@ -19,3 +19,8 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
 - [Gemini AI](https://gemini.google.com/app)
     - Alternative to `ChatGPT`
 - [Pure Python Web Apps](https://anvil.works/)
+- [JSONBlob](https://jsonblob.com/api)
+    - Used to create and edit `.json` files, without an API key
+    - Uses static URLs that can be accessed publically
+    - Useful for creating persistent storage across multiple sites for serverless / static sites
+    - Files are deleted if not accessed for 30 days
