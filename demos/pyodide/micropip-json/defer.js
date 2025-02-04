@@ -7,6 +7,7 @@ Buttons
     Blue    [S]: Add four spaces
     Orange [CR]: Clear terminal and run code
     Purple  [N]: Next snippet
+    Teal    [F]: Fullscreen
 `
 let asyncCode = `
 
@@ -105,6 +106,14 @@ async function nextSnippet() {
     snippetIndex += 1;
 }
 
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
 // Initialisation function to run on 'DOMContentLoaded' event
 async function init() {
 
@@ -142,12 +151,23 @@ async function init() {
         nextSnippet();
     };
 
-    file.addEventListener('keydown', function (event) {
-        if (event.key == 'Tab') {
-            event.preventDefault()
-            addTab()
-        }
-    });
+    document.getElementById("buttonF6").onclick = function () {
+        toggleFullscreen();
+    };
+
+    document.getElementById("buttonF7").onclick = function () {
+        let sidebar = document.querySelector("#sidebar");
+        sidebar.classList.toggle("hidden");
+        let little = document.querySelector("#buttonF8");
+        little.classList.toggle("hidden");
+    };
+
+    document.getElementById("buttonF8").onclick = function () {
+        let sidebar = document.querySelector("#sidebar");
+        sidebar.classList.toggle("hidden");
+        let little = document.querySelector("#buttonF8");
+        little.classList.toggle("hidden");
+    };
 
 }
 
@@ -178,7 +198,7 @@ document.addEventListener('allPromisesSettled', async (event) => {
     }
 
     init();
-    
+
     loadSnippets();
 
     terminal.value += topLine;
