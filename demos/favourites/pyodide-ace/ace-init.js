@@ -6,9 +6,28 @@ const editor = ace.edit("editor");
 const defaultText = `
 
 import micropip
-await micropip.install("cryptography")
-import cryptography
-print(cryptography)
+await micropip.install("https://files.pythonhosted.org/packages/27/7c/abc460494640767edfce9c920da3e03df22327fc5e3d51c7857f50fd89c4/segno-1.6.1-py3-none-any.whl")
+import segno
+import js
+
+text = "Hello, World"
+qr = segno.make_qr("Hello, World")
+qr.save(
+    "/qr.png",
+    scale = 5,
+)
+
+file_data = open("/qr.png", "rb").read()
+binary_data_js = js.Uint8Array.new(file_data)
+blob = js.Blob.new([binary_data_js], {"type": "image/png"})
+url = js.window.URL.createObjectURL(blob)
+a = js.document.createElement("a")
+a.href = url
+a.download = "qr.png"
+js.document.body.appendChild(a)
+a.click()
+js.document.body.removeChild(a)
+js.window.URL.revokeObjectURL(url)
 
 `;
 
