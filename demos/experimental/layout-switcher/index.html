@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Layout</title>
+
+  <!-- ! Imports -->
+
+  <!-- ! CSS -->
+  <style>
+    :root {
+      --debug-outline: 0px;
+      --font-size: 16px;
+      --foreground-colour: rgb(255, 255, 255);
+      --background-colour: rgb(48, 48, 48);
+      --font-family: monospace, sans-serif;
+      --font-weight: 400;
+      --scrollbar-colour: rgb(84, 93, 103) var(--background-colour);
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: var(--background-colour);
+      color: var(--foreground-colour);
+      font-family: var(--font-family);
+      font-size: var(--font-size);
+      font-weight: var(--font-weight);
+      scrollbar-color: var(--scrollbar-colour);
+      box-shadow: inset 0 0 0 var(--debug-outline) var(--foreground-colour);
+    }
+
+    #page {
+      height: 100%;
+      width: 100%;
+      display: flex;
+    }
+    #page.layout-1 {
+      flex-direction: column;
+    }
+    #page.layout-2 {
+      flex-direction: column-reverse;
+    }
+    #page.layout-3 {
+      flex-direction: row;
+    }
+    #page.layout-4 {
+      flex-direction: row-reverse;
+    }
+
+    #top {
+      height: 100%;
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      background-color: darkslategrey;
+    }
+
+    #bottom {
+      height: 100%;
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      background-color: darkslateblue;
+    }
+
+    #tools {
+      all: unset;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      height: 48px;
+      width: 48px;
+      box-sizing: border-box;
+      margin: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ! HTML -->
+  <div id="page" class="layout-1">
+    <div id="top">top</div>
+    <div id="bottom">bottom</div>
+  </div>
+
+  <div id="tools">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+      <path
+        d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm140-40-56-56 103-104-104-104 57-56 160 160-160 160Zm180 0v-80h240v80H480Z"/>
+    </svg>
+  </div>
+
+  <!-- ! JavaScript -->
+  <script defer>
+
+    // Constants, Variables and Declarations
+    var currentLayout = 1;
+    const maxLayout = 4;
+    let page = document.getElementById("page");
+    let tools = document.getElementById("tools");
+
+    // Toggle layout of #page
+    function toggleLayout() {
+      page.classList.remove(`layout-${currentLayout}`);
+      currentLayout = currentLayout % 4 + 1;
+      page.classList.add(`layout-${currentLayout}`);
+      console.log(page.classList);
+    }
+
+    // Run toggleLayout when tools is clicked
+    tools.addEventListener("click", toggleLayout);
+
+  </script>
+
+</body>
+
+</html>
