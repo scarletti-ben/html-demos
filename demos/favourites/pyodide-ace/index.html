@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pyodide with Ace Editor</title>
+
+  <!-- ! Imports -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ext-language_tools.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+  <!-- ! CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+  <!-- ! Main HTML -->
+  <div id="page" class="layout-1">
+    <pre id="editor"></pre>
+    <pre id="terminal" disabled></pre>
+  </div>
+
+  <!-- ! Toolbar HTML -->
+  <div id="toolbar-container">
+
+    <div id="toolbar-bottom">
+
+      <span class="icon">
+        <span class="material-symbols-outlined">keyboard_arrow_up</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Layout Toolbar</span>
+        </div>
+      </span>
+
+    </div>
+
+    <div id="toolbar-top" class="hidden">
+
+      <span class="icon" id="terminal-only">
+        <span class="material-symbols-outlined">crop_square</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Terminal Only</span>
+        </div>
+      </span>
+
+      <span class="icon" id="editor-only">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">crop_square</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Editor Only</span>
+        </div>
+      </span>
+      
+      <span class="icon" id="layout-4">
+        <span class="material-symbols-outlined">splitscreen_right</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Editor Right</span>
+        </div>
+      </span>
+
+      <span class="icon" id="layout-3">
+        <span class="material-symbols-outlined">splitscreen_left</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Editor Left</span>
+        </div>
+      </span>
+
+      <span class="icon" id="layout-2">
+        <span class="material-symbols-outlined">splitscreen_bottom</span>
+        <div class="tooltip-container">Editor Bottom</div>
+      </span>
+
+      <span class="icon" id="layout-1">
+        <span class="material-symbols-outlined">splitscreen_top</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Editor Top</span>
+        </div>
+      </span>
+
+      <span class="icon" id="toggle-fullscreen">
+        <span class="material-symbols-outlined">fullscreen</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Toggle Fullscreen</span>
+        </div>
+      </span>
+
+      <span class="icon" id="run">
+        <span class="material-symbols-outlined">terminal</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Run Code</span>
+        </div>
+      </span>
+
+    </div>
+  </div>
+
+  <!-- ! JavaScript -->
+  <script src="pyodide-init.js" defer></script>
+  <script src="ace-init.js" defer></script>
+  <script src="script.js" defer></script>
+
+</body>
+</html>

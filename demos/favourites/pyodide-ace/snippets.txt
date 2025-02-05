@@ -1,0 +1,71 @@
+import micropip
+await micropip.install("cryptography")
+import cryptography
+print(cryptography)
+
+===============================================
+
+import micropip
+await micropip.install("https://files.pythonhosted.org/packages/27/7c/abc460494640767edfce9c920da3e03df22327fc5e3d51c7857f50fd89c4/segno-1.6.1-py3-none-any.whl")
+import segno
+
+qr = segno.make_qr("Hello, World")
+qr.save(
+    "/_default.png",
+    scale = 5,
+)
+
+# let file = pyodide.FS.readFile("/_default.png", { encoding: "binary" });
+# console.log(file);  // Will output the binary data of the image
+
+===============================================
+
+from pathlib import Path
+
+Path("/hello.txt").write_text("hello world!")
+
+# let file = pyodide.FS.readFile("/hello.txt", { encoding: "utf8" });
+# console.log(file); // ==> "hello world!"
+
+========================================================
+
+import micropip
+await micropip.install("https://files.pythonhosted.org/packages/27/7c/abc460494640767edfce9c920da3e03df22327fc5e3d51c7857f50fd89c4/segno-1.6.1-py3-none-any.whl")
+import segno
+
+qr = segno.make_qr("Hello, World")
+qr.save(
+    "/_default.png",
+    scale = 5,
+)
+
+from js import Blob, document
+from js import window
+import js
+
+# Read the PNG file as binary data
+file_data = open("/_default.png", "rb").read()
+
+# Convert the binary data to a JavaScript Uint8Array for correct handling in JS
+binary_data_js = js.Uint8Array.new(file_data)
+
+# Create a Blob from the binary data and specify the MIME type for PNG
+blob = Blob.new([binary_data_js], {"type": "image/png"})
+
+# Create a URL for the Blob
+url = window.URL.createObjectURL(blob)
+
+# Create an <a> element for the download link
+a = document.createElement("a")
+a.href = url
+a.download = "_default.png"  # Set the name for the download file
+
+# Append the link to the document and trigger the download
+document.body.appendChild(a)
+a.click()  # Trigger the download
+
+# Clean up: remove the link and revoke the Blob URL
+document.body.removeChild(a)
+window.URL.revokeObjectURL(url)
+
+=========================================================
