@@ -126,7 +126,7 @@
       display: none !important;
     }
 
-    .icon .tooltiptext {
+    /* .icon .tooltip-text {
       all: unset;
       top: 0%;
       right: 100%;
@@ -143,8 +143,51 @@
       margin: 4px;
       background-color: rgba(0, 50, 70, 1);
       display: none;
+    } */
+
+    .tooltip-container {
+      all: unset;
+      top: 0%;
+      right: 100%;
+      /* width: 100%; */
+      height: 100%;
+      padding: 8px;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      font-size: 12px;
+      cursor: pointer;
+      text-wrap: nowrap;
+      box-sizing: border-box;
+      /* background-color: rgba(0, 50, 70, 1); */
+      display: none;
+      /* box-shadow: inset 0 0 0 1px orange; */
     }
 
+    .tooltip-text {
+      background-color: rgba(0, 50, 70, 1);
+      text-wrap: nowrap;
+      box-sizing: border-box;
+      padding: 8px;
+    }
+
+
+    .icon:hover .tooltip-container {
+      display: flex;
+    }
+
+    /* .tooltip-container .tooltip-text::after {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      margin-top: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent transparent white;
+    } */
   </style>
 
 </head>
@@ -153,7 +196,7 @@
 
   <!-- ! HTML -->
   <div id="page" class="layout-1">
-    <div id="top">just have a tooltip container and then have the tooltip center inside it</div>
+    <div id="top"></div>
     <div id="bottom"></div>
   </div>
 
@@ -164,7 +207,11 @@
           <path
             d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
         </svg>
-        <span class="tooltiptext">Tooltip text</span>
+
+        <div class="tooltip-container">
+          <span class="tooltip-text">Layout Toolbar</span>
+        </div>
+
       </span>
     </div>
     <div id="toolbar" class="hidden">
@@ -173,30 +220,55 @@
           <path
             d="M600-120q-33 0-56.5-23.5T520-200v-560q0-33 23.5-56.5T600-840h160q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600Zm-400 0q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h160q33 0 56.5 23.5T440-760v560q0 33-23.5 56.5T360-120H200Zm0-640v560h160v-560H200Z" />
         </svg>
+
+        <div class="tooltip-container">
+          <span class="tooltip-text">Right - Left</span>
+        </div>
+
       </span>
       <span class="icon" id="layout-3">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
           <path
             d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h160q33 0 56.5 23.5T440-760v560q0 33-23.5 56.5T360-120H200Zm400 0q-33 0-56.5-23.5T520-200v-560q0-33 23.5-56.5T600-840h160q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600Zm160-640H600v560h160v-560Z" />
         </svg>
+
+        <div class="tooltip-container">
+          <span class="tooltip-text">Left - Right</span>
+        </div>
+
       </span>
       <span class="icon" id="layout-2">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
           <path
             d="M200-120q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360v160q0 33-23.5 56.5T760-120H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm560-240H200v160h560v-160Z" />
         </svg>
+
+        <div class="tooltip-container">
+          <span class="tooltip-text">Bottom - Top</span>
+        </div>
+
       </span>
       <span class="icon" id="layout-1">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
           <path
             d="M200-520q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0 400q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360v160q0 33-23.5 56.5T760-120H200Zm0-80h560v-160H200v160Z" />
         </svg>
+
+        <div class="tooltip-container">
+          <span class="tooltip-text">Top - Bottom</span>
+        </div>
+
       </span>
       <span class="icon" id="last">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
           <path
             d="m780-60-60-60 120-120-120-120 60-60 180 180L780-60Zm-460-60v-80H160q-33 0-56.5-23.5T80-280v-480q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v280h-80v-280H160v480h520v80h-80v80H320ZM160-280v-480 480Z" />
         </svg>
+
+        <div class="tooltip-container">
+          <span class="tooltip-text">Next Layout</span>
+        </div>
+
       </span>
     </div>
   </div>
