@@ -50,6 +50,7 @@ function removeLocalSnippet(name) {
 function loadSnippet(editor) {
     const text = Object.values(snippets).at(-1);
     editor.setValue(text.trim());
+    editor.clearSelection();
 }
 
 // Delete most recent local snippet
@@ -81,6 +82,7 @@ function loadFromFile(editor) {
         const reader = new FileReader();
         reader.onload = () => {
             editor.setValue(reader.result);
+            editor.clearSelection();
         };
         reader.readAsText(file);
     };

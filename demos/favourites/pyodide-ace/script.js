@@ -14,12 +14,12 @@ const defaultText = ``;
 // ! ======================================================
 
 // Function to add a line to the terminal
-function addLine(line, newlines = 1) {
+function addLine(line, newlines = 0, end = "\n") {
     if (terminal.textContent === '') {
-        terminal.textContent = line;
+        terminal.textContent = line + end;
     }
     else {
-        terminal.textContent += '\n'.repeat(newlines) + line;
+        terminal.textContent += '\n'.repeat(newlines) + line + end;
     }
     terminal.scrollTop = terminal.scrollHeight;
 }
@@ -45,16 +45,16 @@ function processError(error) {
 // Function to process Python print calls from pyodide.runPython(code)
 function processPrint(text) {
     let line = `[Print] ${[text]}`;
-    addLine(line);
+    addLine(line, 0);
 }
 
 // Function to evaluate a given string of Python code
 async function evaluatePythonAsync(code) {
     try {
-        addLine("[Run Start]", 2)
+        addLine("[Run Start]", 1)
         let output = await pyodide.runPythonAsync(code);
         processOutput(output);
-        addLine("[Run Ended]", 1)
+        addLine("[Run Ended]", 0)
     }
     catch (error) {
         processError(error);
@@ -117,63 +117,105 @@ function terminalOnly() {
 }
 
 mainButton.addEventListener("click", toggleToolbar);
-document.getElementById("editor-only").addEventListener("click", editorOnly);
-document.getElementById("terminal-only").addEventListener("click", terminalOnly);
+document.getElementById("only-editor").addEventListener("click", editorOnly);
+document.getElementById("only-terminal").addEventListener("click", terminalOnly);
 document.getElementById("toggle-fullscreen").addEventListener("click", toggleFullscreen);
-document.getElementById("run").addEventListener("click", evaluateEditorAsync);
+document.getElementById("run-code").addEventListener("click", evaluateEditorAsync);
 
-document.getElementById("tool-1").addEventListener("click", () => {
-    let dateString = getDateString();
-    addLocalSnippet(dateString, editor.getValue());
-    terminal.textContent += "added local snippet\n";
-});
+// document.getElementById("tool-1").addEventListener("click", () => {
+//     let dateString = getDateString();
+//     addLocalSnippet(dateString, editor.getValue());
+//     terminal.textContent += "added local snippet\n";
+// });
 
-document.getElementById("tool-2").addEventListener("click", () => {
-    updateStorage(userID, userData);
-    terminal.textContent += "updated external snippets\n";
-});
+// document.getElementById("tool-2").addEventListener("click", () => {
+//     updateStorage(userID, userData);
+//     terminal.textContent += "updated external snippets\n";
+// });
 
-document.getElementById("tool-3").addEventListener("click", () => {
+document.getElementById("file-next").addEventListener("click", () => {
     loadSnippet(editor);
-    terminal.textContent += "loaded snippet to editor\n";
+    addLine("loaded snippet from cloud");
 });
 
-document.getElementById("tool-4").addEventListener("click", () => {
-    terminal.textContent += "opening raw JSON in new tab\n";
+document.getElementById("editor-settings").addEventListener("click", () => {
+    editor.execCommand("showSettingsMenu");
+});
+
+document.getElementById("cloud-open").addEventListener("click", () => {
+    addLine("opening raw JSON in new tab");
     openRaw(userID);
 });
 
-document.getElementById("tool-5").addEventListener("click", () => {
-    terminal.textContent += "deleting recent local snippet\n";
+document.getElementById("cloud-delete").addEventListener("click", () => {
     deleteLocalSnippet();
+    updateStorage(userID, userData);
+    addLine("deleted most recent cloud snippet");
 });
 
-document.getElementById("tool-6").addEventListener("click", () => {
-    terminal.textContent += "saving to local file\n";
+document.getElementById("local-download").addEventListener("click", () => {
+    addLine("saving to local file");
     let filename = "test.py";
     saveToFile(filename, editor);
 });
 
-document.getElementById("tool-7").addEventListener("click", () => {
-    terminal.textContent += "loading from local file\n";
+document.getElementById("local-upload").addEventListener("click", () => {
+    addLine("loading from local file");
     loadFromFile(editor);
-    editor.clearSelection();
 });
 
-document.getElementById("tool-8").addEventListener("click", () => {
+document.getElementById("clear-editor").addEventListener("click", () => {
     editor.setValue("");
 });
 
-document.getElementById("tool-9").addEventListener("click", () => {
+document.getElementById("clear-terminal").addEventListener("click", () => {
     terminal.textContent = "";
 });
 
-document.getElementById("tool-10").addEventListener("click", () => {
+
+document.addEventListener('keydown', function (event) {
+    if (event.code === 'Numpad1') {
+        event.preventDefault();
+        document.getElementById("clear-terminal").click();
+    } 
+    else if (event.code === 'Numpad2') {
+        event.preventDefault();
+        document.getElementById("run-code").click();
+    }
+    else if (event.code === 'Numpad3') {
+        event.preventDefault();
+        document.getElementById("cloud-upload").click();
+    }
+    else if (event.code === 'Numpad4') {
+        event.preventDefault();
+        document.getElementById("cloud-delete").click();
+    }
+    else if (event.code === 'Numpad4') {
+        event.preventDefault();
+        document.getElementById("file-next").click();
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'F2') {
+        e.preventDefault();
+        handleF2(e);
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'F3') {
+        e.preventDefault();
+        handleF3(e);
+    }
+});
+
+document.getElementById("cloud-upload").addEventListener("click", () => {
     let dateString = getDateString();
     addLocalSnippet(dateString, editor.getValue());
-    terminal.textContent += `added local snippet with date ${dateString}\n`;
     updateStorage(userID, userData);
-    terminal.textContent += "updated external snippets\n";
+    addLine(`added cloud snippet with date ${dateString}`);
+
 });
 
 // =======================================================
@@ -186,7 +228,7 @@ async function main() {
     await pyodideInit(packageNames);
     hijackPrint(pyodide);
     await storageInit(userID);
-    console.log(snippets);
+    document.getElementById("file-next").click();
 }
 
 // =======================================================

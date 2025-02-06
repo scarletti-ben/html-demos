@@ -35,16 +35,16 @@ html, body {
   box-sizing: border-box;
   overflow: hidden;
 }
-#page.layout-1 {
+#page.layout-top {
   flex-direction: column;
 }
-#page.layout-2 {
+#page.layout-bottom {
   flex-direction: column-reverse;
 }
-#page.layout-3 {
+#page.layout-left {
   flex-direction: row;
 }
-#page.layout-4 {
+#page.layout-right {
   flex-direction: row-reverse;
 }
 
@@ -75,6 +75,7 @@ html, body {
   flex-shrink: 1;
   flex-grow: 1;
   overflow-y: auto;
+  /* background-color: rgba(16, 16, 16, 0.7); */
   background-color: black;
   color: rgb(0, 255, 0);
   scrollbar-color: var(--scrollbar-slider) transparent;
@@ -102,6 +103,7 @@ html, body {
   text-wrap: nowrap;
   box-sizing: border-box;
   display: none;
+  z-index: 999;
   /* box-shadow: inset 0 0 0 1px orange; */
 }
 
@@ -132,11 +134,26 @@ html, body {
   flex-wrap: nowrap;
 }
 
+.toolbar-row {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: right;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: 48px;
+  width: 48px;
+  box-sizing: border-box;
+  background-color: red;
+}
+.toolbar .icon {
+  background-color: red;
+}
+
 #toolbar-top {
   display: flex;
   flex-direction: column-reverse;
   max-height: calc(100% - 48px - 32px);
-  overflow: auto;
+  /* overflow: auto; */
   scrollbar-color: var(--scrollbar-slider) transparent;
 }
 
@@ -158,6 +175,7 @@ html, body {
   touch-action: manipulation;
   box-shadow: inset 0 0 0 var(--debug-outline) teal;
   background-color: rgba(0, 50, 70, 1);
+  z-index: 50;
 }
 
 /* #toolbar-bottom .icon {

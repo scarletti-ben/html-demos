@@ -22,10 +22,14 @@
 <body>
 
   <!-- ! Main HTML -->
-  <div id="page" class="layout-1">
+  <div id="page" class="layout-top">
     <pre id="editor"></pre>
     <pre id="terminal" disabled></pre>
   </div>
+
+  <!-- <div class="tooltip-container"> -->
+  <!-- <span class="tooltip-text">Run Code</span> -->
+  <!-- </div> -->
 
   <!-- ! Toolbar HTML -->
   <div id="toolbar-container">
@@ -40,101 +44,77 @@
 
     <div id="toolbar-top" class="hidden">
 
-      <span class="icon" id="run">
-        <span class="material-symbols-outlined">terminal</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Run Code</span>
-        </div>
-      </span>
+      <div class="toolbar-row">
+        <span class="icon" id="run-code" title="Run Code">
+          <span class="material-symbols-outlined">terminal</span>
+        </span>
+        <span class="icon" id="clear-editor" title="Clear Editor">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cancel_presentation</span>
+        </span>
+        <span class="icon" id="clear-terminal" title="Clear Terminal">
+          <span class="material-symbols-outlined">cancel_presentation</span>
+        </span>
+        <span class="icon" id="file-next" title="Next Snippet">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </span>
+        <span class="icon" id="file-previous" title="Previous Snippet">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </span>
+      </div>
+      
+      <div class="toolbar-row">
+        <!-- <span class="icon" id="layout-settings" title="Layout Settings"> -->
+          <!-- <span class="material-symbols-outlined">dashboard</span> -->
+        <!-- </span> -->
+        <span class="icon" id="toggle-fullscreen" title="Toggle Fullscreen">
+          <span class="material-symbols-outlined">fullscreen</span>
+        </span>
+        <span class="icon" id="layout-right" title="Editor Right">
+          <span class="material-symbols-outlined">splitscreen_right</span>
+        </span>
+        <span class="icon" id="layout-left" title="Editor Left">
+          <span class="material-symbols-outlined">splitscreen_left</span>
+        </span>
+        <span class="icon" id="layout-bottom" title="Editor Bottom">
+          <span class="material-symbols-outlined">splitscreen_bottom</span>
+        </span>
+        <span class="icon" id="layout-top" title="Editor Top">
+          <span class="material-symbols-outlined">splitscreen_top</span>
+        </span>
+        <span class="icon" id="only-editor" title="Editor Only">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">crop_square</span>
+        </span>
+        <span class="icon" id="only-terminal" title="Terminal Only">
+          <span class="material-symbols-outlined">crop_square</span>
+        </span>
+      </div>
 
-      <span class="icon" id="toggle-fullscreen">
-        <span class="material-symbols-outlined">fullscreen</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Toggle Fullscreen</span>
-        </div>
-      </span>
+      <div class="toolbar-row">
+        <!-- <span class="icon" id="" title="File Options"> -->
+          <!-- <span class="material-symbols-outlined">folder</span> -->
+        <!-- </span> -->
+        <span class="icon" id="cloud-upload" title="Upload to Cloud">
+          <span class="material-symbols-outlined">backup</span>
+        </span>
+        <span class="icon" id="local-download" title="Download this File">
+          <span class="material-symbols-outlined">save_as</span>
+        </span>
+        <span class="icon" id="local-upload" title="Load a File">
+          <span class="material-symbols-outlined">file_open</span>
+        </span>
+        <span class="icon" id="cloud-delete" title="Delete Recent Cloud Snippet">
+          <span class="material-symbols-outlined">delete</span>
+        </span>
+        <span class="icon" id="cloud-open" title="Open Cloud Storage">
+          <span class="material-symbols-outlined">link</span>
+        </span>
+      </div>
 
-      <span class="icon" id="terminal-only">
-        <span class="material-symbols-outlined">crop_square</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Terminal Only</span>
-        </div>
-      </span>
-
-      <span class="icon" id="editor-only">
-        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">crop_square</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Editor Only</span>
-        </div>
-      </span>
-
-      <span class="icon" id="layout-4">
-        <span class="material-symbols-outlined">splitscreen_right</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Editor Right</span>
-        </div>
-      </span>
-
-      <span class="icon" id="layout-3">
-        <span class="material-symbols-outlined">splitscreen_left</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Editor Left</span>
-        </div>
-      </span>
-
-      <span class="icon" id="layout-2">
-        <span class="material-symbols-outlined">splitscreen_bottom</span>
-        <div class="tooltip-container">Editor Bottom</div>
-      </span>
-
-      <span class="icon" id="layout-1">
-        <span class="material-symbols-outlined">splitscreen_top</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Editor Top</span>
-        </div>
-      </span>
-
-      <span class="icon" id="tool-1" title="test">
-        <span class="material-symbols-outlined">save</span>
-      </span>
-
-      <span class="icon" id="tool-2" title="test">
-        <span class="material-symbols-outlined">backup</span>
-      </span>
-
-      <span class="icon" id="tool-3" title="test">
-        <span class="material-symbols-outlined">download</span>
-      </span>
-
-      <span class="icon" id="tool-4" title="test">
-        <span class="material-symbols-outlined">link</span>
-      </span>
-
-      <span class="icon" id="tool-5" title="test">
-        <span class="material-symbols-outlined">delete</span>
-      </span>
-
-      <br>
-
-      <span class="icon" id="tool-6" title="test">
-        <span class="material-symbols-outlined">save</span>
-      </span>
-
-      <span class="icon" id="tool-7" title="test">
-        <span class="material-symbols-outlined">download</span>
-      </span>
-
-      <span class="icon" id="tool-8" title="clear editor">
-        <span class="material-symbols-outlined">radio_button_checked</span>
-      </span>
-
-      <span class="icon" id="tool-9" title="clear terminal">
-        <span class="material-symbols-outlined">radio_button_unchecked</span>
-      </span>
-
-      <span class="icon" id="tool-10" title="add snippet and update">
-        <span class="material-symbols-outlined">radio_button_unchecked</span>
-      </span>
+      <div class="toolbar-row">
+        <span class="icon" id="editor-settings" title="Editor Settings">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+        </span>
+      </div>
 
     </div>
   </div>
