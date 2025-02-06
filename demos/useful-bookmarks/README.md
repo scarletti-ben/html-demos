@@ -24,3 +24,5 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Uses static URLs that can be accessed publically
     - Useful for creating persistent storage across multiple sites for serverless / static sites
     - Files are deleted if not accessed for 30 days
+- [ngrok API Gateway](https://ngrok.com/)
+    - Used for sharing `localhost` servers and applications
