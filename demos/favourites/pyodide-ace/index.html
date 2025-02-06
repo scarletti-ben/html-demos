@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
@@ -10,13 +11,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ext-language_tools.js"></script>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <!-- ! CSS -->
   <link rel="stylesheet" href="styles.css">
 
 </head>
+
 <body>
 
   <!-- ! Main HTML -->
@@ -32,14 +34,25 @@
 
       <span class="icon">
         <span class="material-symbols-outlined">keyboard_arrow_up</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Layout Toolbar</span>
-        </div>
       </span>
 
     </div>
 
     <div id="toolbar-top" class="hidden">
+
+      <span class="icon" id="run">
+        <span class="material-symbols-outlined">terminal</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Run Code</span>
+        </div>
+      </span>
+
+      <span class="icon" id="toggle-fullscreen">
+        <span class="material-symbols-outlined">fullscreen</span>
+        <div class="tooltip-container">
+          <span class="tooltip-text">Toggle Fullscreen</span>
+        </div>
+      </span>
 
       <span class="icon" id="terminal-only">
         <span class="material-symbols-outlined">crop_square</span>
@@ -54,7 +67,7 @@
           <span class="tooltip-text">Editor Only</span>
         </div>
       </span>
-      
+
       <span class="icon" id="layout-4">
         <span class="material-symbols-outlined">splitscreen_right</span>
         <div class="tooltip-container">
@@ -81,18 +94,46 @@
         </div>
       </span>
 
-      <span class="icon" id="toggle-fullscreen">
-        <span class="material-symbols-outlined">fullscreen</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Toggle Fullscreen</span>
-        </div>
+      <span class="icon" id="tool-1" title="test">
+        <span class="material-symbols-outlined">save</span>
       </span>
 
-      <span class="icon" id="run">
-        <span class="material-symbols-outlined">terminal</span>
-        <div class="tooltip-container">
-          <span class="tooltip-text">Run Code</span>
-        </div>
+      <span class="icon" id="tool-2" title="test">
+        <span class="material-symbols-outlined">backup</span>
+      </span>
+
+      <span class="icon" id="tool-3" title="test">
+        <span class="material-symbols-outlined">download</span>
+      </span>
+
+      <span class="icon" id="tool-4" title="test">
+        <span class="material-symbols-outlined">link</span>
+      </span>
+
+      <span class="icon" id="tool-5" title="test">
+        <span class="material-symbols-outlined">delete</span>
+      </span>
+
+      <br>
+
+      <span class="icon" id="tool-6" title="test">
+        <span class="material-symbols-outlined">save</span>
+      </span>
+
+      <span class="icon" id="tool-7" title="test">
+        <span class="material-symbols-outlined">download</span>
+      </span>
+
+      <span class="icon" id="tool-8" title="clear editor">
+        <span class="material-symbols-outlined">radio_button_checked</span>
+      </span>
+
+      <span class="icon" id="tool-9" title="clear terminal">
+        <span class="material-symbols-outlined">radio_button_unchecked</span>
+      </span>
+
+      <span class="icon" id="tool-10" title="add snippet and update">
+        <span class="material-symbols-outlined">radio_button_unchecked</span>
       </span>
 
     </div>
@@ -101,7 +142,9 @@
   <!-- ! JavaScript -->
   <script src="pyodide-init.js" defer></script>
   <script src="ace-init.js" defer></script>
+  <script src="storage-init.js" defer></script>
   <script src="script.js" defer></script>
 
 </body>
+
 </html>

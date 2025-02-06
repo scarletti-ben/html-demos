@@ -1,12 +1,12 @@
 :root {
   --debug-outline: 0px;
   --foreground-colour: rgb(255, 255, 255);
-  --background-colour: rgb(48, 48, 48);
+  --background-colour: black;
   --font-size: 16px;
   --font-family: monospace, sans-serif;
   --font-weight: 400;
-  --scrollbar-slider: rgb(84, 93, 103);
-  --scrollbar-gutter: var(--colour-background);
+  --scrollbar-slider: rgb(34, 63, 63);
+  --scrollbar-gutter: tranparent;
   --scrollbar-colour: var(--scrollbar-slider) var(--scrollbar-gutter);
 }
 
@@ -33,6 +33,7 @@ html, body {
   padding: 0px;
   display: flex;
   box-sizing: border-box;
+  overflow: hidden;
 }
 #page.layout-1 {
   flex-direction: column;
@@ -55,7 +56,8 @@ html, body {
   box-sizing: border-box;
   flex-shrink: 1;
   flex-grow: 1;
-  scrollbar-color: var(--scrollbar-colour);
+  /* scrollbar-color: red green; */
+  
 }
 
 #terminal {
@@ -64,18 +66,24 @@ html, body {
   margin: 0px;
   padding: 16px;
   font-size: 14px;
+  overflow: hidden;
   box-sizing: border-box;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
   flex-shrink: 1;
   flex-grow: 1;
   overflow-y: auto;
   background-color: black;
   color: rgb(0, 255, 0);
-  scrollbar-color: var(--scrollbar-colour);
+  scrollbar-color: var(--scrollbar-slider) transparent;
 }
 
 .hidden {
   display: none !important;
 }
+
 
 .tooltip-container {
   all: unset;
@@ -90,6 +98,7 @@ html, body {
   user-select: none;
   font-size: 12px;
   cursor: pointer;
+  overflow-y: auto;
   text-wrap: nowrap;
   box-sizing: border-box;
   display: none;
@@ -113,10 +122,11 @@ html, body {
   right: 0;
   position: absolute;
   width: 48px;
+  height: 100%;
   box-sizing: border-box;
   margin: 16px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column-reverse;
   align-items: center;
   flex-wrap: nowrap;
@@ -125,12 +135,22 @@ html, body {
 #toolbar-top {
   display: flex;
   flex-direction: column-reverse;
+  max-height: calc(100% - 48px - 32px);
+  overflow: auto;
+  scrollbar-color: var(--scrollbar-slider) transparent;
+}
+
+#toolbar-bottom {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .icon {
   position: relative;
   height: 48px;
   width: 48px;
+  flex-grow: 0;
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -139,6 +159,11 @@ html, body {
   box-shadow: inset 0 0 0 var(--debug-outline) teal;
   background-color: rgba(0, 50, 70, 1);
 }
+
+/* #toolbar-bottom .icon {
+  background-color: rgba(0, 0, 0, 0);
+} */
+
 
 .icon:active {
   -webkit-tap-highlight-color: transparent;
@@ -153,3 +178,44 @@ html, body {
   color: white;
   user-select: none;
 }
+
+/* 
+::-webkit-scrollbar {
+  background: none;
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: solid 0 rgba(0, 0, 0, 0);
+  border-right-width: 4px;
+  border-left-width: 4px;
+  -webkit-border-radius: 9px 4px;
+  -webkit-box-shadow: inset 0 0 0 1px rgba(128, 128, 128, 0.2), inset 0 0 0 4px rgba(128, 128, 128, 0.2);
+}
+
+::-webkit-scrollbar-track-piece {
+  margin: 4px 0;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  -webkit-border-radius: 4px 9px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  -webkit-box-shadow:
+    inset 0 0 0 1px rgba(128, 128, 128, 0.9),
+    inset 0 0 0 4px rgba(128, 128, 128, 0.9);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.ace_scrollbar-h {
+  margin: 0 2px;
+} */

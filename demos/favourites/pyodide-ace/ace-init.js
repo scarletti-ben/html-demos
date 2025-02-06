@@ -3,40 +3,37 @@
 // =======================================================
 
 const editor = ace.edit("editor");
-const defaultText = `
-
-import micropip
-await micropip.install("https://files.pythonhosted.org/packages/27/7c/abc460494640767edfce9c920da3e03df22327fc5e3d51c7857f50fd89c4/segno-1.6.1-py3-none-any.whl")
-import segno
-import js
-
-text = "Hello, World"
-qr = segno.make_qr("Hello, World")
-qr.save(
-    "/qr.png",
-    scale = 5,
-)
-
-file_data = open("/qr.png", "rb").read()
-binary_data_js = js.Uint8Array.new(file_data)
-blob = js.Blob.new([binary_data_js], {"type": "image/png"})
-url = js.window.URL.createObjectURL(blob)
-a = js.document.createElement("a")
-a.href = url
-a.download = "qr.png"
-js.document.body.appendChild(a)
-a.click()
-js.document.body.removeChild(a)
-js.window.URL.revokeObjectURL(url)
-
-`;
 
 // =======================================================
 // Functionality
 // =======================================================
 
-// Initialise Ace editor
-async function aceInit() {
+// Change the colour of the scrollbar of the editor
+function setEditorScrollColour(gutterColour, sliderColour) {
+    const scrollbar = editor.container.querySelector('.ace_scrollbar');
+    scrollbar.style.scrollbarColor = `${sliderColour} ${gutterColour}`;
+}
+
+// Get the CSS styling for the current theme
+function getThemeCSS() {
+    let theme = editor.getTheme();
+    let name = theme.split('/')[2]
+    let selector = `.ace-${name}`
+    let element = document.querySelector(selector);
+    var computedStyle = window.getComputedStyle(element);
+    return computedStyle
+}
+
+// Get the CSS styling for the editor gutter
+function getGutterCSS() {
+    let selector = `.ace_gutter`
+    let element = document.querySelector(selector);
+    var computedStyle = window.getComputedStyle(element);
+    return computedStyle
+}
+
+// Initialise Ace editor with optional text argument
+async function aceInit(text = "") {
     editor.session.setMode("ace/mode/python");
     editor.setOptions({
         autoScrollEditorIntoView: true,
@@ -47,6 +44,7 @@ async function aceInit() {
         showPrintMargin: false,
         showInvisibles: false,
         highlightActiveLine: false,
+        // fixedGutterWidth: true,
         highlightGutterLine: false,
         theme: "ace/theme/gruvbox",
         highlightSelectedWord: false,
@@ -56,7 +54,9 @@ async function aceInit() {
         readOnly: false
     });
     editor.renderer.setScrollMargin(16, 0);
-    editor.setValue(defaultText.trim());
+    // editor.renderer.setGutterWidth(128);
+    editor.setValue(text.trim());
     editor.clearSelection();
-    editor.focus();
+    // editor.focus();
+    setEditorScrollColour("transparent", "transparent");
 }

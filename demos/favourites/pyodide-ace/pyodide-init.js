@@ -3,7 +3,6 @@
 // =======================================================
 
 const terminal = document.querySelector("#terminal");
-let packageNames = ["requests", "pillow", "numpy"];
 let pyodide;
 let micropip;
 
@@ -28,7 +27,7 @@ async function installPackages(packageNames) {
 }
 
 // Initialise Pyodide, with Micropip and custom packages
-async function pyodideInit() {
+async function pyodideInit(packageNames) {
     terminal.textContent = "";
     terminal.textContent += "Pyodide loading...";
     pyodide = await loadPyodide();
