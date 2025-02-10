@@ -177,16 +177,16 @@ function createNote(data, id) {
     //     console.log(`focus fire 2 ${e.target} ${e} ${getDateString()}`)
     // });
 
-    title.addEventListener("focusout", (e) => {
-        saveNoteContainer(container);
-        VariablesToLocal();
-        console.log(`focus fire 3 ${e.target} ${e} ${getDateString()}`)
-    });
-    content.addEventListener("focusout", (e) => {
-        saveNoteContainer(container);
-        VariablesToLocal();
-        console.log(`focus fire 4 ${e.target} ${e} ${getDateString()}`)
-    });
+    // title.addEventListener("focusout", (e) => {
+    //     saveNoteContainer(container);
+    //     VariablesToLocal();
+    //     console.log(`focus fire 3 ${e.target} ${e} ${getDateString()}`)
+    // });
+    // content.addEventListener("focusout", (e) => {
+    //     saveNoteContainer(container);
+    //     VariablesToLocal();
+    //     console.log(`focus fire 4 ${e.target} ${e} ${getDateString()}`)
+    // });
 
     let button = createDiv({ className: "note-button" }, container, () => {
         removeNoteByElement(note);
