@@ -22,8 +22,9 @@ Autosave Information:
 - Can manually save via menu`
     },
 };
+let beenWarned = false;
 var notes = JSON.parse(JSON.stringify(defaultNotes));
-const LOCALSTORAGE_ATTRIBUTE = 'savedNotes-2025-02-10'
+const LOCALSTORAGE_ATTRIBUTE = 'savedNotes-2025-02-10';
 
 // =========================================================
 // Functionality
@@ -508,25 +509,24 @@ function populateToolbar() {
     });
     tools.createButton(3, "delete_history", "Reset All Notes", () => resetAllNotes());
 
-    let x = tools.createButton(3, "cloud_upload", "Share Notes");
-    x.addEventListener("click", async () => {
-        let message = 'Cloud share generates a one time use link\n- Do not use this to share important or personal information\n- Opening the link  on another device will create a separate copy of all notes in this library on that device\n- Once the link is used, its data is deleted and it will no longer work\n\nPress Cancel if this was a mistake';
-
-        let confirmed = confirm(message);
-        if (confirmed) {
+    tools.createButton(3, "cloud_upload", "Share Notes", async () => {
+        if (beenWarned) {
             let oneTimeLink = await getOneTimeLink();
             let copied = await copyToClipboard(oneTimeLink);
             if (copied) {
                 alert(`One time link copied to clipboard:\n${oneTimeLink}`);
             }
             else {
-                alert(`Clipboard access denied, copy this link: ${oneTimeLink}`);
+                alert(`Clipboard access denied by device, copy or write down this link: ${oneTimeLink}`);
             }
-        } else {
-            console.log('Pressed Cancel');
+        }
+        if (!beenWarned) {
+            let message = 'Cloud share generates a one time use link\n- Do not use this to share important or personal information\n- Opening the link  on another device will create a separate copy of all notes in this library on that device\n- Once the link is used, its data is deleted and it will no longer work\n\nThis message will only pop up once per session, pressing "Share Notes" will now work if you click it again';
+            alert(message);
+            beenWarned = true;
         }
 
-    })
+    });
 
     tools.createButton(3, "open_in_full", "Toggle Expanding Notes", () => expanding = !expanding);
 }
