@@ -23,6 +23,7 @@ Autosave Information:
     },
 };
 var notes = JSON.parse(JSON.stringify(defaultNotes));
+const LOCALSTORAGE_ATTRIBUTE = 'savedNotes-2025-02-10'
 
 // =========================================================
 // Functionality
@@ -238,7 +239,7 @@ function VariablesToLocal() {
     setTimeout(() => {
         mainButton.style.color = "";
     }, 500);
-    localStorage.setItem('savedNotes', JSON.stringify(notes));
+    localStorage.setItem(LOCALSTORAGE_ATTRIBUTE, JSON.stringify(notes));
     console.log("Variables to local");
 }
 
@@ -255,7 +256,7 @@ function WindowToLocal() {
  * Loads notes from localStorage into variables
  */
 function LocalToVariables() {
-    let saved = localStorage.getItem('savedNotes');
+    let saved = localStorage.getItem(LOCALSTORAGE_ATTRIBUTE);
     notes = JSON.parse(saved);
     console.log("Local to variables");
 }
@@ -297,7 +298,7 @@ async function CloudToLocal(url) {
             return false;
         }
         let data = await response.text();
-        localStorage.setItem('savedNotes', data);
+        localStorage.setItem(LOCALSTORAGE_ATTRIBUTE, data);
         console.log("Cloud to local");
         return true;
     } catch (error) {
@@ -506,6 +507,7 @@ function populateToolbar() {
     });
     tools.createButton(3, "delete_history", "Reset All Notes", () => resetAllNotes());
     tools.createButton(3, "cloud_upload", "Share Notes", async () => {
+        let oneTimeLink = await getOneTimeLink();
 
         let message = 'Cloud share generates a one time use link\n- Do not use this to share important or personal information\n- Opening the link  on another device will create a separate copy of all notes in this library on that device\n- Once the link is used, its data is deleted and it will no longer work\n\nPress Cancel if this was a mistake';
         if (confirm(message)) {
@@ -562,7 +564,7 @@ async function main() {
     }
 
 
-    if (localStorage.getItem('savedNotes') !== null) {
+    if (localStorage.getItem(LOCALSTORAGE_ATTRIBUTE) !== null) {
         LocalToWindow();
     }
     else {
