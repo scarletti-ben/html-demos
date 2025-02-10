@@ -159,33 +159,33 @@ function createNote(data, id) {
     content.contentEditable = true;
     note.setAttribute('data-id', id);
 
-    note.addEventListener("focusin", () => {
+    note.addEventListener("focusin", (e) => {
         if (expanding) {
             container.classList.toggle('expanded');
             tools.element.classList.toggle('hidden');
         }
         button.classList.toggle('hidden');
-        alert(`focus fire 1`)
+        console.log(`focus fire 1 ${e.target} ${e}`)
     });
 
-    note.addEventListener("focusout", () => {
+    note.addEventListener("focusout", (e) => {
         if (expanding) {
             container.classList.toggle('expanded');
             tools.element.classList.toggle('hidden');
         }
         button.classList.toggle('hidden');
-        alert(`focus fire 2`)
+        console.log(`focus fire 2 ${e.target} ${e}`)
     });
 
-    title.addEventListener("focusout", () => {
+    title.addEventListener("focusout", (e) => {
         saveNoteContainer(container);
         VariablesToLocal();
-        alert(`focus fire 3`)
+        console.log(`focus fire 3 ${e.target} ${e}`)
     });
-    content.addEventListener("focusout", () => {
+    content.addEventListener("focusout", (e) => {
         saveNoteContainer(container);
         VariablesToLocal();
-        alert(`focus fire 4`)
+        console.log(`focus fire 4 ${e.target} ${e}`)
     });
 
     let button = createDiv({ className: "note-button" }, container, () => {
