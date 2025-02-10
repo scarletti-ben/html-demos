@@ -483,6 +483,7 @@ class ToolbarContainer {
         const row = this.element.children[rowIndex];
         const button = createDiv({ className: "toolbar-button", title: tooltipText }, row, onClick)
         createDiv({ className: "material-symbols-outlined", textContent: iconCode }, button)
+        return button;
     }
 }
 
@@ -506,12 +507,13 @@ function populateToolbar() {
         WindowToLocal();
     });
     tools.createButton(3, "delete_history", "Reset All Notes", () => resetAllNotes());
-    tools.createButton(3, "cloud_upload", "Share Notes", async () => {
-        let oneTimeLink = await getOneTimeLink();
-        let copied = await copyToClipboard(oneTimeLink);
 
+    let x = tools.createButton(3, "cloud_upload", "Share Notes");
+    x.addEventListener("click", async () => {
         let message = 'Cloud share generates a one time use link\n- Do not use this to share important or personal information\n- Opening the link  on another device will create a separate copy of all notes in this library on that device\n- Once the link is used, its data is deleted and it will no longer work\n\nPress Cancel if this was a mistake';
-        if (confirm(message)) {
+
+        let confirmed = confirm(message);
+        if (confirmed) {
             let oneTimeLink = await getOneTimeLink();
             let copied = await copyToClipboard(oneTimeLink);
             if (copied) {
@@ -524,7 +526,8 @@ function populateToolbar() {
             console.log('Pressed Cancel');
         }
 
-    });
+    })
+
     tools.createButton(3, "open_in_full", "Toggle Expanding Notes", () => expanding = !expanding);
 }
 
