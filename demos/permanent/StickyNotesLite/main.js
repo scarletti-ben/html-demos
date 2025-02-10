@@ -165,6 +165,7 @@ function createNote(data, id) {
             tools.element.classList.toggle('hidden');
         }
         button.classList.toggle('hidden');
+        alert(`focus fire 1`)
     });
 
     note.addEventListener("focusout", () => {
@@ -173,15 +174,18 @@ function createNote(data, id) {
             tools.element.classList.toggle('hidden');
         }
         button.classList.toggle('hidden');
+        alert(`focus fire 2`)
     });
 
     title.addEventListener("focusout", () => {
         saveNoteContainer(container);
         VariablesToLocal();
+        alert(`focus fire 3`)
     });
     content.addEventListener("focusout", () => {
         saveNoteContainer(container);
         VariablesToLocal();
+        alert(`focus fire 4`)
     });
 
     let button = createDiv({ className: "note-button" }, container, () => {
@@ -500,7 +504,7 @@ function populateToolbar() {
     tools.createButton(0, "keyboard_arrow_up", null, null);
     tools.createButton(1, "add", "Add New Note", () => createBlankNote());
     tools.createButton(2, "save", "Manual Save", () => save());
-    tools.createButton(3, "more_vert", "More Tools", null);
+    tools.createButton(3, "more_vert", "More Tools", "", null);
     tools.createButton(3, "download", "Save to Device", () => WindowToDevice());
     tools.createButton(3, "folder", "Load from Device", () => {
         alert("Loading on Mobile is quirky\n- Select 'Photos and videos' on Android\n- Look for .json file in downloads folder")
