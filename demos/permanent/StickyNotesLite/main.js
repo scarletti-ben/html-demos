@@ -159,23 +159,23 @@ function createNote(data, id) {
     content.contentEditable = true;
     note.setAttribute('data-id', id);
 
-    note.addEventListener("focusin", (e) => {
-        if (expanding) {
-            container.classList.toggle('expanded');
-            tools.element.classList.toggle('hidden');
-        }
-        button.classList.toggle('hidden');
-        console.log(`focus fire 1 ${e.target} ${e} ${getDateString()}`)
-    });
+    // note.addEventListener("focusin", (e) => {
+    //     if (expanding) {
+    //         container.classList.toggle('expanded');
+    //         tools.element.classList.toggle('hidden');
+    //     }
+    //     button.classList.toggle('hidden');
+    //     console.log(`focus fire 1 ${e.target} ${e} ${getDateString()}`)
+    // });
 
-    note.addEventListener("focusout", (e) => {
-        if (expanding) {
-            container.classList.toggle('expanded');
-            tools.element.classList.toggle('hidden');
-        }
-        button.classList.toggle('hidden');
-        console.log(`focus fire 2 ${e.target} ${e} ${getDateString()}`)
-    });
+    // note.addEventListener("focusout", (e) => {
+    //     if (expanding) {
+    //         container.classList.toggle('expanded');
+    //         tools.element.classList.toggle('hidden');
+    //     }
+    //     button.classList.toggle('hidden');
+    //     console.log(`focus fire 2 ${e.target} ${e} ${getDateString()}`)
+    // });
 
     title.addEventListener("focusout", (e) => {
         saveNoteContainer(container);
@@ -532,7 +532,7 @@ function populateToolbar() {
 
     });
 
-    tools.createButton(3, "open_in_full", "Toggle Expanding Notes", () => expanding = !expanding);
+    // tools.createButton(3, "open_in_full", "Toggle Expanding Notes", () => expanding = !expanding);
 }
 
 /**
