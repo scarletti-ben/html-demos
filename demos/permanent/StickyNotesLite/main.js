@@ -165,7 +165,7 @@ function createNote(data, id) {
             tools.element.classList.toggle('hidden');
         }
         button.classList.toggle('hidden');
-        console.log(`focus fire 1 ${e.target} ${e}`)
+        console.log(`focus fire 1 ${e.target} ${e} ${getDateString()}`)
     });
 
     note.addEventListener("focusout", (e) => {
@@ -174,18 +174,18 @@ function createNote(data, id) {
             tools.element.classList.toggle('hidden');
         }
         button.classList.toggle('hidden');
-        console.log(`focus fire 2 ${e.target} ${e}`)
+        console.log(`focus fire 2 ${e.target} ${e} ${getDateString()}`)
     });
 
     title.addEventListener("focusout", (e) => {
         saveNoteContainer(container);
         VariablesToLocal();
-        console.log(`focus fire 3 ${e.target} ${e}`)
+        console.log(`focus fire 3 ${e.target} ${e} ${getDateString()}`)
     });
     content.addEventListener("focusout", (e) => {
         saveNoteContainer(container);
         VariablesToLocal();
-        console.log(`focus fire 4 ${e.target} ${e}`)
+        console.log(`focus fire 4 ${e.target} ${e} ${getDateString()}`)
     });
 
     let button = createDiv({ className: "note-button" }, container, () => {
