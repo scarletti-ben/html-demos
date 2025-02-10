@@ -14,6 +14,13 @@ Reduced functionality to reduce visual clutter and be fit for sharing, and alter
 
 Docstrings for functions auto-generated so I assume some issues.
 
+## External Dependencies
+- Cloud sharing feature uses `JSONBlob`, the API can be found [here](https://jsonblob.com/api)
+
+# Disclaimer
+- Notes shared via the cloud are publically accessible until the `One Time Link` has been used, at which point they are deleted
+    - Do not share to cloud if you have any personal or important information in your notes library
+
 # Features
 - Notes are autosaved to `localstorage`
 - Notes load from `localstorage` when page loads
