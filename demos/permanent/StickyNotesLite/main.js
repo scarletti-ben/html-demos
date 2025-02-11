@@ -509,7 +509,7 @@ document.addEventListener('click', (e) => {
     if (!closestNoteContainer) {
         if (activeNoteContainer) {
             console.log("clearing active container");
-            
+
             if (activeNoteContainer) {
                 var buttonA = activeNoteContainer.querySelector('.note-button');
                 if (buttonA) {
@@ -650,11 +650,27 @@ async function main() {
         if (e.ctrlKey && e.key === 's') {
             e.preventDefault();
             saveAllNotes();
-        } 
+        }
         else if (e.ctrlKey && e.key === 'd') {
             e.preventDefault();
             saveAllNotes();
             WindowToDevice();
+        }
+    })
+
+    mainButton.addEventListener('click', () => {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        } else if (document.selection) {
+            document.selection.empty();
+        }
+    })
+
+    tools.element.addEventListener('click', () => {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        } else if (document.selection) {
+            document.selection.empty();
         }
     })
 
