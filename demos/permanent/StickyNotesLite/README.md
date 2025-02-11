@@ -37,3 +37,7 @@ Docstrings for functions auto-generated so I assume some issues.
 
 # Testing Locally
 - The easiest method is to clone into this repository and run `python -m http.server`
+
+### Bugs
+- ~~Triple clicking the title of an empty note sends cursor to previous note title~~
+- Double / triple clicking the toolbar, if coming from a non-empty textbox, selects an empty string and tries to google search it, on mobile, I legitimately cannot find the source of this issue and have attempted every browser-specific variant of `user-select: none` on `*` and, separately, on every single element

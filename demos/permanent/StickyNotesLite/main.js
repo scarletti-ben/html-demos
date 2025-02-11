@@ -7,28 +7,36 @@ let mainButton;
 let tools;
 let expanding = false;
 let cloudBase = "https://jsonblob.com/api/jsonBlob/"
+let defaultContent = `- Open toolbar via ^ button
+- Delete note via x button
+- ^ flashes when saving
+- Autosaves every 30s
+- Manually save via menu
+- Control + S to save
+- Control + D to download`
 var defaultNotes = {
     1: {
         title: "Welcome to StickyNotes",
         created: '2024-02-08T14:45:30.123Z',
         modified: '2024-02-08T14:45:30.123Z',
-        content: `- Open toolbar via ^ button
-- Delete note via x button
-
-Autosave Information:
-- ^ flashes when saving
-- Saves if switching notes
-- Saves every 30s
-- Can manually save via menu`
+        content: defaultContent
     },
 };
 let beenWarned = false;
 var notes = JSON.parse(JSON.stringify(defaultNotes));
 const LOCALSTORAGE_ATTRIBUTE = 'savedNotes-2025-02-10';
+let activeNoteContainer;
+let lastFocusedElement;
 
 // =========================================================
 // Functionality
 // =========================================================
+
+// Simple replacement for alert / console.log
+function mobileAlert(text) {
+    let postit = document.querySelectorAll(".note-content")[0];
+    postit.value += '\n\n' + text;
+}
 
 /**
  * Creates and appends a div element to a parent
@@ -43,7 +51,10 @@ function createDiv(options = { className: "", textContent: "", id: "", title: ""
     if (options.textContent) element.textContent = options.textContent;
     if (options.id) element.id = options.id;
     if (options.title) element.title = options.title;
-    if (onClick) element.addEventListener('click', onClick);
+    if (onClick) element.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onClick();
+    });
     if (parent) parent.appendChild(element);
     return element;
 }
@@ -61,7 +72,31 @@ function createTextArea(options = { className: "", textContent: "", id: "", titl
     if (options.textContent) element.textContent = options.textContent;
     if (options.id) element.id = options.id;
     if (options.title) element.title = options.title;
-    if (onClick) element.addEventListener('click', onClick);
+    if (onClick) element.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onClick();
+    });
+    if (parent) parent.appendChild(element);
+    return element;
+}
+
+/**
+ * Creates and appends a text element to a parent
+ * @param options - Object with optional className, textContent, id, and title
+ * @param parent - Optional parent element to append to
+ * @param onClick - Optional event listener for the 'click' event
+ * @returns {HTMLTextAreaElement} The created textarea element
+ */
+function createText(options = { className: "", textContent: "", id: "", title: "" }, parent = null, onClick = null) {
+    let element = document.createElement("text");
+    if (options.className) element.className = options.className;
+    if (options.textContent) element.textContent = options.textContent;
+    if (options.id) element.id = options.id;
+    if (options.title) element.title = options.title;
+    if (onClick) element.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onClick();
+    });
     if (parent) parent.appendChild(element);
     return element;
 }
@@ -150,43 +185,13 @@ function createNote(data, id) {
     title.addEventListener("keydown", (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            content.focus()
+            content.focus();
         }
     })
     content.spellcheck = false;
     content.value = data.content;
     title.contentEditable = true;
-    content.contentEditable = true;
     note.setAttribute('data-id', id);
-
-    // note.addEventListener("focusin", (e) => {
-    //     if (expanding) {
-    //         container.classList.toggle('expanded');
-    //         tools.element.classList.toggle('hidden');
-    //     }
-    //     button.classList.toggle('hidden');
-    //     console.log(`focus fire 1 ${e.target} ${e} ${getDateString()}`)
-    // });
-
-    // note.addEventListener("focusout", (e) => {
-    //     if (expanding) {
-    //         container.classList.toggle('expanded');
-    //         tools.element.classList.toggle('hidden');
-    //     }
-    //     button.classList.toggle('hidden');
-    //     console.log(`focus fire 2 ${e.target} ${e} ${getDateString()}`)
-    // });
-
-    // title.addEventListener("focusout", (e) => {
-    //     saveNoteContainer(container);
-    //     VariablesToLocal();
-    //     console.log(`focus fire 3 ${e.target} ${e} ${getDateString()}`)
-    // });
-    // content.addEventListener("focusout", (e) => {
-    //     saveNoteContainer(container);
-    //     VariablesToLocal();
-    //     console.log(`focus fire 4 ${e.target} ${e} ${getDateString()}`)
-    // });
 
     let button = createDiv({ className: "note-button" }, container, () => {
         removeNoteByElement(note);
@@ -376,7 +381,8 @@ function WindowToDevice() {
 /**
  * Saves the current state of the notes
  */
-function save() {
+function saveAllNotes() {
+    WindowToVariables();
     VariablesToLocal();
     let message = `Notes saved to local`;
     console.log(message);
@@ -493,6 +499,57 @@ class ToolbarContainer {
 }
 
 // =========================================================
+// Document Listeners
+// =========================================================
+
+// Single event listener for switching between notes
+document.addEventListener('click', (e) => {
+    let closestNoteContainer = e.target.closest('.note-container');
+
+    if (!closestNoteContainer) {
+        if (activeNoteContainer) {
+            console.log("clearing active container");
+            
+            if (activeNoteContainer) {
+                var buttonA = activeNoteContainer.querySelector('.note-button');
+                if (buttonA) {
+                    buttonA.classList.remove('hidden');
+                }
+            }
+
+            if (expanding) {
+                activeNoteContainer.classList.remove('expanded');
+            }
+        };
+        activeNoteContainer = null;
+
+    } else if (closestNoteContainer !== activeNoteContainer) {
+        console.log("new container");
+
+        var buttonC = closestNoteContainer.querySelector('.note-button');
+        if (buttonC) {
+            buttonC.classList.add('hidden');
+        }
+
+        if (activeNoteContainer) {
+            var buttonA = activeNoteContainer.querySelector('.note-button');
+            if (buttonA) {
+                buttonA.classList.remove('hidden');
+            }
+        }
+
+        if (expanding) {
+            if (activeNoteContainer) {
+                activeNoteContainer.classList.remove('expanded');
+            }
+            closestNoteContainer.classList.add('expanded');
+        }
+        activeNoteContainer = closestNoteContainer;
+
+    }
+});
+
+// =========================================================
 // Initialisation Functions
 // =========================================================
 
@@ -503,7 +560,7 @@ function populateToolbar() {
     tools = new ToolbarContainer();
     tools.createButton(0, "keyboard_arrow_up", null, null);
     tools.createButton(1, "add", "Add New Note", () => createBlankNote());
-    tools.createButton(2, "save", "Manual Save", () => save());
+    tools.createButton(2, "save", "Manual Save", () => saveAllNotes());
     tools.createButton(3, "more_vert", "More Tools", "", null);
     tools.createButton(3, "download", "Save to Device", () => WindowToDevice());
     tools.createButton(3, "folder", "Load from Device", () => {
@@ -532,7 +589,17 @@ function populateToolbar() {
 
     });
 
-    // tools.createButton(3, "open_in_full", "Toggle Expanding Notes", () => expanding = !expanding);
+    tools.createButton(3, "open_in_full", "Toggle Expanding Notes", () => {
+        expanding = !expanding;
+        if (activeNoteContainer) {
+            activeNoteContainer.classList.remove('expanded');
+            var buttonA = activeNoteContainer.querySelector('.note-button');
+            if (buttonA) {
+                buttonA.classList.remove('hidden');
+            }
+            activeNoteContainer = null;
+        }
+    });
 }
 
 /**
@@ -582,13 +649,16 @@ async function main() {
     document.addEventListener("keydown", (e) => {
         if (e.ctrlKey && e.key === 's') {
             e.preventDefault();
-            save();
+            saveAllNotes();
+        } 
+        else if (e.ctrlKey && e.key === 'd') {
+            e.preventDefault();
+            saveAllNotes();
+            WindowToDevice();
         }
     })
 
-    const toolbarContainer = document.getElementById('toolbar-container');
-
-    setInterval(save, 30000);
+    setInterval(saveAllNotes, 30000);
 
 };
 
