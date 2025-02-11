@@ -195,6 +195,7 @@ function createNote(data, id) {
 
     let button = createDiv({ className: "note-button" }, container, () => {
         removeNoteByElement(note);
+        setInterval(saveAllNotes, 3000);
         VariablesToLocal();
     });
     createDiv({ className: "material-symbols-outlined small", textContent: 'close' }, button)
@@ -559,7 +560,10 @@ document.addEventListener('click', (e) => {
 function populateToolbar() {
     tools = new ToolbarContainer();
     tools.createButton(0, "keyboard_arrow_up", null, null);
-    tools.createButton(1, "add", "Add New Note", () => createBlankNote());
+    tools.createButton(1, "add", "Add New Note", () => {
+        createBlankNote();
+        setInterval(saveAllNotes, 3000);
+    });
     tools.createButton(2, "save", "Manual Save", () => saveAllNotes());
     tools.createButton(3, "more_vert", "More Tools", "", null);
     tools.createButton(3, "download", "Save to Device", () => WindowToDevice());
