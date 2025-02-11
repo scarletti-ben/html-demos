@@ -7,7 +7,8 @@ let mainButton;
 let tools;
 let expanding = false;
 let cloudBase = "https://jsonblob.com/api/jsonBlob/"
-let defaultContent = `- Open toolbar via ^ button
+let defaultContent = `- Open menu via ^ button
+- Add note via + in menu
 - Delete note via x button
 - ^ flashes when saving
 - Autosaves every 30s
