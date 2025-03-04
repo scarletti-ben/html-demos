@@ -22,3 +22,6 @@ Attempt to learn how to make custom `HTML` elements, and make a deck of 52 `SVG`
 ## Other Useful Links
 - [Cardmeister Demo](https://cardmeister.github.io/index.html)
 - [Deck of Cards](https://deck.of.cards/old/)
+
+## ! CHANGES
+Added codes.js and removed dependency on .svg files

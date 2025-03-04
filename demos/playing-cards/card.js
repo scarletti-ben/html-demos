@@ -6,11 +6,13 @@ class PlayingCard extends HTMLElement {
     static get observedAttributes() {
         return ['rank', 'suit', 'flipped'];
     }
-    constructor(rank, suit, flipped = 'false') {
+
+    /** @param {string} rank @param {string} suit @param {boolean} flipped */
+    constructor(rank, suit, flipped = false) {
         super();
         this.initialised = false;
-        this.setAttribute('rank', rank);
-        this.setAttribute('suit', suit);
+        this.setAttribute('rank', String(rank).toLowerCase());
+        this.setAttribute('suit', String(suit).toLowerCase());
         this.setAttribute('flipped', flipped);
     }
 
@@ -18,14 +20,14 @@ class PlayingCard extends HTMLElement {
     updateImage() {
         let flipped = this.getAttribute('flipped') === 'true';
         if (flipped) {
-            let filename = 'assets/cards/back.svg';
-            this._image.setAttribute('src', filename);
+            let key = 'back';
+            this.innerHTML = codes[key];
         }
         else {
             let rank = this.getAttribute('rank');
             let suit = this.getAttribute('suit');
-            let filename = `assets/cards/${rank}_${suit}.svg`;
-            this._image.setAttribute('src', filename);
+            let key = `${rank}_${suit}`;
+            this.innerHTML = codes[key];
         }
     }
 
@@ -36,7 +38,7 @@ class PlayingCard extends HTMLElement {
     }
 
     // ~ ========================================================
-    // ~ Special Methods
+    // ~ Magic Methods
     // ~ ========================================================
 
     // > Callback when an observed attribute changes
@@ -49,9 +51,6 @@ class PlayingCard extends HTMLElement {
     // > Callback when the element is added to the DOM
     connectedCallback() {
         if (!this.initialised) {
-            this._image = document.createElement('img');
-            this._image.setAttribute('alt', 'alt');
-            this.appendChild(this._image);
             this.updateImage();
             this.addEventListener('click', () => {
                 this.flip();
