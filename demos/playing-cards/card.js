@@ -1,3 +1,7 @@
+// < ========================================================
+// < PlayingCard Custom HTML Element / Class
+// < ========================================================
+
 class PlayingCard extends HTMLElement {
     static get observedAttributes() {
         return ['rank', 'suit', 'flipped'];
@@ -25,20 +29,24 @@ class PlayingCard extends HTMLElement {
         }
     }
 
-    // Special // > Callback when an observed attribute changes
-    attributeChangedCallback(name, current, value) {
-        if (this.initialised) {
-            this.updateImage();
-        }
-    }
-
     // > Simple method to flip the card
     flip() {
         let flipped = this.getAttribute('flipped') === 'true';
         this.setAttribute('flipped', !flipped);
     }
 
-    // Special // > Callback when the element is added to the DOM
+    // ~ ========================================================
+    // ~ Special Methods
+    // ~ ========================================================
+
+    // > Callback when an observed attribute changes
+    attributeChangedCallback(name, current, value) {
+        if (this.initialised) {
+            this.updateImage();
+        }
+    }
+
+    // > Callback when the element is added to the DOM
     connectedCallback() {
         if (!this.initialised) {
             this._image = document.createElement('img');
@@ -53,6 +61,10 @@ class PlayingCard extends HTMLElement {
     }
 
 }
+
+// < ========================================================
+// < Execution
+// < ========================================================
 
 // > Register the custom element as <playing-card> for DOM usage
 customElements.define('playing-card', PlayingCard);
