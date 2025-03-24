@@ -1,0 +1,325 @@
+:root {
+  --debug-outline: 0px;
+  --foreground-colour: rgb(255, 255, 255);
+  --background-colour: rgb(48, 48, 48);
+  --font-size: 16px;
+  --font-family: monospace, sans-serif;
+  --font-weight: 400;
+  --scrollbar-slider: rgb(84, 93, 103);
+  --scrollbar-gutter: transparent;
+  --scrollbar-colour: var(--scrollbar-slider) var(--scrollbar-gutter);
+
+  --special1: rgba(38, 68, 48, 0.516);
+
+  --special2: #3a5b44;
+  --special3: color-mix(in srgb, var(--special2), black 20%);
+
+  /* --special3: rgb(51, 88, 61);
+  --special2: color-mix(in srgb, var(--special3), white 10%); */
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: var(--background-colour);
+  color: var(--foreground-colour);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  scrollbar-color: var(--scrollbar-colour);
+  box-shadow: inset 0 0 0 var(--debug-outline) var(--foreground-colour);
+  background-color: rgb(60, 60, 60);
+}
+
+#page {
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden; */
+  position: relative;
+  box-sizing: border-box;
+  /* background-color: black; */
+  background-color: var(--special1)
+
+}
+
+.hidden {
+  display: none !important;
+}
+
+.active {
+  /* filter: brightness(1.5) !important; */
+  background-color: var(--special2);
+}
+
+/* ! ====================================================== ! */
+
+#central-container {
+  display: flex;
+  flex-direction: column;
+  /* flex-grow: 1;
+  flex-shrink: 1; */
+  height: 100%;
+  width: 100%;
+  /* padding: 8px; */
+  box-sizing: border-box;
+  /* outline: 4px solid var(--special2); */
+  border: 2px solid var(--special2);
+  border-radius: 16px;
+  /* border-radius: 0px 0px 16px 16px; */
+  overflow: hidden;
+  background-color: var(--background-colour);
+
+}
+
+.rail {
+  flex-shrink: 0;
+  height: 24px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  overflow-y: hidden;
+  /* align-items: center; */
+  align-items: end;
+  /* POSTIT GAP */
+  gap: 4px;
+  /* background-color: rgba(19, 8, 116, 0.217); */
+  /* box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2); */
+}
+
+#menu-rail {
+  background-color: var(--special2);
+  /* filter: brightness(1.5); */
+  align-items: center;
+  gap: 24px;
+  padding-left: 32px;
+}
+
+.rail-button {
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  padding: 8px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: pointer;
+}
+.rail-button span {
+  font-size: 16px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  box-sizing: border-box;
+}
+
+.tab {
+  width: auto;
+  height: 24px;
+  line-height: 24px;
+  max-width: 164px;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  padding: 0px 16px 0px 16px;
+  background-color: var(--special3);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  border-bottom: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+}
+.tab.active {
+  background-color: var(--special2);
+}
+
+/* ! ====================================================== ! */
+
+.editor {
+  /* padding: 10px; */
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* background-color: var(--background-colour); */
+  /* border: 1px solid #ccc; */
+}
+
+textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: aliceblue;
+  background-color: var(--background-colour);
+  outline: none;
+  border: none;
+  resize: none;
+  /* border: 1px solid #ccc; */
+  box-sizing: border-box;
+}
+
+textarea::placeholder {
+  color: #888;
+  font-size: 16px;
+  opacity: 1;
+}
+
+textarea:focus {
+  outline: none;
+  border: none;
+}
+
+/* ! ====================================================== !
+! DataTable Styles
+! ====================================================== ! */
+
+#table-container {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: auto;
+  /* border-radius: 18px 18px 0 0; */
+  /* overflow: hidden; */
+  /* background-color: red; */
+}
+
+/* Table styles */
+.data-table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  /* margin: 25px 0; */
+  font-size: 14px;
+  min-width: 400px;
+  margin: 0px;
+  position: relative;
+  /* border-radius: 16px 16px 0 0; */
+  /* overflow: hidden; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  font-family: 'Courier New', Courier, monospace;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+
+.data-table thead tr {
+  background-color: var(--special2);
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: center;
+  cursor: pointer;
+  
+}
+
+.data-table tr.opened {
+  /* filter: brightness(150%); */
+  background-color: rgba(20, 128, 20, 0.2);
+}
+
+.data-table tr:hover {
+  /* filter: brightness(150%); */
+  background-color: rgba(20, 20, 20, 0.5);
+}
+
+/* Ensure th elements are relative for absolute positioning of resizer */
+.data-table th {
+  position: relative;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+/* .data-table tbody tr:nth-of-type(even) {
+  background-color: rgba(101, 101, 101, 0.5);
+} */
+/* 
+.data-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+} */
+
+.data-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+/* Resizer Styles */
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  cursor: col-resize;
+  user-select: none;
+  /* z-index: 1; */
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s;
+}
+
+.resizer:hover,
+.resizer.resizing {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ! ====================================================== !
+! 
+! ====================================================== ! */
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 100 700;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v226/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsI.woff2) format('woff2');
+  /* src: url('../StickyNotes/material-symbols-outlined.woff2') format('woff2'); */
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga' 1;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  color: white;
+  user-select: none;
+}
+.material-symbols-outlined.small {
+  font-size: 16px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

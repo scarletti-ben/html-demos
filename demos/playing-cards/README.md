@@ -25,3 +25,6 @@ Attempt to learn how to make custom `HTML` elements, and make a deck of 52 `SVG`
 
 ## ! CHANGES
 Added codes.js and removed dependency on .svg files
+
+> [!IMPORTANT]  
+> PlayingCard custom element constructor should not have arguments as per HTML specification
