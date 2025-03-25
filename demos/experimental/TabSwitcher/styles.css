@@ -1,0 +1,274 @@
+/* < ====================================================== !
+< Custom Styling Defaults
+< ====================================================== ! */
+
+:root {
+  --debug-outline: 0px;
+  --foreground-colour: rgb(255, 255, 255);
+  --background-colour: rgb(48, 48, 48);
+  --font-size: 16px;
+  --font-family: monospace, sans-serif;
+  --font-weight: 400;
+  --scrollbar-slider: rgb(84, 93, 103);
+  --scrollbar-gutter: transparent;
+  --scrollbar-colour: var(--scrollbar-slider) var(--scrollbar-gutter);
+
+  --curviness: 16px;
+  --quick-shadow: inset 0 0 0 2px var(--foreground-colour);
+  --highlighted-colour: black;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: var(--background-colour);
+  color: var(--foreground-colour);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  scrollbar-color: var(--scrollbar-colour);
+  box-shadow: inset 0 0 0 var(--debug-outline) var(--foreground-colour);
+}
+
+#page {
+  height: 100%;
+  width: 100%;
+  padding: var(--curviness);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* < ====================================================== !
+< Helper Styles
+< ====================================================== ! */
+
+.hidden {
+  display: none !important;
+}
+
+.highlighted {
+  background-color: var(--highlighted-colour) !important;
+}
+
+/* < ====================================================== !
+< Styling for TabSwitcher
+< ====================================================== ! */
+
+.tab-switcher {
+
+  --curviness: 16px;
+  --notch-height: 32px;
+  --notch-width: 64px;
+  --notch-gap: 8px;
+  --notch-colour: rgb(60, 60, 60);
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--foreground-colour);
+
+}
+
+.tab-switcher .top-section {
+
+  width: 100%;
+  height: var(--notch-height);
+  box-sizing: border-box;
+  padding: 0px var(--curviness);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.tab-switcher .ribbon {
+
+  width: 100%;
+  height: var(--notch-height);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+
+  gap: var(--notch-gap);
+
+}
+
+.tab-switcher .notch {
+
+  width: var(--notch-width);
+  height: var(--notch-height);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  border-radius: var(--curviness) var(--curviness) 0px 0px;
+  background-color: var(--notch-colour);
+  user-select: none;
+  cursor: pointer;
+
+  background-color: var(--notch-colour);
+
+}
+
+.tab-switcher .notch:hover {
+  opacity: 0.5;
+}
+
+.tab-switcher .bottom-section {
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /* padding: 0px var(--curviness); */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.tab-switcher .display {
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: var(--curviness);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 3px solid var(--highlighted-colour);
+
+}
+
+.tab-switcher .window {
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /* padding: 0px var(--curviness); */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.tab-switcher .pane {
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /* padding: 0px var(--curviness); */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.tab-switcher .header {
+
+  width: 100%;
+  height: var(--notch-height);
+  box-sizing: border-box;
+  padding: 0px var(--curviness);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  background-color: var(--highlighted-colour);
+
+}
+
+.tab-switcher .footer {
+
+  width: 100%;
+  height: var(--notch-height);
+  box-sizing: border-box;
+  padding: 0px var(--curviness);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  background-color: var(--highlighted-colour);
+
+}
+
+/* < ====================================================== !
+< Note Styling
+< ====================================================== ! */
+
+.note {
+
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--curviness);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(34, 69, 40);
+
+}
+
+.note textarea {
+
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+
+  color: var(--foreground-colour);
+  background-color: transparent;
+  scrollbar-color: var(--scrollbar-colour);
+
+  border: none;
+  outline: none;
+
+  resize: none;
+
+}
+
+.note textarea:focus {
+
+  border: none;
+  outline: none;
+
+}
