@@ -64,7 +64,7 @@ body {
 
 .tab-switcher {
 
-  --curviness: 16px;
+  /* --curviness: 16px; */
   --notch-height: 32px;
   --notch-width: 64px;
   --notch-gap: 8px;
