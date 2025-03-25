@@ -197,7 +197,7 @@
     </div>
 
     <div id="scene-container">
-      <div class="scene-header">header</div>
+      <div class="scene-header">header (press any key to toggle)</div>
     </div>
 
   </div>
@@ -232,10 +232,16 @@
         }
       }
 
+      /** > Get an array of all tab elements
+       * @returns {HTMLDivElement[]}
+       */
       get tabs() {
         return Array.from(this.tabContainer.children);
       }
 
+      /** > Get an array of all scene elements
+       * @returns {HTMLDivElement[]}
+       */
       get scenes() {
         let array = Array.from(this.sceneContainer.children);
         return array.filter(element => !element.classList.contains('scene-header'))
@@ -392,6 +398,12 @@
     text2.value = 'dos';
     note2.appendChild(text2);
     tabManager.add(note2, 'dos');
+
+    // Add keydown listener to toggle scene header
+    let sceneHeader = document.querySelector('.scene-header');
+    document.addEventListener('keydown', (event) => {
+      sceneHeader.classList.toggle('hidden');
+    })
 
   </script>
 
