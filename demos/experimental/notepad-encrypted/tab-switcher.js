@@ -1,4 +1,36 @@
 // < ========================================================
+// < Exported Tab Class
+// < ========================================================
+
+export class Tab {
+
+    // POSTIT - pane AND element
+    // get tabs()
+    // Note extents tab
+
+    /** 
+     * @param {TabSwitcher} switcher - The TabSwitcher instance this tab belongs to
+     * @param {string} uuid - The unique identifier for the tab
+     * @param {HTMLElement} element - The HTMLElement for this tab's element
+     * @param {HTMLElement} notch - The HTMLElement for this tab's notch
+     * @param {HTMLElement} pane - The HTMLElement for this tab's pane
+     */
+    constructor(switcher, uuid, element, notch, pane) {
+        this.switcher = switcher;
+        this.uuid = uuid;
+        this.element = element;
+        this.notch = notch;
+        this.pane = pane;
+
+        // > Add event listeners to notch
+        notch.addEventListener('click', (event) => {
+            switcher.show(uuid);
+        });
+
+    }
+}
+
+// < ========================================================
 // < Exported TabSwitcher Class
 // < ========================================================
 
@@ -67,13 +99,12 @@ export class TabSwitcher {
         pane.dataset.uuid = uuid;
         this.window.appendChild(pane);
 
-        // > Add event listeners to notch
-        notch.addEventListener('click', (event) => {
-            this.show(uuid);
-        });
-
         // > Append passed element to pane
         pane.appendChild(element);
+
+        // > Create a Tab instance and return
+        let tab = new Tab(this, uuid, element, notch, pane);
+        return tab;
 
     }
 
