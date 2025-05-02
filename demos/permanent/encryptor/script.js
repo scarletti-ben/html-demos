@@ -2,7 +2,7 @@
 // < Imports
 // < ========================================================
 
-import { tools, experimental } from './mytools.js';
+import { tools } from './mytools.js';
 
 // < ========================================================
 // < Variables, Constants and Declarations
@@ -26,13 +26,14 @@ const copyButton = document.getElementById('copy-button');
 const githubButton = document.getElementById('github-icon');
 const switcherDecryptor = document.getElementById('switcher-decryptor');
 const switcherEncryptor = document.getElementById('switcher-encryptor');
+const switcherSymbol = document.getElementById('switcher-symbol');
 
 // < ========================================================
 // < Functionality
 // < ========================================================
 
 /** 
- * Switch between encryptor and decryptor mode
+ * Switch to a specific mode
  * @returns {void}
  */
 function switchMode(modeName) {
@@ -46,10 +47,6 @@ function switchMode(modeName) {
     // Update global mode variable
     mode = modeName;
 
-    // Create variables for text differences between modes
-    let modeTitle = modeName === 'encryptor' ? 'Encryptor' : 'Decryptor';
-    let modeVerb = modeName === 'encryptor' ? 'encrypt' : 'decrypt';
-
     // Clear text input
     textInput.textContent = '';
 
@@ -59,19 +56,36 @@ function switchMode(modeName) {
     // Switch accent colour
     document.documentElement.style.setProperty('--accent-colour', `var(--accent-${modeName})`);
 
-    // Change button text
-    mainButton.textContent = modeTitle;
-
-    // Change text input placeholder
-    textInput.placeholder = `Enter the text you want to ${modeVerb}...`;
-
-    // Add functionality to the main button
-    mainButton.onclick = modeName === 'encryptor' ? encryptText : decryptText;
+    // Alter site based on mode
+    if (modeName === 'encryptor') {
+        switcherEncryptor.classList.remove('inactive');
+        switcherDecryptor.classList.add('inactive');
+        mainButton.onclick = encryptText;
+        textInput.placeholder = `Enter the text you want to encrypt`;
+        mainButton.textContent = `Encrypt`;
+    } else {
+        switcherDecryptor.classList.remove('inactive');
+        switcherEncryptor.classList.add('inactive');
+        mainButton.onclick = decryptText;
+        textInput.placeholder = `Enter the text you want to decrypt`;
+        mainButton.textContent = `Decrypt`;
+    }
 
 }
 
 /** 
- * Hide outputContainer element, and clear text
+ * Toggle between encryptor and decryptor mode
+ * @returns {void}
+ */
+function toggleMode() {
+
+    let newMode = mode === "encryptor" ? "decryptor" : "encryptor"
+    switchMode(newMode);
+
+}
+
+/** 
+ * Hide output container element, and clear text
  * @returns {void}
  */
 function hideOutput() {
@@ -151,7 +165,7 @@ async function encryptText() {
     } catch (error) {
 
         // Update output text
-        outputText.textContent = `Error: ${error.message}`;
+        outputText.textContent = `Error: Error during encryption, please try again`;
 
         // Log the error
         console.error('Encryption error:', error);
@@ -200,7 +214,7 @@ async function decryptText() {
     } catch (error) {
 
         // Update output text
-        outputText.textContent = `Error: ${error.message}`;
+        outputText.textContent = `Error: Error during decryption, please try again. Ensure input is a comma-separated Base64-encoded string.`;
 
         // Log the error
         console.error('Decryption error:', error);
@@ -234,6 +248,11 @@ switcherEncryptor.addEventListener('click', () => {
 // Add functionality to the "Decryptor" text in header
 switcherDecryptor.addEventListener('click', () => {
     switchMode('decryptor');
+});
+
+// Add functionality to the switcher icon in header
+switcherSymbol.addEventListener('click', () => {
+    toggleMode();
 });
 
 // < ========================================================

@@ -1,22 +1,26 @@
 :root {
   --debug-outline: 0px;
+  --font-size: 16px;
   --foreground-colour: rgb(255, 255, 255);
   --background-colour: rgb(48, 48, 48);
-  --font-size: 16px;
+  --accent-encryptor: rgb(128, 64, 200);
+  --accent-decryptor: rgb(12, 149, 21);
+  --accent-colour: var(--accent-encryptor);
+  --input-background: rgb(60, 60, 60);
   --font-family: monospace, sans-serif;
   --font-weight: 400;
-  --scrollbar-slider: rgb(84, 93, 103);
-  --scrollbar-gutter: transparent;
-  --scrollbar-colour: var(--scrollbar-slider) var(--scrollbar-gutter);
+  --scrollbar-colour: rgb(84, 93, 103) transparent;
+  --border-radius: 6px;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
   background-color: var(--background-colour);
   color: var(--foreground-colour);
   font-family: var(--font-family);
@@ -29,4 +33,198 @@ html, body {
 #page {
   height: 100%;
   width: 100%;
+  margin: 0px;
+  padding: 24px 24px;
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.inactive {
+  filter: grayscale(1);
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+
+#header {
+  text-align: center;
+  margin: 24px;
+  line-height: 48px;
+  height: 48px;
+  gap: 12px;
+  user-select: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.switcher {
+  cursor: pointer;
+}
+
+.switcher:hover {
+  opacity: 0.5;
+  filter: none;
+}
+
+#switcher-encryptor {
+  color: var(--accent-encryptor);
+}
+
+#switcher-symbol svg {
+  vertical-align: middle;
+}
+
+#switcher-decryptor {
+  color: var(--accent-decryptor);
+}
+
+.input-group {
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--input-background);
+  border-radius: var(--border-radius);
+  background-color: var(--input-background);
+  color: var(--foreground-colour);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--accent-colour);
+}
+
+.credential-row {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.credential-row .input-group {
+  flex: 1;
+}
+
+button {
+  background-color: var(--accent-colour);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#main-button {
+  display: block;
+  width: 100%;
+  margin: 18px 0;
+  opacity: 0.8;
+}
+
+#main-button:hover {
+  opacity: 1;
+}
+
+.copy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background-color: transparent;
+  border-radius: var(--border-radius);
+}
+
+.copy-icon {
+  width: 16px;
+  height: 16px;
+  fill: white;
+}
+
+#output-container {
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+#output-container .top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(20, 20, 20, 0.6);
+  padding: 12px 24px;
+  font-weight: bold;
+}
+
+#output-container .main-content {
+  padding: 18px 24px;
+  background: var(--input-background);
+}
+
+#output-text {
+  white-space: pre-wrap;
+  word-break: normal;
+  font-size: 18px;
+}
+
+#github-icon {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 32px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#github-icon:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
 }
