@@ -50,7 +50,7 @@
       height: 100%;
       width: 100%;
       margin: 0px;
-      padding: 8px 0px;
+      padding: 24px 24px;
       overflow: auto;
       scrollbar-gutter: stable both-edges;
       box-sizing: border-box;
@@ -79,6 +79,7 @@
     .switcher {
       cursor: pointer;
     }
+
     .switcher:hover {
       opacity: 0.5;
     }
@@ -162,6 +163,7 @@
       margin: 18px 0;
       opacity: 0.8;
     }
+
     #main-button:hover {
       opacity: 1;
     }
@@ -219,6 +221,12 @@
     #github-icon:hover {
       opacity: 0.5;
     }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+    }
   </style>
 
 </head>
@@ -247,7 +255,7 @@
 
         <div class="input-group">
           <label for="salt-input">Salt</label>
-          <input type="text" id="salt-input" placeholder="Enter salt">
+          <input type="password" id="salt-input" placeholder="Enter salt">
         </div>
       </div>
 
