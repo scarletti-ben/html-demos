@@ -129,6 +129,21 @@ async function decryptString(encryptedString, key, iv) {
 
 }
 
+// ! ========================================================
+// ! Experimental
+// ! ========================================================
+
+async function experimental() {
+    let password = prompt("Password: ");
+    let salt = prompt("Salt: ");
+    let text = prompt("Text: ");
+    let iv = crypto.getRandomValues(new Uint8Array(12));
+    let key = await PBKDF2(password, salt);
+    let encryptedString = await encryptString(text, key, iv);
+    let decryptedString = await decryptString(encryptedString, key, iv);
+    alert(`Decrypted: ${decryptedString}`);
+}
+
 // < ========================================================
 // < Entry Point (async)
 // < ========================================================
@@ -170,6 +185,8 @@ async function main() {
         console.error("UserError: An error occurred during encryption / decryption:", error);
 
     }
+
+    await experimental();
 
 }
 
