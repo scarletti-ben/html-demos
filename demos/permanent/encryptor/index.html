@@ -19,9 +19,10 @@
       --font-size: 16px;
       --foreground-colour: rgb(255, 255, 255);
       --background-colour: rgb(48, 48, 48);
-      --accent-colour: rgb(128, 64, 200);
-      --accent-hover: rgb(148, 84, 220);
-      --secondary-bg: rgb(60, 60, 60);
+      --accent-encryptor: rgb(128, 64, 200);
+      --accent-decryptor: rgb(12, 149, 21);
+      --accent-colour: var(--accent-encryptor);
+      --input-background: rgb(60, 60, 60);
       --font-family: monospace, sans-serif;
       --font-weight: 400;
       --scrollbar-colour: rgb(84, 93, 103) transparent;
@@ -71,8 +72,23 @@
 
     h1 {
       text-align: center;
-      color: var(--accent-colour);
       margin: 24px;
+      user-select: none;
+    }
+
+    .switcher {
+      cursor: pointer;
+    }
+    .switcher:hover {
+      opacity: 0.5;
+    }
+
+    #switcher-encryptor {
+      color: var(--accent-encryptor);
+    }
+
+    #switcher-decryptor {
+      color: var(--accent-decryptor);
     }
 
     .input-group {
@@ -92,9 +108,9 @@
     textarea {
       width: 100%;
       padding: 12px;
-      border: 2px solid var(--secondary-bg);
+      border: 2px solid var(--input-background);
       border-radius: var(--border-radius);
-      background-color: var(--secondary-bg);
+      background-color: var(--input-background);
       color: var(--foreground-colour);
       font-family: var(--font-family);
       font-size: var(--font-size);
@@ -114,7 +130,7 @@
 
     .credential-row {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       width: 100%;
       box-sizing: border-box;
     }
@@ -137,13 +153,17 @@
     }
 
     button:hover {
-      background-color: var(--accent-hover);
+      opacity: 0.8;
     }
 
-    #encrypt-button {
+    #main-button {
       display: block;
       width: 100%;
-      margin: 20px 0;
+      margin: 18px 0;
+      opacity: 0.8;
+    }
+    #main-button:hover {
+      opacity: 1;
     }
 
     .copy-button {
@@ -162,7 +182,6 @@
     }
 
     #output-container {
-      /* border: 2px solid var(--accent-colour); */
       border-radius: 12px;
       overflow: hidden;
       width: 100%;
@@ -179,7 +198,7 @@
 
     #output-container .main-content {
       padding: 18px 24px;
-      background: var(--secondary-bg);
+      background: var(--input-background);
     }
 
     #output-text {
@@ -209,7 +228,11 @@
   <!-- ! HTML -->
   <div id="page">
     <div class="container">
-      <h1>Encryptor</h1>
+      <h1>
+        <span id="switcher-encryptor" class="switcher">Encryptor</span>
+        <span>/</span>
+        <span id="switcher-decryptor" class="switcher">Decryptor</span>
+      </h1>
 
       <div class="input-group">
         <label for="text-input">Text</label>
@@ -228,9 +251,9 @@
         </div>
       </div>
 
-      <button id="encrypt-button">Encrypt</button>
+      <button id="main-button">Encrypt</button>
 
-      <div id="output-container">
+      <div id="output-container" class="hidden">
         <div class="top-bar">
           <span>Output</span>
           <button class="copy-button" id="copy-button" title="Copy to clipboard">
