@@ -165,10 +165,10 @@ async function encryptText() {
     } catch (error) {
 
         // Update output text
-        outputText.textContent = `Error: Error during encryption, please try again`;
+        outputText.textContent = `Encryption Error: Error during encryption, please try again`;
 
         // Log the error
-        console.error('Encryption error:', error);
+        console.error('Encryption Error:', error);
 
     }
 
@@ -214,10 +214,10 @@ async function decryptText() {
     } catch (error) {
 
         // Update output text
-        outputText.textContent = `Error: Error during decryption, please try again. Ensure input is a comma-separated Base64-encoded string.`;
+        outputText.textContent = `Decryption Error: Ensure input is a comma-separated Base64-encoded string, and that password / salt match those used in the encryption process`;
 
         // Log the error
-        console.error('Decryption error:', error);
+        console.error('Decryption Error:', error);
 
     }
 
