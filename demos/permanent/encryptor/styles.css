@@ -7,7 +7,7 @@
   --accent-decryptor: rgb(12, 149, 21);
   --accent-colour: var(--accent-encryptor);
   --input-background: rgb(60, 60, 60);
-  --font-family: monospace, sans-serif;
+  --font-family: 'Courier New', Courier, monospace;
   --font-weight: 400;
   --scrollbar-colour: rgb(84, 93, 103) transparent;
   --border-radius: 6px;
@@ -34,7 +34,7 @@ body {
   height: 100%;
   width: 100%;
   margin: 0px;
-  padding: 24px 24px;
+  padding: 32px 32px;
   overflow: auto;
   scrollbar-gutter: stable both-edges;
   box-sizing: border-box;
@@ -56,14 +56,20 @@ body {
   width: 100%;
   max-width: 800px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 #header {
   text-align: center;
-  margin: 24px;
-  line-height: 48px;
-  height: 48px;
-  gap: 12px;
+  line-height: 32px;
+  height: 32px;
+  gap: 16px;
+  margin: 4px;
+  font-weight: 900;
   user-select: none;
   box-sizing: border-box;
   display: flex;
@@ -94,15 +100,15 @@ body {
 }
 
 .input-group {
-  margin-bottom: 16px;
   width: 100%;
   box-sizing: border-box;
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
+  font-size: 14px;
   margin-left: 4px;
+  line-height: 24px;
+  height: 24px;
   font-weight: bold;
 }
 
@@ -161,7 +167,7 @@ button:hover {
 #main-button {
   display: block;
   width: 100%;
-  margin: 18px 0;
+  margin: 8px 0px;
   opacity: 0.8;
 }
 
@@ -206,8 +212,9 @@ button:hover {
 
 #output-text {
   white-space: pre-wrap;
-  word-break: normal;
-  font-size: 18px;
+  word-break: break-all;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 #github-icon {
