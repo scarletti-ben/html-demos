@@ -16,7 +16,6 @@ const githubLink = "https://github.com/scarletti-ben/html-demos/tree/main/demos/
 // < =========================================================
 
 const page = document.getElementById('page');
-const textInput = document.getElementById('text-input');
 const passwordInput = document.getElementById('password-input');
 const saltInput = document.getElementById('salt-input');
 const mainButton = document.getElementById('main-button');
@@ -27,6 +26,9 @@ const githubButton = document.getElementById('github-icon');
 const switcherDecryptor = document.getElementById('switcher-decryptor');
 const switcherEncryptor = document.getElementById('switcher-encryptor');
 const switcherSymbol = document.getElementById('switcher-symbol');
+
+/** @type {HTMLTextAreaElement} */
+const textInput = document.getElementById('text-input');
 
 // < ========================================================
 // < Functionality
@@ -40,15 +42,18 @@ function switchMode(modeName) {
 
     // Do not switch if already on a given mode
     if (modeName === mode) return;
-
+    
     // Do not switch if modeName is not valid
     if (!(modeName === 'encryptor' || modeName === 'decryptor')) return;
+    
+    // Log mode switch
+    console.log(`switching mode to ${modeName}`);
 
     // Update global mode variable
     mode = modeName;
 
-    // Clear text input
-    textInput.textContent = '';
+    // Set text input to current output text
+    textInput.value = outputText.textContent;
 
     // Hide output container
     hideOutput();
