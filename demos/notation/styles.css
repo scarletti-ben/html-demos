@@ -1,0 +1,97 @@
+/* < ====================================================== <
+< Root Variables
+< ====================================================== < */
+
+:root {
+  --foreground-colour: rgb(255, 255, 255);
+  --background-colour: rgb(48, 48, 48);
+  --accent-colour: rgb(128, 0, 128);
+  --element-colour-: rgb(32, 32, 32);
+  --font-size: 16px;
+  --font-family: "Courier New", courier, monospace, sans-serif;
+  --font-weight: 400;
+  --scrollbar-colour: rgb(84, 93, 103) transparent;
+}
+
+/* < ====================================================== <
+< HTML and Body Styling
+< ====================================================== < */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: var(--background-colour);
+  color: var(--foreground-colour);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  scrollbar-color: var(--scrollbar-colour);
+  box-shadow: var(--box-shadow-debug);
+}
+
+/* < ====================================================== <
+< Wildcard Styling
+< ====================================================== < */
+
+* {
+  box-sizing: border-box;
+  /* box-shadow: inset 0 0 0 2px red; */
+}
+
+/* < ====================================================== <
+< Utility Classes
+< ====================================================== < */
+
+.hidden {
+  display: none !important;
+}
+
+/* < ====================================================== <
+< Utility Classes
+< ====================================================== < */
+
+#page {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background-color: transparent;
+  scrollbar-color: var(--scrollbar-colour);
+}
+
+/* > ====================================================== >
+> Project Specific Styling
+> ====================================================== > */
+
+#button-row {
+  height: 48px;
+  width: 100%;
+  margin: 0px;
+  padding: 8px 16px;
+  gap: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.button {
+  height: 32px;
+  width: auto;
+  margin: 0px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-colour);
+  color: var(--element-colour);
+  border-radius: 4px;
+  cursor: pointer;
+}
