@@ -5,17 +5,15 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firenote</title>
 
-  <title>Template</title>
+  <!-- ! Imports -->
 
   <!-- ! Icon -->
   <link rel="icon" type="image/png" href="icon.png" />
 
-  <!-- ! Imports -->
-
   <!-- ! CSS -->
   <link rel="stylesheet" href="styles.css">
-  <!-- <style></style> -->
 
 </head>
 
@@ -24,13 +22,80 @@
   <!-- ! HTML -->
   <div id="page">
 
-    <div id="button-row">
-      <div id="test-button" class="button"><span>Test</span></div>
-      <div id="login-button" class="button"><span>Login</span></div>
-      <div id="upload-button" class="button"><span>Upload</span></div>
-    </div>
     <div id="content-window">
-      <textarea id="note-text">test</textarea>
+
+      <div id="note-container" class="note-container">
+
+        <div class="note-section">
+
+          <div class="note-header">
+            <input type="text" class="note-title" placeholder="Note title..." data-field="title">
+          </div>
+
+        </div>
+
+        <div class="note-section">
+
+          <div class="note-body">
+            <textarea class="note-text" placeholder="Note text..." data-field="text"></textarea>
+          </div>
+
+        </div>
+
+        <div class="note-section">
+
+          <div class="note-tags">
+
+            <div class="input-container">
+
+              <div class="input-group">
+                <label for="note-tags">Tags</label>
+                <input type="text" class="tags-input" placeholder="coding, webdev, miscellaneous..." data-field="tags">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="note-section">
+
+          <div class="note-metadata">
+
+            <div class="input-container">
+
+              <div class="input-group">
+                <label for="input">Date</label>
+                <input data-field="date" type="datetime-local" class="date-input">
+                <!-- <input data-field="date" type="date" class="date-input"> -->
+              </div>
+
+            </div>
+
+            <div class="input-container">
+
+              <div class="input-group">
+                <label for="input">UUID</label>
+                <input data-field="uuid" type="text" readonly>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="note-section">
+
+          <div class="note-actions">
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>

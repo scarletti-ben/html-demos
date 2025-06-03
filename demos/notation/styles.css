@@ -5,8 +5,25 @@
 :root {
   --foreground-colour: rgb(255, 255, 255);
   --background-colour: rgb(48, 48, 48);
-  --accent-colour: rgb(128, 0, 128);
-  --element-colour-: rgb(32, 32, 32);
+  --purple-00: rgb(128, 0, 128);
+  --purple-01: rgb(107, 70, 193);
+  --purple-02: rgb(85, 60, 154);
+  --custom-00: rgb(32, 32, 32);
+  --custom-01: #1a1a2e;
+  --custom-02: #2d1b69;
+  --custom-03: #6b46c1;
+  --custom-04: #dc2626;
+  --custom-05: #374151;
+  --custom-06: #1a3d5c;
+  --custom-07: #4a9eff;
+  --custom-08: #111827;
+  --custom-09: rgb(51, 51, 51);
+  --custom-10: #a78bfa;
+  --custom-11: #666666;
+  --custom-12: rgb(229, 231, 235);
+  --custom-13: #0f172a;
+  --custom-14: #16213e;
+  --custom-15: rgb(249, 250, 251);
   --font-size: 16px;
   --font-family: "Courier New", courier, monospace, sans-serif;
   --font-weight: 400;
@@ -19,8 +36,8 @@
 
 html,
 body {
-  height: 100%;
   width: 100%;
+  height: 100%;
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
@@ -35,15 +52,6 @@ body {
 }
 
 /* < ====================================================== <
-< Wildcard Styling
-< ====================================================== < */
-
-* {
-  box-sizing: border-box;
-  /* box-shadow: inset 0 0 0 2px red; */
-}
-
-/* < ====================================================== <
 < Utility Classes
 < ====================================================== < */
 
@@ -52,46 +60,217 @@ body {
 }
 
 /* < ====================================================== <
-< Utility Classes
+< Page Element Styling
 < ====================================================== < */
 
 #page {
-  height: 100%;
   width: 100%;
+  height: 100%;
   margin: 0px;
   padding: 0px;
+  box-sizing: border-box;
+  background-color: var(--background-colour);
+  scrollbar-color: var(--scrollbar-colour);
+}
+
+/* < ====================================================== <
+< Project Specific Styling
+< ====================================================== < */
+
+.button {
+  width: auto;
+  height: 16px;
+  margin: 0px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--purple-01);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, filter 0.2s ease;
+}
+
+.button:hover {
+  filter: brightness(0.85);
+}
+
+#content-window {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 32px;
   box-sizing: border-box;
   background-color: transparent;
   scrollbar-color: var(--scrollbar-colour);
 }
 
-/* > ====================================================== >
-> Project Specific Styling
-> ====================================================== > */
-
-#button-row {
-  height: 48px;
+.note-container {
   width: 100%;
-  margin: 0px;
-  padding: 8px 16px;
-  gap: 16px;
+  height: auto;
+  /* POSTIT - Can cause issues */
+  margin: auto;
+  padding: 0px;
+  max-width: 700px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  background: var(--custom-01);
+  border: 2px solid var(--purple-00);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.button {
-  height: 32px;
-  width: auto;
+.note-section {
+  width: 100%;
+  height: auto;
   margin: 0px;
-  padding: 8px 16px;
+  padding: 0px;
+  box-sizing: border-box;
+  background: var(--custom-01);
+  background: transparent;
+  border: none;
+}
+
+.note-section .note-header {
+  width: auto;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background: var(--custom-14);
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--custom-02);
+}
+
+.note-section .note-body {
+  padding: 14px 24px;
+  background: var(--custom-13);
+  border-bottom: 1px solid var(--custom-02);
+}
+
+.note-section .note-tags {
+  margin: 4px;
+  display: block;
+}
+
+.note-section .note-metadata {
+  padding: 0px;
+  margin: 4px;
+  gap: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-section .note-actions {
+  padding: 12px 24px;
+  border-top: 1px solid var(--custom-02);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  background: var(--custom-08);
+}
+
+.note-container .note-title {
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: white;
+  padding: 12px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.note-container .note-title:focus {
+  outline: none;
+  border-bottom-color: var(--custom-03);
+}
+
+.note-container .note-text {
+  width: 100%;
+  min-height: 120px;
+  border: none;
+  background: transparent;
+  color: var(--custom-15);
+  font-size: 16px;
+  line-height: 1.7;
+  resize: none;
+  font-family: inherit;
+}
+
+.note-container .note-text:focus {
+  outline: none;
+}
+
+.note-container .input-group {
+  width: 100%;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: var(--accent-colour);
-  color: var(--element-colour);
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid var(--custom-09);
+}
+
+.note-container .input-container {
+  width: auto;
+  /* flex: 0; */
+  margin: 0px;
+}
+
+.note-container .input-group label {
+  min-width: 100px;
+  font-size: 12px;
+  color: var(--custom-10);
+  font-weight: 600;
+}
+
+.note-container .input-group input {
+  /* min-width: 220px; */
+  /* flex: 1; */
+  overflow: scroll;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  color: white;
+  font: inherit;
+  font-weight: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.note-container .input-group:focus-within {
+  border-color: var(--custom-07);
+  background: var(--custom-06);
+}
+
+.note-container .input-group input::placeholder {
+  color: var(--custom-11);
+}
+
+.note-container .date-input {
+  color: var(--custom-12);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: 1px solid var(--custom-05);
+  transition: border-color 0.2s ease;
+}
+
+.note-container .date-input:focus {
+  outline: none;
+  border-color: var(--custom-03);
+}
+
+.note-container .date-input:invalid {
+  border-color: var(--custom-04);
 }

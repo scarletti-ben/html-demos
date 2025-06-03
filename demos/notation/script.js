@@ -4,7 +4,7 @@
 
 import {
     tools
-} from './tools/mytools.js';
+} from './tools/my-tools-v1.0.0.js';
 
 import {
     initialisation,
@@ -23,11 +23,14 @@ import {
 // < =========================================================
 
 const page = document.getElementById('page');
-const testButton = document.getElementById('test-button');
-const loginButton = document.getElementById('login-button');
-const uploadButton = document.getElementById('upload-button');
 const contentWindow = document.getElementById('content-window');
-const noteText = document.getElementById('note-text');
+const noteContainer = document.getElementById('note-container');
+const noteText = noteContainer.querySelector('.note-text');
+const noteTitle = noteContainer.querySelector('.note-title');
+const noteTags = noteContainer.querySelector('[data-field="tags"]');
+const noteActions = noteContainer.querySelector('.note-actions');
+const noteUUID = noteContainer.querySelector('[data-field="uuid"]');
+const noteDate = noteContainer.querySelector('[data-field="date"]');
 
 // < ========================================================
 // < Utility Functions
@@ -95,6 +98,100 @@ async function getFirebaseConfig(appName) {
 
 }
 
+/**
+ * Create a div button, with label and callback
+ * @param {string} text - The text to display on the button
+ * @param {Function} callback - The function to execute when the button is clicked
+ * @param {HTMLElement} parent - Optional parent element to append to
+ * @returns {HTMLDivElement} The created button div element
+ */
+function createButton(text, callback, parent) {
+    const button = document.createElement('div');
+    button.classList.add('button');
+    button.textContent = text;
+    button.addEventListener('click', callback);
+    if (parent) {
+        parent.appendChild(button);
+    }
+    return button;
+}
+
+/**
+* Adds validation listener to date input that toggles 'invalid' class
+* @param {HTMLInputElement} dateElement - The date input element
+*/
+function addDateValidation(dateElement) {
+    dateElement.addEventListener('input', function () {
+        if (this.validity.valid && this.value) {
+            this.classList.remove('invalid');
+        } else {
+            this.classList.add('invalid');
+        }
+    });
+}
+
+/**
+* Initialise date input to current date and time and add validation
+* @param {HTMLInputElement} dateElement - The date input element
+*/
+function initDateElement(dateElement) {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    // dateElement.value = `${year}-${month}-${day}`;
+    dateElement.value = `${year}-${month}-${day}T${hours}:${minutes}`;
+    addDateValidation(dateElement);
+}
+
+async function _uploadNote(uuid, title, text, tags, date) {
+    const data = {
+        uuid,
+        title,
+        text,
+        tags,
+        created: date,
+        modified: date
+    };
+
+    try {
+        firestore.writeDocument('notes', uuid, data);
+    }
+    catch (error) {
+        console.error('uploadNote error:', error);
+    }
+}
+
+async function safeUpload(uuid, title, text, tags, date) {
+    try {
+        await firestore.writeDocument('notes', uuid, {
+            uuid,
+            title,
+            text,
+            tags,
+            created: date,
+            modified: date
+        });
+        return true;
+    } catch (error) {
+        console.error('safeUpload:', error);
+        return false;
+    }
+}
+
+function getNoteObject() {
+    let noteObject = {
+        title: noteTitle.value,
+        text: noteText.value,
+        date: noteDate.value,
+        tags: noteTags.value.split(',').map(tag => tag.trim()),
+        uuid: noteUUID.value,
+    }
+    return noteObject;
+}
+
 // < ========================================================
 // < Entry Point
 // < ========================================================
@@ -121,40 +218,52 @@ async function main() {
         console.log('User logged out');
     });
 
-    // Add functionality to the test button
-    testButton.addEventListener('click', async (event) => {
+    // Initialise the date input element
+    initDateElement(noteDate);
+
+    // Create new uuid
+    noteUUID.value = crypto.randomUUID();
+
+    // Add the read button to note actions
+    let readButton = createButton('read', async (event) => {
         let result = await firestore.readCollection(collectionName);
-        alert(JSON.stringify(result, null, 2));
-    });
+        result.sort((a, b) => new Date(b.modified) - new Date(a.modified));
+        let message = JSON.stringify(result, null, 2);
+        console.log(message);
+        alert(message);
 
-    // Add functionality to the login button
-    loginButton.addEventListener('click', async (event) => {
+
+    }, noteActions);
+
+    // Add the login button to note actions
+    let loginButton = createButton('login', async (event) => {
         await authentication.login();
-    });
+    }, noteActions);
 
-    // Add functionality to the upload button
-    uploadButton.addEventListener('click', async (event) => {
-        // const noteUUID = crypto.randomUUID();
-        // const noteTitle = prompt('Enter note title:');
-        // const noteContent = prompt('Enter note content:');
-        // const noteTags = prompt('Enter note tags (comma separated):').split(',').map(tag => tag.trim());
-        // const noteData = {
-        //     uuid: noteUUID,
-        //     title: noteTitle,
-        //     content: noteContent,
-        //     tags: noteTags,
-        //     created: Date.now(),
-        //     modified: Date.now()
-        // };
-        // await firestore.writeDocument('notes', noteUUID, noteData).then(() => {
-        //     console.log('Note written successfully');
-        // }).catch((error) => {
-        //     console.error('Error writing note:', error);
-        // });
-        let text = noteText.value;
-        alert(`NotImplemented: Uploaded text: ${text}`);
-    });
+    // Add the upload button
+    let uploadButton = createButton('upload', async (event) => {
+        let noteObject = getNoteObject();
+        let success = await safeUpload(
+            noteObject.uuid,
+            noteObject.title,
+            noteObject.text,
+            noteObject.tags,
+            noteObject.date
+        );
+        alert(`Success: ${success}`);
+    }, noteActions);
 
+    // Add the debug button to note actions
+    let debugButton = createButton('debug', async (event) => {
+
+        let object = getNoteObject();
+        let message = JSON.stringify(object, null, 2);
+        console.log(message);
+        alert(message);
+
+    }, noteActions);
+
+    // POSTIT
     // let credentials = await authentication.login();
     // console.log(credentials);
 
