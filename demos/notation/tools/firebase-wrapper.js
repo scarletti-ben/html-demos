@@ -1,3 +1,4 @@
+// firebase-wrapper-v1.0.0-modified
 // < ========================================================
 // < Imports
 // < ========================================================
@@ -71,7 +72,7 @@ const core = {
 // < ========================================================
 
 /**
- * Aynchronous function to initialise Firebase, and other systems
+ * Asynchronous function to initialise Firebase, and other systems
  * - Will return prematurely if `appName` or `firebaseConfig` not provided
  * @param {string} appName - Name of the app, influences database paths
  */
@@ -98,13 +99,13 @@ async function init(appName, firebaseConfig) {
     // Update core.user when user logs in
     authentication.onLogin((user) => {
         core.user = user;
-        console.log('User logged in')
+        console.log('User logged in');
     });
 
     // Update core.user when user logs out
     authentication.onLogout(() => {
         core.user = null;
-        console.log('User logged out')
+        console.log('User logged out');
     });
 
     // Set core.initialised to true

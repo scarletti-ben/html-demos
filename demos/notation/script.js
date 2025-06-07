@@ -18,12 +18,17 @@ import {
     storeInDB
 } from './tools/idb-functions.js';
 
+import {
+    Toast
+} from './tools/toaster.js';
+
 // < ========================================================
 // < Element Queries
 // < =========================================================
 
 const page = document.getElementById('page');
 const contentWindow = document.getElementById('content-window');
+const errorWindow = document.getElementById('error-window');
 const noteContainer = document.getElementById('note-container');
 const noteText = noteContainer.querySelector('.note-text');
 const noteTitle = noteContainer.querySelector('.note-title');
@@ -192,11 +197,43 @@ function getNoteObject() {
     return noteObject;
 }
 
+/**
+ * Toggle visibility between content / error window
+ * @param {boolean} [force] - Force error window on or off
+ */
+function toggleError(force = null) {
+    if (force === true) {
+        contentWindow.style.display = 'none';
+        errorWindow.style.display = '';
+    } else if (force === false) {
+        contentWindow.style.display = '';
+        errorWindow.style.display = 'none';
+    } else {
+        if (errorWindow.style.display === 'none') {
+            contentWindow.style.display = 'none';
+            errorWindow.style.display = '';
+        } else {
+            contentWindow.style.display = '';
+            errorWindow.style.display = 'none';
+        }
+    }
+}
+
 // < ========================================================
 // < Entry Point
 // < ========================================================
 
 async function main() {
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Backspace') {
+            toggleError();
+        }
+    })
+
+    // Test Toast
+    let toast = new Toast();
+    toast.show('testing', 5000);
 
     // Define example name for the app
     const appName = 'test-app';
