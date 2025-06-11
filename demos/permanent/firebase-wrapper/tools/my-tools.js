@@ -1,3 +1,4 @@
+// my-tools-v1.0.0
 // < ========================================================
 // < Exported tools Object
 // < ========================================================
@@ -14,7 +15,6 @@ export const tools = {
 
     // ==========================================================
     // Language Tools
-    
     // ==========================================================
 
     /**
@@ -203,15 +203,36 @@ export const tools = {
      * @param {string} filename - The name of the file to download [data.json]
      */
     downloadObject(object, indent = 2, filename = 'data.json') {
-        const blob = new Blob([JSON.stringify(object, null, indent)], { type: 'application/json' });
-        const link = document.createElement('a');
+        const string = JSON.stringify(object, null, indent);
+        const blob = new Blob([string], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
         link.href = url;
         link.download = filename;
         link.click();
         setTimeout(() => {
             URL.revokeObjectURL(url);
         }, 200);
+    },
+
+    /**
+     * Open a given string as in another window
+     * @param {String} string - The string to view
+     */
+    openStringAsPage(string) {
+        const blob = new Blob([string], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+    },
+
+    /**
+     * Open a given object as a JSON string in another window
+     * @param {Object} object - The object to view
+     * @param {number} indent - The number of spaces of indentation [2]
+     */
+    openObjectAsPage(object, indent = 2) {
+        const string = JSON.stringify(object, null, indent);
+        tools.openStringAsPage(string);
     },
 
     /**

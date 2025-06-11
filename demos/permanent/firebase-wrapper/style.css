@@ -122,8 +122,9 @@
   << ================================================= */
 
   --theme-text: var(--colour-neutral-300);
-  --theme-text-soft: var(--colour-sky-400);
-  --theme-text-rich: var(--colour-sky-200);
+  --theme-text-soft: var(--colour-neutral-400);
+  --theme-text-softer: rgb(163, 163, 163, 0.5);
+  --theme-text-rich: var(--colour-neutral-200);
 
   --theme-accent: var(--colour-fuchsia-500);
   --theme-accent-soft: var(--colour-fuchsia-400);
@@ -176,8 +177,9 @@ body {
 
 * {
   scrollbar-color: var(--theme-scrollbar);
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   /* box-shadow: var(--theme-shadow); */
+  color-scheme: dark;
 }
 
 /* < ====================================================== <
@@ -208,61 +210,57 @@ body {
 << Project Styling
 << ==================================================== << */
 
-#header {
-  width: 100%;
-  height: 48px;
-  box-sizing: border-box;
-  padding: 12px 16px;
+#heading {
+  flex-shrink: 0;
+  padding: 12px 18px;
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: flex-start;
-  overflow-x: auto;
-  overflow-y: hidden;
-  color: var(--theme-text);
-  background-color: var(--theme-background-soft);
-  border-bottom: 1px solid var(--colour-neutral-600);
+  justify-content: space-between;
+  background-color: var(--colour-neutral-800);
+  border-bottom: 2px solid var(--theme-accent-rich);
 }
 
-#body {
-  width: 100%;
-  height: auto;
-  box-sizing: border-box;
+#main {
   flex: 1;
-  overflow: auto;
-}
-
-.window {
-  width: 100%;
-  height: 100%;
+  min-height: 0;
   box-sizing: border-box;
-  padding: 12px 16px;
-  background-color: var(--theme-background);
+  position: relative;
+  background-color: var(--colour-neutral-900);
 }
 
-#content {
-  color: var(--theme-text);
+#site-title {
+  width: fit-content;
+  height: fit-content;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-size: 24px;
+  align-self: center;
+  text-align: center;
 }
 
-#error {
-  color: var(--colour-error-500);
+#site-buttons {
+  width: fit-content;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 8px;
 }
 
-/* ! ====================================================== !
-! Experimental
-! ====================================================== ! */
-
-.profile-pic {
+.circle {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVQYV2NkQAN/Gf4z/38GDAwMDAwAwB8kC8n4CyJkAAAAAElFTkSuQmCC');
-  background-size: cover;
-  background-position: center;
-  /* fill: red; */
-  background-color: blue;
-  /* border: 2px dashed red; */
-  /* color: green; */
+  color: var(--theme-accent-rich);
+  background-color: var(--colour-neutral-700);
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
 }
 
 .icon {
@@ -270,6 +268,9 @@ body {
   height: 16px;
   margin: 0px;
   padding: 0px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   box-sizing: border-box;
   display: inline-block;
 }
@@ -282,4 +283,271 @@ body {
   box-sizing: border-box;
   fill: currentColor;
   background-color: transparent;
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+#content-frame {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 32px;
+  color: white;
+  background: transparent;
+}
+
+#error-frame {
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  background: var(--colour-custom-01);
+}
+
+#error-message-container {
+  width: auto;
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#error-message {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 480px;
+}
+
+#error-message h2 {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  font-size: 48px;
+  font-weight: 400;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+#error-message p {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 21px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ! ====================================================== !
+! 
+! ====================================================== ! */
+
+.note-container {
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  height: fit-content;
+  margin: auto;
+  padding: 0px;
+  max-width: 700px;
+  box-sizing: border-box;
+  background: var(--colour-neutral-900);
+  border: 2px solid var(--theme-accent-rich);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.note-section {
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+}
+
+.note-section .note-header {
+  width: auto;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background: var(--colour-neutral-800);
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--theme-text-softer);
+}
+
+.note-section .note-body {
+  padding: 14px 24px;
+  background: transparent;
+  border-bottom: 1px solid var(--theme-text-softer);
+}
+
+.note-section .note-tags {
+  margin: 4px;
+  display: block;
+}
+
+.note-section .note-metadata {
+  width: auto;
+  padding: 0px;
+  margin: 4px;
+  gap: 0px;
+}
+
+.note-section .note-actions {
+  padding: 12px 24px;
+  border-top: 1px solid var(--theme-background-soft);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  background: transparent;
+}
+
+.note-container .note-title {
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: white;
+  padding: 12px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.note-container .note-title:focus {
+  outline: none;
+  border-bottom-color: var(--theme-text-softer);
+  border-bottom-color: var(--theme-accent-rich);
+}
+
+.note-container .note-text {
+  width: 100%;
+  min-height: 120px;
+  border: none;
+  background: transparent;
+  color: var(--theme-text-rich);
+  font-size: 16px;
+  line-height: 1.7;
+  resize: none;
+  font-family: inherit;
+}
+
+.note-container .note-text:focus {
+  outline: none;
+  border-bottom-color: var(--theme-text-softer);
+}
+
+.note-container .input-group {
+  width: 100%;
+  padding: 8px 24px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--theme-text-softer);
+}
+
+.note-container .input-container {
+  width: auto;
+  min-width: 0px;
+  /* flex: 0; */
+  margin: 0px;
+}
+
+.note-container .input-group label {
+  min-width: 100px;
+  font-size: 12px;
+  color: var(--theme-text-rich);
+  font-weight: 600;
+}
+
+.note-container .input-group input {
+  flex: 1;
+  min-width: 0px;
+  width: auto;
+  box-sizing: border-box;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  color: white;
+  font: inherit;
+  font-weight: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.note-container .input-group:focus-within {
+  border-color: var(--theme-accent);
+  background: #73166591;
+}
+
+.note-container .input-group input::placeholder {
+  color: var(--theme-text-soft);
+}
+
+.note-container .date-input {
+  width: auto;
+  color: var(--theme-text);
+  color-scheme: dark;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: 1px solid var(--theme-text-soft);
+  transition: border-color 0.2s ease;
+}
+
+.note-container .date-input:focus {
+  outline: none;
+  border-color: var(--theme-accent-rich);
+}
+
+.note-container .date-input:invalid {
+  border-color: var(--colour-error-500);
+}
+
+/* ! ====================================================== !
+! Button Styling
+! ====================================================== ! */
+
+.button {
+  width: auto;
+  height: 16px;
+  margin: 0px;
+  padding: 16px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--theme-accent-rich);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.button:hover {
+  filter: brightness(0.85);
 }

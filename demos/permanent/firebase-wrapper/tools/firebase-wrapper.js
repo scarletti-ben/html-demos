@@ -14,7 +14,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 // < ========================================================
-// < Type Definitions
+// < Type Definitions for Reference
 // < ========================================================
 
 /**
@@ -45,12 +45,12 @@ import {
  * @property {function(): Promise<void>} delete
 */
 
-// < ========================================================
-// < Internal Core Object
-// < ========================================================
+// ^^ =======================================================
+// ^^ Internal Core Object
+// ^^ =======================================================
 
 /**
- * Core Firebase state
+ * Core Firebase object for globally accessible attributes
  * @property {?FirebaseApp} app - Initialised Firebase app
  * @property {?Auth} auth - Firebase authentication instance
  * @property {?AuthProvider} provider - Authentication provider (GoogleAuthProvider)
@@ -61,71 +61,169 @@ import {
 const core = {
     app: null,
     auth: null,
+    get user() {
+        return core.auth?.currentUser;
+    },
     provider: null,
     database: null,
-    user: null,
     initialised: false,
 };
 
 // < ========================================================
-// < Internal Initialisation Functions
+// < Exported Initialisation Object
 // < ========================================================
 
-/**
- * Asynchronous function to initialise Firebase, and other systems
- * - Will return prematurely if `appName` or `firebaseConfig` not provided
- * @param {string} appName - Name of the app, influences database paths
- */
-async function init(appName, firebaseConfig) {
+/** Firebase initialisation functions */
+export const initialisation = {
 
-    // Check if Firebase is already initialised
-    if (core.initialised) {
-        console.warn('Firebase core already initialised, skipping init');
-        return;
+    /**
+     * Function to initialise Firebase, and other systems
+     * - Will automatically sign in recent user if possible
+     * @param {string} appName - Name of the app, influences database paths
+     * @throws If arguments not provided, or due to an issue initialising
+     * @returns {void}
+     */
+    init(appName, firebaseConfig) {
+
+        // Check if Firebase is already initialised
+        if (core.initialised) {
+            let message = 'Firebase core already initialised, skipping init';
+            console.log(message);
+            return;
+        }
+
+        // Check if appName and firebaseConfig are provided
+        if (!appName || !firebaseConfig) {
+            let message = 'Firebase core not initialised, both appName and firebaseConfig are required arguments';
+            throw new Error(message);
+        }
+
+        try {
+
+            // Set core object attributes
+            core.app = initializeApp(firebaseConfig, appName);
+            core.auth = getAuth(core.app);
+            core.provider = new GoogleAuthProvider();
+            core.database = getFirestore(core.app);
+
+            // Set core.initialised flag if no errors
+            core.initialised = true;
+
+            // Log success message
+            console.log('Firebase core initialised successfully');
+
+        } catch (error) {
+            console.error('Firebase core not initialised:', error);
+            throw error;
+        }
+
+    },
+
+    /**
+     * Check if the core object is initialised
+     * @returns {boolean} Value of core.initialised flag
+     */
+    isInitialised() {
+        return core.initialised;
     }
-
-    // Check if appName and firebaseConfig are provided
-    if (!appName || !firebaseConfig) {
-        console.error('Firebase core not initialised, both appName and firebaseConfig are required arguments');
-        return;
-    }
-    
-    // Set core object attributes
-    core.app = initializeApp(firebaseConfig, appName)
-    core.auth = getAuth(core.app);
-    core.provider = new GoogleAuthProvider();
-    core.database = getFirestore(core.app);
-
-    // Update core.user when user logs in
-    authentication.onLogin((user) => {
-        core.user = user;
-        console.log('User logged in');
-    });
-
-    // Update core.user when user logs out
-    authentication.onLogout(() => {
-        core.user = null;
-        console.log('User logged out');
-    });
-
-    // Set core.initialised to true
-    core.initialised = true;
-
-    // Log success message
-    console.log('Firebase core initialised successfully');
 
 }
 
 // < ========================================================
-// < Internal Firestore Functions
+// < Exported Authentication Object
 // < ========================================================
+
+/** Firebase authentication functions */
+export const authentication = {
+
+    /** 
+     * Login function using current authentication provider
+     * - Important: This function can only be used via a button click event
+     * - Uses `signInWithPopup` from `firebase-auth`
+     * @returns {Promise<UserCredential>} Promise that resolves with user credentials
+     */
+    async login() {
+        return await signInWithPopup(core.auth, core.provider);
+    },
+
+    /**
+     * Logout function using current authentication provider
+     * - `core.user` will be set to null via `onAuthStateChanged`, triggered after logout
+     * - Uses `signOut` from `firebase-auth`
+     * @returns {Promise<void>} Promise that resolves when the user is logged out
+     */
+    async logout() {
+        return await signOut(core.auth);
+    },
+
+    /**
+     * Add callback to be called when the user login state changes
+     * - Does not overwrite previous callbacks
+     * - Uses `onAuthStateChanged` from `firebase-auth`
+     * @param {function(User): void} callback - Function to be called when login state changes
+     * @returns {function(): void} Unsubscribe function to stop listening
+     */
+    onChange(callback) {
+        return onAuthStateChanged(core.auth, (user) => {
+            callback(user);
+        });
+    },
+
+    /**
+     * Add callback to be called when the user logs in
+     * - Does not overwrite previous callbacks
+     * - Uses `onAuthStateChanged` from `firebase-auth`
+     * @param {function(User): void} callback - Function to be called when user logs in
+     * @returns {function(): void} Unsubscribe function to stop listening
+     */
+    onLogin(callback) {
+        return onAuthStateChanged(core.auth, (user) => {
+            if (user) {
+                callback(user);
+            }
+        });
+    },
+
+    /**
+     * Add callback to be called when the user logs out
+     * - Does not overwrite previous callbacks
+     * - Uses `onAuthStateChanged` from `firebase-auth`
+     * @param {function(): void} callback - Function to be called when user logs out
+     * @returns {function(): void} Unsubscribe function to stop listening
+     */
+    onLogout(callback) {
+        return onAuthStateChanged(core.auth, (user) => {
+            if (!user) {
+                callback();
+            }
+        });
+    },
+
+    /**
+     * Check if there is a user logged in
+     * @returns {boolean} True if a user is logged in
+     */
+    isLoggedIn() {
+        return Boolean(core.user);
+    }
+
+}
+
+// ^^ =======================================================
+// ^^ Internal Firestore Functions
+// ^^ =======================================================
 
 /**
  * Base collection path for the current app as a string array
  * - Collection path at users/{userId}/apps/{appName}
+ * @throws If user is not signed in
  * @returns {string[]} String array of path segments
  */
 function basePath() {
+    if (!core.initialised || !core.user) {
+        let message = 'Base path cannot be generated, user is not logged in';
+        throw new Error(message);
+    }
     return [
         'users', core.user.uid,
         'apps', core.app.name
@@ -177,84 +275,12 @@ function shallowDocumentReference(collectionName, documentName) {
 }
 
 // < ========================================================
-// < Exported Initialisation Object
-// < ========================================================
-
-/** Firebase initialisation functions */
-export const initialisation = {
-    init
-}
-
-// < ========================================================
-// < Exported Authentication Object
-// < ========================================================
-
-/** Firebase authentication functions */
-export const authentication = {
-
-    /** 
-     * Login function using Google oAuth 2.0 authentication
-     * - Important: This function can only be used via a button click event
-     * - Uses `signInWithPopup` from `firebase-auth`
-     * @returns {Promise<UserCredential>} Promise that resolves with user credentials
-     */
-    async login() {
-        return await signInWithPopup(core.auth, core.provider);
-    },
-
-    /**
-     * Logout function using Google oAuth 2.0 authentication
-     * - `core.user` will be set to null via `onAuthStateChanged`, triggered after logout
-     * - Uses `signOut` from `firebase-auth`
-     * @returns {Promise<void>} Promise that resolves when the user is logged out
-     */
-    async logout() {
-        return await signOut(core.auth);
-    },
-
-    /**
-     * Add callback to be called when the user logs in
-     * - Does not overwrite previous callbacks
-     * - Uses `onAuthStateChanged` from `firebase-auth`
-     * @param {function(User): void} callback - Function to be called when user logs in
-     */
-    onLogin(callback) {
-        onAuthStateChanged(core.auth, (user) => {
-            if (user) {
-                callback(user);
-            }
-        });
-    },
-
-    /**
-     * Add callback to be called when the user logs out
-     * - Does not overwrite previous callbacks
-     * - Uses `onAuthStateChanged` from `firebase-auth`
-     * @param {function(): void} callback - Function to be called when user logs out
-     */
-    onLogout(callback) {
-        onAuthStateChanged(core.auth, (user) => {
-            if (!user) {
-                callback();
-            }
-        });
-    },
-
-    /**
-     * Check if there is an authenticated user logged in
-     * @returns {boolean} True if an authenticated user is logged in
-     */
-    isAuthenticated() {
-        return core.user !== null;
-    }
-
-}
-
-// < ========================================================
 // < Exported Firestore Object
 // < ========================================================
 
-/** Firebase firestore functions */
+/** Thin wrapper for interacting with firestore database 
+ * - For best results, methods should be called within a try / catch block
+*/
 export const firestore = {
 
     /** 
@@ -265,13 +291,15 @@ export const firestore = {
      * @param {string} collectionName - Collection name to build document reference
      * @param {string} documentName - Document name to build document reference
      * @param {object} documentData - Key-value data object to store in the document
-     * @param {?boolean} replace - Whether to replace the entire document (default is false)
+     * @param {boolean=false} replace - Whether to replace the entire document (default is false)
+     * @throws For authentication issues, network errors, or the data is invalid
      * @returns {Promise<void>} Promise that resolves when written successfully
      */
     async writeDocument(collectionName, documentName, documentData, replace = false) {
 
         // Build document reference
         const documentReference = shallowDocumentReference(collectionName, documentName);
+
 
         // Write document data using document reference
         return await setDoc(documentReference, documentData, { merge: !replace });
@@ -285,8 +313,8 @@ export const firestore = {
      * @param {string} collectionName - Collection name to build document reference
      * @param {string} documentName - Document name to build document reference
      * @param {object} documentData - Key-value data object to update in the document
+     * @throws For authentication issues, network errors, or if the document does not exist
      * @returns {Promise<void>} Promise that resolves when updated successfully
-     * @throws {FirebaseError} Throws an error if the document does not exist
      */
     async updateDocument(collectionName, documentName, documentData) {
 
@@ -303,7 +331,8 @@ export const firestore = {
      * - Document path at users/{userId}/apps/{appName}/{collectionName}/{documentName}
      * @param {string} collectionName - Collection name to build document reference
      * @param {string} documentName - Document name to build document reference
-     * @returns {Promise<?object>} Promise that resolves with document data
+     * @throws For authentication issues or network errors
+     * @returns {Promise<?object>} Promise that resolves with document data, or null if the document does not exist
      */
     async readDocument(collectionName, documentName) {
 
@@ -321,6 +350,7 @@ export const firestore = {
      * - Document path at users/{userId}/apps/{appName}/{collectionName}/{documentName}
      * @param {string} collectionName - Collection name to build document reference
      * @param {string} documentName - Document name to build document reference
+     * @throws For authentication issues or network errors
      * @returns {Promise<void>} Promise that resolves when deleted
      */
     async deleteDocument(collectionName, documentName) {
@@ -337,6 +367,7 @@ export const firestore = {
      * Read all documents from a collection, given collection name
      * - Collection path at users/{userId}/apps/{appName}/{collectionName}
      * @param {string} collectionName - Collection name to build collection reference
+     * @throws For authentication issues or network errors
      * @returns {Promise<Object[]>} Promise that resolves with an array of all document data
      */
     async readCollection(collectionName) {
@@ -349,6 +380,6 @@ export const firestore = {
         const documents = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
         return documents;
 
-    },
+    }
 
 }

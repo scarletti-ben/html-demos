@@ -1,0 +1,2 @@
+# Overview
+Functional "frozen" version of an ongoing project [firebase-wrapper](https://github.com/scarletti-ben/firebase-wrapper), accessible via `GitHub Pages` [here](https://scarletti-ben.github.io/firebase-wrapper/) 
