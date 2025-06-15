@@ -166,4 +166,13 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Click-to-pan globe of global radio stations
 - [Vimm's Lair](https://vimm.net)
     - Repository of retro game roms
-
+- [Python Anywhere](https://www.pythonanywhere.com/)
+    - Online `IDE` / cloud-based coding environment
+    - Platform for building and deploying / hosting web apps
+    - Gives access to server-based `Python` in browser
+    - Many pre-configured templates / environments eg. `Flask`, `web2py`, `Django`
+    - Untested
+- [One-Minute CSS Tutorials](https://codyhouse.co/nuggets)
+    - Very simple / shot `CSS` tutorials, testable via built-in `CodePen`
+- [Deck of Cards](https://deck.of.cards/)
+    - Simple implementation of a deck of cards in `HTML` / `CSS` / `JavaScript`
