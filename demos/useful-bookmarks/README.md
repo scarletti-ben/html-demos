@@ -1,7 +1,9 @@
 # Useful Bookmarks
 Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` development
 - [CSS Buttons](https://getcssscan.com/css-buttons-examples)
-- [CodePen](https://codepen.io/)
+- [CodePen](https://codepen.io)
+    - Three panel editor for `HTML` / `CSS` / `JavaScript`
+    - Great for prototyping site layout, with live reloading
 - [GitHub CSS Buttons](https://buttons.github.io/)
 - [Open Source Google Fonts](https://fonts.google.com/)
 - [Open Source Google SVG Icons](https://fonts.google.com/icons)
@@ -17,7 +19,25 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
 - [Flask App Tester](https://sippycup.app/)
     - `Pyodide` powered site with an editor for `app.py`, `index.html` and `styles.css` to build a test site with `Flask`
 - [Gemini AI](https://gemini.google.com/app)
+    - `Large Language Model` / `LLM`
     - Alternative to `ChatGPT`
+    - Fast but mostly useless
+- [Claude AI](https://claude.ai)
+    - `Large Language Model` / `LLM`
+    - Alternative to `ChatGPT`
+    - Very detailed, often overcomplicates things
+- [DeepSeek](https://chat.deepseek.com)
+    - `Large Language Model` / `LLM`
+    - Alternative to `ChatGPT`
+    - Untested
+- [Google AI Studio](https://aistudio.google.com)
+    - `Large Language Model` / `LLM`
+    - Alternative to `ChatGPT`
+    - Specifically tuned for full-stack web developement
+    - Untested
+- [CSS Gradient Generator](https://www.joshwcomeau.com/gradient-generator)
+    - Create `CSS` for colour gradients
+    - Note: Many other sites do this as well, make sure to shop around!
 - [Pure Python Web Apps](https://anvil.works/)
 - [JSONBlob](https://jsonblob.com/api)
     - Used to create and edit `.json` files, without an API key
@@ -26,3 +46,91 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Files are deleted if not accessed for 30 days
 - [ngrok API Gateway](https://ngrok.com/)
     - Used for sharing `localhost` servers and applications
+- [Google Colab](https://colab.research.google.com/)
+    - `Google Colab` (Colabaratory) is a `Jupyter Notebook` service that requires no setup to use and provides free access to computing resources, including GPUs
+    - Connects to `Google Drive` for saving files
+    - Allows you to run and test `Python` code in your browser
+- [GitHub Dev](https://github.dev/github/dev)
+    - Online `IDE` / cloud-based coding environment
+    - The `github.dev` web-based editor is a lightweight editing experience that runs entirely in your browser. You can navigate files and source code repositories from `GitHub`, and make and commit code changes
+    - Switch the `.com` of any repository to `.dev` to test, eg. `https://github.com/scarletti-ben/html-demos` to `https://github.dev/scarletti-ben/html-demos`
+- [VSCode Dev](https://vscode.dev/)
+    - Online `IDE` / cloud-based coding environment
+    - The `vscode.dev` web-based editor is a lightweight editing experience that runs entirely in your browser. You can navigate files and source code repositories from `GitHub`, and make and commit code changes
+    - More general than `GitHub Dev` but similar general principle
+    - Slightly more features and allows editing local files
+- [CodeSandbox](https://codesandbox.io)
+    - Online `IDE` / cloud-based coding environment
+    - Create and edit projects in the browser with live previews
+    - Supports `React`, `Vue`, and `Next.js` with `NPM` integration
+    - Connects to `GitHub`
+    - Instant dev environment with no setup needed, useful for prototyping
+    - Untested
+- [Replit](https://replit.com)
+    - Online `IDE` / cloud-based coding environment
+    - Allows the creation of projects in many different languages with templates
+    - Has an `AI` assistant to setup new apps
+    - Limit of 10 apps at a time
+    - Allows you to write and run `Python` in the browser
+- [W3 Schools Editor](https://www.w3schools.com/css/tryit.asp?filename=trycss_editor)
+    - Single document editor for `HTML` / `CSS` / `JavaScript`
+    - Decent for prototyping site layout, no live reloading
+- [Programiz HTML Editor](https://www.programiz.com/html/online-compiler)
+    - Simplified online `IDE` / cloud-based coding environment
+    - File based editor for `HTML` / `CSS` / `JavaScript`
+    - Great for prototyping site layout, with live reloading
+- [OneCompiler]()
+    - Online `IDE` / cloud-based coding environment
+    - Edit and run code in the browser
+    - Has many different templates eg. [`React`](https://onecompiler.com/react), [`Angular`](https://onecompiler.com/angular), [`Bootstrap`](https://onecompiler.com/bootstrap), and [`Vue`](https://onecompiler.com/vue)
+    - Compilation / building is done simply by hitting the `Run` button
+- [Stackblitz](https://stackblitz.com)
+    - Online `IDE` / cloud-based coding environment
+    - Edit and run code in the browser
+    - Automatically compiles and runs in `WebContainer` to run `Node.js` in browser, great for `React` prototyping
+- [Tiiny Host](https://tiiny.host)
+    - Quick host a single `HTML` file to a live `URL`
+- [PyScript](https://pyscript.net)
+    - A `CDN` import and syntax to allow the usage of `Python` in `HTML` using custom `<py-script>` tags
+    - Also provides an online `IDE` / cloud-based coding environment that runs `Python` code [here](https://pyscript.com) and automatically hosts at a public `URL`
+- [Base64 Decoder](https://www.base64decode.org)
+    - Encode and decode to and from `Base64`
+
+# Useful Guides
+- [CSS Flexbox Layout Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox)
+    - Very good diagrams and some explanation of the more complex side of `CSS`'s `flexbox`
+- [Web Development Resources](https://github.com/bradtraversy/design-resources-for-developers?tab=readme-ov-file#html--css-templates)
+    - A `GitHub` `README` guide with many resources helpful for web development
+- [HTML Cheat Sheet](https://htmlcheatsheet.com)
+- [Web Dev Learning Site](https://html-css-js.com)
+    - Helpful cheat sheet for `HTML`: (https://htmlcheatsheet.com/)
+    - Helpful cheat sheet for `CSS`: (https://htmlcheatsheet.com/css)
+    - Helpful cheat sheet for `HTML`: (https://htmlcheatsheet.com/js)
+- [Pyodide Documentation](https://pyodide.org/en/stable)
+    - Documentation for `Pyodide` which allows running `Python` in browser via `WebAssembly` (`WASM`)
+- [YouTube Playlist History](https://plist.abdel-alim.com)
+    - Site for remembering where in a `YouTube` playlist you are
+- [Clippy](https://bennettfeely.com/clippy)
+    - A `CSS` `clip-path` generator eg. `clip-path: polygon(50% 0%, 0% 100%, 100% 74%);`
+- [Spotify for Developers](https://developer.spotify.com)
+    - Gives access to your `Spotify` data which can be managed with via with an interactive code window
+    - Uses `JavaScript` to make queries like "top 5 most played tracks this year"
+
+# Miscellaneous
+- [Python Logging Module](https://github.com/Delgan/loguru)
+    - Simply logging library for `Python`
+- [Code Golf](https://code.golf)
+    - Coding puzzles
+- [Frontend Mentor](https://www.frontendmentor.io/challenges)
+    - Full-stack app building projects
+- [Example Pygame WASM](https://itch.io/queue/c/2563651/pygame-wasm?game_id=2044464)
+    - An example of a game made for browser using `Python` / `Pygame` running via `WebAssembly` (`WASM`)
+- [EveryNoise](https://everynoise.com)
+    - `Spotify` song genre site from previous `Spotify` employee
+- [Flask Dashboard Template](https://app-generator.dev/product/black-dashboard/flask)
+    - Downloadable template for a `Flask` dashboard app
+- [Bootstrap Icons](https://icons.getbootstrap.com)
+    - A set of downloadable `SVG` icons for web development
+    - Use `npm i bootstrap-icons` or manually copy `SVG` code
+- [Feather Icons](https://feathericons.com)
+    - A simple `SVG` icon set for web development
