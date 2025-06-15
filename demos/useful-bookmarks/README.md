@@ -1,22 +1,34 @@
 # Useful Bookmarks
 Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` development
 - [CSS Buttons](https://getcssscan.com/css-buttons-examples)
+    - Examples of `CSS` buttons with varying styles and animations
 - [CodePen](https://codepen.io)
     - Three panel editor for `HTML` / `CSS` / `JavaScript`
     - Great for prototyping site layout, with live reloading
 - [GitHub CSS Buttons](https://buttons.github.io/)
+    - Buttons from `GitHub` with options to customise
+    - Easy options to copy and paste `CSS` or as an `HTML` element
 - [Open Source Google Fonts](https://fonts.google.com/)
+    - A set of open-source fonts for use in personal and commercial projects without attribution
 - [Open Source Google SVG Icons](https://fonts.google.com/icons)
-    - You can get the actual SVG code, rather than a reference to their stylesheet, if you press copy on the SVG icon itself
+    - A set of open-source icons for use in personal and commercial projects without attribution
+    - Follows the `Google Material` style
+    - Can be used individually or as font served via `CDN`
+    - You can get the actual `SVG` code, rather than a reference to their stylesheet, if you press copy on the `SVG` icon itself
 - [W3 CSS Playground](https://www.w3schools.com/cssref/playdemo.php?filename=playcss_accent-color)
+    - Site for learning / testing `CSS` variables and how they affect different `HTML` elements
 - [Image Clip Paths](https://bennettfeely.com/clippy/)
     - Can also be used for image transitions
 - [Viewport Size Checker](https://whatismyviewport.com/)
     - Check viewport size, test with zoom and fullscreen via `F11`
 - [Contrast Ratio Checker](https://webaim.org/resources/contrastchecker)
+    - Site for checking the contrast ratio between any two colours to make sure that text / elements are readable
 - [Free Dictionary API](https://dictionaryapi.dev/)
+    - Simple to use dictionary `API` that allows word lookup via simple `GET` request to `URL` eg. https://api.dictionaryapi.dev/api/v2/entries/en/hello
 - [Colour Palette Generator](https://coolors.co/)
+    - Creates a 5 colour palette of random but complementary colours with many options for exporting
 - [Flask App Tester](https://sippycup.app/)
+    - Three panel editor for `HTML` / `Python` / `CSS` with `JavaScript` inside the `HTML`
     - `Pyodide` powered site with an editor for `app.py`, `index.html` and `styles.css` to build a test site with `Flask`
 - [Gemini AI](https://gemini.google.com/app)
     - `Large Language Model` / `LLM`
@@ -38,7 +50,11 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
 - [CSS Gradient Generator](https://www.joshwcomeau.com/gradient-generator)
     - Create `CSS` for colour gradients
     - Note: Many other sites do this as well, make sure to shop around!
-- [Pure Python Web Apps](https://anvil.works/)
+- [Anvil Pure Python Web Apps](https://anvil.works/)
+    - Online `IDE` / cloud-based coding environment
+    - Platform for building and hosting full-stack web apps
+    - `Python` as the main code window with a drag-and-drop designer for visual components
+    - Untested
 - [JSONBlob](https://jsonblob.com/api)
     - Used to create and edit `.json` files, without an API key
     - Uses static URLs that can be accessed publically
@@ -46,6 +62,7 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Files are deleted if not accessed for 30 days
 - [ngrok API Gateway](https://ngrok.com/)
     - Used for sharing `localhost` servers and applications
+    - Creates a secure tunnel to expose your local development server to the internet
 - [Google Colab](https://colab.research.google.com/)
     - `Google Colab` (Colabaratory) is a `Jupyter Notebook` service that requires no setup to use and provides free access to computing resources, including GPUs
     - Connects to `Google Drive` for saving files
@@ -101,7 +118,6 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Very good diagrams and some explanation of the more complex side of `CSS`'s `flexbox`
 - [Web Development Resources](https://github.com/bradtraversy/design-resources-for-developers?tab=readme-ov-file#html--css-templates)
     - A `GitHub` `README` guide with many resources helpful for web development
-- [HTML Cheat Sheet](https://htmlcheatsheet.com)
 - [Web Dev Learning Site](https://html-css-js.com)
     - Helpful cheat sheet for `HTML`: (https://htmlcheatsheet.com/)
     - Helpful cheat sheet for `CSS`: (https://htmlcheatsheet.com/css)
@@ -115,6 +131,8 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
 - [Spotify for Developers](https://developer.spotify.com)
     - Gives access to your `Spotify` data which can be managed with via with an interactive code window
     - Uses `JavaScript` to make queries like "top 5 most played tracks this year"
+- [Connect Google Form to Google Drive](https://developers.google.com/apps-script/samples/automations/upload-files)
+    - Guide on how to use `Google App Script` (`.gs`) to connect a form to `Google Drive`
 
 # Miscellaneous
 - [Python Logging Module](https://github.com/Delgan/loguru)
@@ -134,3 +152,18 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Use `npm i bootstrap-icons` or manually copy `SVG` code
 - [Feather Icons](https://feathericons.com)
     - A simple `SVG` icon set for web development
+
+# Other
+- [Stable Diffusion](https://openart.ai/home)
+    - `AI` text-to-image model / generator
+- [The Noun Project](https://thenounproject.com)
+    - Sets of free icons and stock photos
+    - Might cost money to sign up and access content royalty-free
+- [Ryven](https://ryven.org/)
+    - "Flow-based" visual scripting for `Python`
+    - Shows a diagram of sorts with visual nodes when executing `Python` code
+- [Radio Garden](https://radio.garden)
+    - Click-to-pan globe of global radio stations
+- [Vimm's Lair](https://vimm.net)
+    - Repository of retro game roms
+
