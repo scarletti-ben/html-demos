@@ -2,7 +2,7 @@
 < Styling for TabSwitcher
 < ====================================================== ! */
 
-.tab-switcher {
+.switcher {
   --curviness: 16px;
   --text-color: white;
   --notch-height: 32px;
@@ -21,28 +21,33 @@
   color: var(--text-color);
 }
 
-.tab-switcher .hidden {
+.switcher .hidden {
   display: none !important;
 }
 
-.tab-switcher .highlighted {
+.switcher .highlighted {
   background-color: var(--alternate-color) !important;
 }
 
-.tab-switcher .top-section {
+.switcher .bordered {
+  border: 3px solid var(--alternate-color);
+}
+
+.switcher .top-section {
   width: 100%;
   height: var(--notch-height);
   box-sizing: border-box;
   padding: 0px var(--curviness);
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  gap: var(--notch-gap);
   flex-grow: 0 !important;
 }
 
-.tab-switcher .ribbon {
-  width: 100%;
+.switcher .ribbon {
+  width: auto;
   height: var(--notch-height);
   box-sizing: border-box;
   display: flex;
@@ -50,7 +55,7 @@
   gap: var(--notch-gap);
 }
 
-.tab-switcher .notch {
+.switcher .notch {
   width: var(--notch-width);
   height: var(--notch-height);
   box-sizing: border-box;
@@ -67,11 +72,11 @@
   background-color: var(--notch-color);
 }
 
-.tab-switcher .notch:hover {
+.switcher .notch:hover {
   opacity: 0.5;
 }
 
-.tab-switcher .bottom-section {
+.switcher .bottom-section {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -83,7 +88,7 @@
   overflow: hidden;
 }
 
-.tab-switcher .display {
+.switcher .viewport {
   width: 100%;
   height: 100%;
   max-height: 100%;
@@ -92,10 +97,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /* border: 3px solid var(--alternate-color); */
 }
 
-.tab-switcher .window {
+.switcher .frame {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -106,7 +110,7 @@
   overflow: hidden;
 }
 
-.tab-switcher .pane {
+.switcher .pane {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -118,7 +122,7 @@
   overflow: auto;
 }
 
-.tab-switcher .header {
+.switcher .header {
   width: 100%;
   height: var(--notch-height);
   box-sizing: border-box;
@@ -131,7 +135,7 @@
   background-color: var(--alternate-color);
 }
 
-.tab-switcher .footer {
+.switcher .footer {
   width: 100%;
   height: var(--notch-height);
   box-sizing: border-box;

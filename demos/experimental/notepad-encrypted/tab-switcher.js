@@ -4,30 +4,66 @@
 
 export class Tab {
 
-    // POSTIT - pane AND element
-    // get tabs()
-    // Note extents tab
+    /** @type {TabSwitcher} */
+    switcher;
+
+    /** @type {string} */
+    uuid;
+
+    /** @type {HTMLElement} */
+    element;
+
+    /** @type {HTMLElement} */
+    notch;
+
+    /** @type {HTMLElement} */
+    pane;
 
     /** 
+     * Initialise a Tab instance
      * @param {TabSwitcher} switcher - The TabSwitcher instance this tab belongs to
      * @param {string} uuid - The unique identifier for the tab
      * @param {HTMLElement} element - The HTMLElement for this tab's element
      * @param {HTMLElement} notch - The HTMLElement for this tab's notch
      * @param {HTMLElement} pane - The HTMLElement for this tab's pane
      */
-    constructor(switcher, uuid, element, notch, pane) {
+    constructor(switcher, uuid, element) {
+
         this.switcher = switcher;
         this.uuid = uuid;
         this.element = element;
-        this.notch = notch;
-        this.pane = pane;
 
-        // > Add event listeners to notch
-        notch.addEventListener('click', (event) => {
-            switcher.show(uuid);
-        });
+        // > Create
+        this.pane = document.createElement('div');
+        this.pane.classList.add('pane', 'hidden');
+        this.pane.dataset.uuid = uuid;
+        this.pane.appendChild(element);
+        switcher.window.appendChild(this.pane);
+
+        // > Create
+        this.notch = document.createElement('div');
+        this.notch.dataset.uuid = uuid;
+        this.notch.classList.add('notch');
+        switcher.ribbon.appendChild(this.notch);
+        
+        console.log(this)
 
     }
+
+    /** 
+     * Add custom listeners to elements this instance is tied to
+     */
+    _addCustomListeners() {}
+
+    /** 
+     * Add default listeners to elements this instance is tied to
+     */
+    _addDefaultListeners() {
+        this.notch.addEventListener('click', (event) => {
+            this.switcher.show(this.uuid);
+        });
+    }
+
 }
 
 // < ========================================================
@@ -35,6 +71,12 @@ export class Tab {
 // < ========================================================
 
 export class TabSwitcher {
+
+    /** @type {HTMLElement} */
+    ribbon;
+
+    /** @type {HTMLElement} */
+    window;
 
     /** @param {string} id */
     constructor(id) {
@@ -118,7 +160,7 @@ export class TabSwitcher {
      * @param {string} switcherID - The ID of the new tab-switcher element
      * @returns {string} - The id of the new tab-switcher element
      */
-    static create(containerID, switcherID) {
+    static inject(containerID, switcherID) {
         let container = document.getElementById(containerID);
         const tabSwitcherHTML = `
             <div id="${switcherID}" class="tab-switcher">
@@ -136,6 +178,7 @@ export class TabSwitcher {
             </div>
         `;
         container.insertAdjacentHTML('beforeend', tabSwitcherHTML);
+        console.log(`TabSwitcher created HTMLElement with ID: ${switcherID}`)
         return switcherID;
     }
 
