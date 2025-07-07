@@ -3,105 +3,133 @@
 // < ========================================================
 
 import { StorageManager } from "./storage-manager.js";
-import { TabSwitcher } from "./tab-switcher.js";
+import { TabSwitcher, Tab } from "./tab-switcher.js";
+
+// POSTIT - Only log changes if value changes
 
 // < ========================================================
 // < Functionality
 // < ========================================================
 
-/** @param {TabSwitcher} switcher */
-function createNote(switcher) {
+let element = document.createElement('div');
+let textarea = document.createElement('textarea');
+element.classList.add('note');
+textarea.value = 'yee';
+element.appendChild(textarea);
 
-    // > Create
-    let noteUUID = crypto.randomUUID();
-    let noteName = '';
-    let noteText = '';
-    let noteData = {
-        name: noteName,
-        text: noteText
+class Note extends Tab {
+
+    /** @type {TabSwitcher} */
+    switcher;
+
+    /** @type {string} */
+    uuid;
+
+    /** @type {HTMLElement} */
+    element;
+
+    /** @type {HTMLElement} */
+    textarea;
+
+    /** @type {HTMLElement} */
+    notch;
+
+    /** @type {HTMLElement} */
+    pane;
+
+    /** 
+     * Initialise a Note instance, a subclass of Tab
+     * @param {TabSwitcher} switcher - The TabSwitcher instance this note belongs to
+     * @param {string} uuid - The unique identifier for the note
+     * @param {Record<string, { text: string, name: string }>} data
+     */
+    constructor(switcher, uuid, data) {
+
+        // // > Create
+        // let element = document.createElement('div');
+        // let textarea = document.createElement('textarea');
+        // element.classList.add('note');
+        // textarea.value = data.text;
+        // element.appendChild(textarea);
+
+        super(switcher, uuid, element);
+
+        console.log(this)
+
+
+        this.textarea = textarea;
+        // this._addCustomListeners();
+
     }
-    StorageManager.notes[noteUUID] = noteData;
-    StorageManager.save();
 
-    // > Create
-    let noteElement = document.createElement('div');
-    noteElement.classList.add('note');
-    let textarea = document.createElement('textarea');
-    textarea.value = '';
-    noteElement.appendChild(textarea);
+    /** 
+     * Add custom listeners to elements this instance is tied to
+     */
+    _addCustomListeners() {
 
-    // > Create tab instance on switcher
-    let tab = switcher.add(noteUUID, noteName, noteElement);
+        this.notch.addEventListener('click', (event) => {
+            this.switcher.show(this.uuid);
+            changeHighlighted(this.uuid);
+        });
 
-    // > Add listeners to the note textarea
-    textarea.addEventListener('blur', () => {
-        StorageManager.notes[noteUUID]['text'] = textarea.value;
-        StorageManager.save();
-        console.log('saved text');
-    })
+        this.notch.addEventListener('dblclick', (event) => {
+            this.notch.contentEditable = true;
+            this.notch.focus();
+            selectAll(this.notch);
+        });
 
+        this.notch.addEventListener('blur', () => {
+            changeName(this.uuid, this.notch.innerText);
+            this.notch.contentEditable = false;
+        });
 
-    // > Add listeners to the tab notch
-    tab.notch.addEventListener('dblclick', (event) => {
-        tab.notch.innerText = 'new';
-        StorageManager.notes[noteUUID]['name'] = 'new';
-        StorageManager.save();
-        console.log('saved name');
-    });
+        this.notch.addEventListener('blur', () => {
+            changeName(this.uuid, this.notch.innerText);
+            this.notch.contentEditable = false;
+        });
 
-    let settings = StorageManager.settings;
-    if (!settings.openUUIDS.includes(noteUUID)) {
-        settings.openUUIDS.push(noteUUID)
+        this.textarea.addEventListener('blur', () => {
+            changeText(this.uuid, this.textarea.value);
+        })
+
     }
-
-    return noteUUID;
 
 }
 
-/** @param {TabSwitcher} switcher @param {string} noteUUID */
-function loadNote(switcher, noteUUID) {
+// < ========================================================
+// < Functionality
+// < ========================================================
 
-    let noteData = StorageManager.notes[noteUUID];
+function selectAll(element) {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
 
-    // > Create
-    let noteElement = document.createElement('div');
-    noteElement.classList.add('note');
-    let textarea = document.createElement('textarea');
-    textarea.value = noteData.text;
-    noteElement.appendChild(textarea);
+function changeName(noteUUID, newName) {
+    StorageManager.notes[noteUUID]['name'] = newName;
+    StorageManager.save();
+    console.log(`changed name for ${noteUUID}`);
+}
 
-    // > Create tab instance on switcher
-    let tab = switcher.add(noteUUID, noteData.name, noteElement);
+function changeText(noteUUID, newText) {
+    StorageManager.notes[noteUUID]['text'] = newText;
+    StorageManager.save();
+    console.log(`changed text for ${noteUUID}`);
+}
 
-    // > Add listener to the note textarea
-    textarea.addEventListener('blur', () => {
-        StorageManager.notes[noteUUID]['text'] = textarea.value;
-        StorageManager.save();
-        console.log('saved text');
-    })
+function changeData(noteUUID, newData) {
+    StorageManager.notes[noteUUID] = newData;
+    StorageManager.save();
+    console.log(`changed data for ${noteUUID}`);
+}
 
-    // > Add listener to the tab notch
-    tab.notch.addEventListener('dblclick', (event) => {
-        tab.notch.innerText = 'new';
-        StorageManager.notes[noteUUID]['name'] = 'new';
-        StorageManager.save();
-        console.log('saved name');
-    });
-
-    // > Add listener to the tab notch
-    tab.notch.addEventListener('click', (event) => {
-        StorageManager.settings.highlightedUUID = noteUUID
-        StorageManager.save();
-        console.log('saved highlighted');
-    });
-
-    let settings = StorageManager.settings;
-    if (!settings.openUUIDS.includes(noteUUID)) {
-        settings.openUUIDS.push(noteUUID)
-    }
-
-    return noteUUID;
-
+function changeHighlighted(noteUUID) {
+    StorageManager.settings.highlightedUUID = noteUUID
+    StorageManager.save();
+    console.log(`changed highlighted to ${noteUUID}`);
 }
 
 // < ========================================================
@@ -110,15 +138,23 @@ function loadNote(switcher, noteUUID) {
 
 function main() {
 
-    TabSwitcher.create('page', 'switcher');
-    let switcher = new TabSwitcher('switcher');
+    let switcherID = TabSwitcher.inject('page', 'switcher');
+    let switcher = new TabSwitcher(switcherID);
 
     StorageManager.load();
 
     let identifiers = [...StorageManager.settings.openUUIDS];
     if (identifiers.length > 0) {
-        for (let identifier of identifiers) {
-            loadNote(switcher, identifier);
+        for (let noteUUID of identifiers) {
+            let noteData = StorageManager.notes[noteUUID];
+            let note = new Note(switcher, noteUUID, noteData);
+            note._addCustomListeners();
+
+            let settings = StorageManager.settings;
+            if (!settings.openUUIDS.includes(noteUUID)) {
+                settings.openUUIDS.push(noteUUID)
+            }
+
         }
     }
 
@@ -126,6 +162,20 @@ function main() {
     if (uuid) {
         switcher.show(uuid);
     }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.ctrlKey && event.key === 's') {
+            event.preventDefault();
+        }
+    })
+
+    document.addEventListener('mousedown', (event) => {
+        if (event.button === 1) {
+            const notch = event.target.closest('.notch');
+            console.log(notch);
+        }
+    })
+
 
 }
 

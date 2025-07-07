@@ -1,24 +1,65 @@
 # Useful Bookmarks
 Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` development
 - [CSS Buttons](https://getcssscan.com/css-buttons-examples)
-- [CodePen](https://codepen.io/)
+    - Examples of `CSS` buttons with varying styles and animations
+- [CSS Box Shadows](https://getcssscan.com/css-box-shadow-examples)
+    - Examples of `CSS` box shadows with varying styles
+- [CodePen](https://codepen.io)
+    - Three panel editor for `HTML` / `CSS` / `JavaScript`
+    - Great for prototyping site layout, with live reloading
+- [Mozilla Playground](https://developer.mozilla.org/en-US/play)
+    - Three panel editor for `HTML` / `CSS` / `JavaScript`
+    - Very simplified, click to run, and an in-built formatter
 - [GitHub CSS Buttons](https://buttons.github.io/)
+    - Buttons from `GitHub` with options to customise
+    - Easy options to copy and paste `CSS` or as an `HTML` element
 - [Open Source Google Fonts](https://fonts.google.com/)
+    - A set of open-source fonts for use in personal and commercial projects without attribution
 - [Open Source Google SVG Icons](https://fonts.google.com/icons)
-    - You can get the actual SVG code, rather than a reference to their stylesheet, if you press copy on the SVG icon itself
+    - A set of open-source icons for use in personal and commercial projects without attribution
+    - Follows the `Google Material` style
+    - Can be used individually or as font served via `CDN`
+    - You can get the actual `SVG` code, rather than a reference to their stylesheet, if you press copy on the `SVG` icon itself
 - [W3 CSS Playground](https://www.w3schools.com/cssref/playdemo.php?filename=playcss_accent-color)
+    - Site for learning / testing `CSS` variables and how they affect different `HTML` elements
 - [Image Clip Paths](https://bennettfeely.com/clippy/)
     - Can also be used for image transitions
 - [Viewport Size Checker](https://whatismyviewport.com/)
     - Check viewport size, test with zoom and fullscreen via `F11`
 - [Contrast Ratio Checker](https://webaim.org/resources/contrastchecker)
+    - Site for checking the contrast ratio between any two colours to make sure that text / elements are readable
 - [Free Dictionary API](https://dictionaryapi.dev/)
+    - Simple to use dictionary `API` that allows word lookup via simple `GET` request to `URL` eg. https://api.dictionaryapi.dev/api/v2/entries/en/hello
 - [Colour Palette Generator](https://coolors.co/)
+    - Creates a 5 colour palette of random but complementary colours with many options for exporting
 - [Flask App Tester](https://sippycup.app/)
+    - Three panel editor for `HTML` / `Python` / `CSS` with `JavaScript` inside the `HTML`
     - `Pyodide` powered site with an editor for `app.py`, `index.html` and `styles.css` to build a test site with `Flask`
 - [Gemini AI](https://gemini.google.com/app)
+    - `Large Language Model` / `LLM`
     - Alternative to `ChatGPT`
-- [Pure Python Web Apps](https://anvil.works/)
+    - Fast but mostly useless
+- [Claude AI](https://claude.ai)
+    - `Large Language Model` / `LLM`
+    - Alternative to `ChatGPT`
+    - Very detailed, often overcomplicates things
+- [DeepSeek](https://chat.deepseek.com)
+    - `Large Language Model` / `LLM`
+    - Alternative to `ChatGPT`
+    - Untested
+- [Google AI Studio](https://aistudio.google.com)
+    - `Large Language Model` / `LLM`
+    - Alternative to `ChatGPT`
+    - Specifically tuned for full-stack web developement
+    - Untested
+- [CSS Gradient Generator](https://www.joshwcomeau.com/gradient-generator)
+    - Create `CSS` for colour gradients
+    - Note: Many other sites do this as well, make sure to shop around!
+- [Anvil Pure Python Web Apps](https://anvil.works/)
+    - Online `IDE` / cloud-based coding environment
+    - Platform for building and hosting full-stack web apps
+    - `Python` as the main code window with a drag-and-drop designer for visual components
+    - Untested
 - [JSONBlob](https://jsonblob.com/api)
     - Used to create and edit `.json` files, without an API key
     - Uses static URLs that can be accessed publically
@@ -26,3 +67,173 @@ Below is a list of URLs to useful sites for `HTML` / `CSS` / `JavaScript` develo
     - Files are deleted if not accessed for 30 days
 - [ngrok API Gateway](https://ngrok.com/)
     - Used for sharing `localhost` servers and applications
+    - Creates a secure tunnel to expose your local development server to the internet
+- [Google Colab](https://colab.research.google.com/)
+    - `Google Colab` (Colabaratory) is a `Jupyter Notebook` service that requires no setup to use and provides free access to computing resources, including GPUs
+    - Connects to `Google Drive` for saving files
+    - Allows you to run and test `Python` code in your browser
+- [GitHub Dev](https://github.dev/github/dev)
+    - Online `IDE` / cloud-based coding environment
+    - The `github.dev` web-based editor is a lightweight editing experience that runs entirely in your browser. You can navigate files and source code repositories from `GitHub`, and make and commit code changes
+    - Switch the `.com` of any repository to `.dev` to test, eg. `https://github.com/scarletti-ben/html-demos` to `https://github.dev/scarletti-ben/html-demos`
+- [VSCode Dev](https://vscode.dev/)
+    - Online `IDE` / cloud-based coding environment
+    - The `vscode.dev` web-based editor is a lightweight editing experience that runs entirely in your browser. You can navigate files and source code repositories from `GitHub`, and make and commit code changes
+    - More general than `GitHub Dev` but similar general principle
+    - Slightly more features and allows editing local files
+- [CodeSandbox](https://codesandbox.io)
+    - Online `IDE` / cloud-based coding environment
+    - Create and edit projects in the browser with live previews
+    - Supports `React`, `Vue`, and `Next.js` with `NPM` integration
+    - Connects to `GitHub` and uses the `VSCode` interface
+    - Instant dev environment with no setup needed, useful for prototyping
+    - Simple test project [here](https://codesandbox.io/p/sandbox/rjk9n4zj7m?file=%2Findex.html)
+    - Untested
+- [Replit](https://replit.com)
+    - Online `IDE` / cloud-based coding environment
+    - Allows the creation of projects in many different languages with templates
+    - Has an `AI` assistant to setup new apps
+    - Limit of 10 apps at a time
+    - Allows you to write and run `Python` in the browser
+- [W3 Schools Editor](https://www.w3schools.com/css/tryit.asp?filename=trycss_editor)
+    - Single document editor for `HTML` / `CSS` / `JavaScript`
+    - Decent for prototyping site layout, no live reloading
+- [Programiz HTML Editor](https://www.programiz.com/html/online-compiler)
+    - Simplified online `IDE` / cloud-based coding environment
+    - File based editor for `HTML` / `CSS` / `JavaScript`
+    - Great for prototyping site layout, with live reloading
+- [OneCompiler]()
+    - Online `IDE` / cloud-based coding environment
+    - Edit and run code in the browser
+    - Has many different templates eg. [`React`](https://onecompiler.com/react), [`Angular`](https://onecompiler.com/angular), [`Bootstrap`](https://onecompiler.com/bootstrap), and [`Vue`](https://onecompiler.com/vue)
+    - Compilation / building is done simply by hitting the `Run` button
+- [Stackblitz](https://stackblitz.com)
+    - Online `IDE` / cloud-based coding environment
+    - Edit and run code in the browser
+    - Automatically compiles and runs in `WebContainer` to run `Node.js` in browser, great for `React` prototyping
+- [Tiiny Host](https://tiiny.host)
+    - Quick host a single `HTML` file to a live `URL`
+- [PyScript](https://pyscript.net)
+    - A `CDN` import and syntax to allow the usage of `Python` in `HTML` using custom `<py-script>` tags
+    - Also provides an online `IDE` / cloud-based coding environment that runs `Python` code [here](https://pyscript.com) and automatically hosts at a public `URL`
+- [Base64 Decoder](https://www.base64decode.org)
+    - Encode and decode to and from `Base64`
+- [Stable Diffusion](https://openart.ai/home)
+    - `AI` text-to-image model / generator
+- [The Noun Project](https://thenounproject.com)
+    - Sets of free icons and stock photos
+    - Might cost money to sign up and access content royalty-free
+- [Python Anywhere](https://www.pythonanywhere.com/)
+    - Online `IDE` / cloud-based coding environment
+    - Platform for building and deploying / hosting web apps
+    - Gives access to server-based `Python` in browser
+    - Many pre-configured templates / environments eg. `Flask`, `web2py`, `Django`
+    - Untested
+- [JSDoodle](https://www.jdoodle.com/execute-nodejs-online)
+    - Online `IDE` / cloud-based coding environment
+    - Write and run `JavaScript` in a `Node.js` environment
+    - Also has options for many other languages, such as `Python`
+    - Easily share projects / "doodles"
+- [Terminal CSS](https://panr.github.io/terminal-css/)
+    - Customisable download for `terminal.css` which is a site theme that modifies base `HTML` selector styling eg. `body` / `h1` etc.
+    - Uses `Fira Code` font by default
+    - Comes from the `Terminal Repository` [here](https://github.com/panr/hugo-theme-terminal)
+- [Ace Kitchen Sink](https://ace.c9.io/build/kitchen-sink.html)
+    - Testing ground for [`Ace Editor`](https://ace.c9.io/)
+    - Also has a similar page [here](https://ajaxorg.github.io/ace-builds/demo/scrollable-page.html) for multiple editors
+- [GoDot Web Engine](https://editor.godotengine.org/releases/latest/)
+    - Allows you to create and edit `Godot` projects in-browser without installing anything
+- [Isotope Grid Library](https://isotope.metafizzy.co/)
+    - A `JavaScript` library for `HMTL` / `CSS` grids with a simple documented syntax for grid filtering / sorting
+    - The main page has a demo for testing purposes
+- [Rocket Powered Pastebin](https://paste.rs/)
+    - Simple version of [`Pastebin`](https://pastebin.com/) with a no-key `API` for `POST`, `GET`, and `DELETE` requests by `URL`
+    - The web version can be found [here](https://paste.rs/web)
+    - Easy to share the `URL` to others
+    - Not safe to assume a `URL` is fixed forever as anyone can edit or delete
+- [Pastebin](https://pastebin.com/) 
+    - Simple site for sharing raw code / snippets
+    - Makes it easy to share text files
+- [Logo Generator](https://looka.com/dashboard)
+    - `AI` logo generator
+    - Costs money to download but good for prototyping
+
+# Useful Guides and Learning Resources
+- [CSS Flexbox Layout Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox)
+    - Very good diagrams and some explanation of the more complex side of `CSS`'s `flexbox`
+- [Web Development Resources](https://github.com/bradtraversy/design-resources-for-developers?tab=readme-ov-file#html--css-templates)
+    - A `GitHub` `README` guide with many resources helpful for web development
+- [Web Dev Learning Site](https://html-css-js.com)
+    - Helpful cheat sheet for `HTML`: (https://htmlcheatsheet.com/)
+    - Helpful cheat sheet for `CSS`: (https://htmlcheatsheet.com/css)
+    - Helpful cheat sheet for `HTML`: (https://htmlcheatsheet.com/js)
+- [Pyodide Documentation](https://pyodide.org/en/stable)
+    - Documentation for `Pyodide` which allows running `Python` in browser via `WebAssembly` (`WASM`)
+- [YouTube Playlist History](https://plist.abdel-alim.com)
+    - Site for remembering where in a `YouTube` playlist you are
+- [Clippy](https://bennettfeely.com/clippy)
+    - A `CSS` `clip-path` generator eg. `clip-path: polygon(50% 0%, 0% 100%, 100% 74%);`
+- [Spotify for Developers](https://developer.spotify.com)
+    - Gives access to your `Spotify` data which can be managed with via with an interactive code window
+    - Uses `JavaScript` to make queries like "top 5 most played tracks this year"
+- [Connect Google Form to Google Drive](https://developers.google.com/apps-script/samples/automations/upload-files)
+    - Guide on how to use `Google App Script` (`.gs`) to connect a form to `Google Drive`
+- [One-Minute CSS Tutorials](https://codyhouse.co/nuggets)
+    - Very simple / shot `CSS` tutorials, testable via built-in `CodePen`
+- [List of Free Web Development Tools](https://www.reddit.com/r/learnprogramming/comments/syyhu6/i_made_a_list_of_free_sites_and_apps_to_learn/)
+    - `Reddit` post of free resources and tools for web development
+- [CSS Animation Generor](https://animista.net/play/basic/rotate/rotate-center)
+    - Generates `CSS` code for different animations
+    - Allows customising different parts of the animation with a visual representation on the right
+- [Favicon Generator](https://realfavicongenerator.net/)
+    - Icon generator for web development to give a uniform icon across browser / mobile
+    - Generates icons with a colour background for contrast and adds border radius
+    - Had some issues with the icon generation recently
+- [JS Paint](https://jspaint.app/)
+    - Clone of the old-school `Microsoft Paint` application, in your browser
+    - Allows copy / paste / cut and saving to device
+- [Future Tools](https://www.futuretools.io/)
+    - Collection of the newest `AI` tools
+
+# Miscellaneous
+- [Python Logging Module](https://github.com/Delgan/loguru)
+    - Simply logging library for `Python`
+- [Ryven](https://ryven.org/)
+    - "Flow-based" visual scripting for `Python`
+    - Shows a diagram of sorts with visual nodes when executing `Python` code
+- [Code Golf](https://code.golf)
+    - Coding puzzles
+- [Frontend Mentor](https://www.frontendmentor.io/challenges)
+    - Full-stack app building projects
+- [Example Pygame WASM](https://itch.io/queue/c/2563651/pygame-wasm?game_id=2044464)
+    - An example of a game made for browser using `Python` / `Pygame` running via `WebAssembly` (`WASM`)
+- [EveryNoise](https://everynoise.com)
+    - `Spotify` song genre site from previous `Spotify` employee
+- [Flask Dashboard Template](https://app-generator.dev/product/black-dashboard/flask)
+    - Downloadable template for a `Flask` dashboard app
+- [Bootstrap Icons](https://icons.getbootstrap.com)
+    - A set of downloadable `SVG` icons for web development
+    - Use `npm i bootstrap-icons` or manually copy `SVG` code
+- [Feather Icons](https://feathericons.com)
+    - A simple `SVG` icon set for web development
+- [Radio Garden](https://radio.garden)
+    - Click-to-pan globe of global radio stations
+- [Vimm's Lair](https://vimm.net)
+    - Repository of retro game roms
+- [Deck of Cards](https://deck.of.cards/old)
+    - Simple implementation of a deck of cards in `HTML` / `CSS` / `JavaScript`
+    - Also has a multiplayer [here](https://deck.of.cards/)
+- [Google Chrome Bookmark Separator](https://separator.mayastudios.com/?vert#bookmark-differentiator--df2ecc08-cc09-4fae-897f-0bd8e797e49d)
+    - Site with a "|" as the icon to serve as a bookmark toolbar separator
+- [Cursor AI Code Editor](https://www.cursor.com/en)
+    - `IDE` with built in `AI`
+    - Untested
+- [Jungle Flashcard Genrator](https://jungleai.com/)
+    - `AI` generated flash cards from slides / `YouTube` videos
+- [AutoDraw](https://www.autodraw.com/)
+    - `AI` powered site that guesses your drawing and provides clip art
+- [Midjourney](https://www.midjourney.com/)
+    - `AI` image generator with a unique style
+    - No free tool
+
+# Other

@@ -7,9 +7,11 @@ export class StorageManager {
     static notesKey = 'notepad-encrypyted-2025-03-27-notes';
     static settingsKey = 'notepad-encrypyted-2025-03-27-settings';
 
-    static notes = {
-
-    }
+    /**
+     * Notes object with noteUUID as keys
+     * @type {Record<string, { text: string, name: string }>}
+     */
+    static notes = {}
 
     static settings = {
         highlightedUUID: null,
@@ -45,7 +47,7 @@ export class StorageManager {
 
         // > Save notes object to localStorage
         StorageManager._save(StorageManager.notesKey, StorageManager.notes);
-        
+
     }
 
 }
