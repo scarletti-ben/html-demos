@@ -1,0 +1,279 @@
+/* style v1.0.0 basic [modifed] */
+/* < =====================================================
+< Root Variables
+< ===================================================== */
+
+:root {
+
+  /* > =================================================== 
+  > Section I: Colours
+  > =================================================== */
+
+  --colour-rose-500: #f43f5e;
+  --colour-pink-500: #ec4899;
+  --colour-purple-500: #a855f7;
+  --colour-violet-500: #8b5cf6;
+  --colour-cyan-500: #06b6d4;
+  --colour-teal-500: #14b8a6;
+  --colour-emerald-500: #10b981;
+  --colour-lime-500: #84cc16;
+  --colour-amber-500: #f59e0b;
+  --colour-stone-500: #78716c;
+  --colour-slate-500: #64748b;
+  --colour-rose-500: #f43f5e;
+  --colour-pink-500: #ec4899;
+  --colour-purple-500: #a855f7;
+  --colour-violet-500: #8b5cf6;
+  --colour-cyan-500: #06b6d4;
+  --colour-teal-500: #14b8a6;
+  --colour-emerald-500: #10b981;
+  --colour-lime-500: #84cc16;
+  --colour-amber-500: #f59e0b;
+  --colour-stone-500: #78716c;
+  --colour-slate-500: #64748b;
+  --colour-neutral-300: #d4d4d4;
+  --colour-neutral-700: #404040;
+  --colour-neutral-800: #262626;
+  --colour-neutral-900: #171717;
+  --colour-sky-400: #38bdf8;
+  --colour-sky-200: #bae6fd;
+  --colour-fuchsia-400: #e879f9;
+  --colour-fuchsia-500: #d946ef;
+  --colour-success-400: #4ade80;
+  --colour-success-500: #22c55e;
+  --colour-success-600: #16a34a;
+  --colour-custom-01: #545d67;
+
+  /* > =================================================== 
+  > Section II: Fonts
+  > =================================================== */
+
+  --font-family-sans: Inter, 'Segoe UI', sans-serif;
+  --font-family-roboto: Roboto, Arial, sans-serif;
+  --font-family-montserrat: Montserrat, 'Trebuchet MS', sans-serif;
+  --font-family-serif: Georgia, 'Times New Roman', serif;
+  --font-family-mono: 'Courier New', Courier, monospace;
+  --font-family-cursive: 'Comic Sans MS', cursive, sans-serif;
+  --font-size: 16px;
+  --font-family: var(--font-family-mono);
+  --font-weight: 400;
+
+  /* > =================================================== 
+  > Section III: Theme
+  > =================================================== */
+
+  --theme-text: var(--colour-neutral-300);
+  --theme-text-soft: var(--colour-sky-400);
+  --theme-text-rich: var(--colour-sky-200);
+  --theme-accent: var(--colour-fuchsia-500);
+  --theme-accent-soft: var(--colour-fuchsia-400);
+  --theme-accent-rich: var(--colour-fuchsia-600);
+  --theme-foreground: var(--colour-success-500);
+  --theme-foreground-soft: var(--colour-success-400);
+  --theme-foreground-rich: var(--colour-success-600);
+  --theme-background: var(--colour-neutral-800);
+  --theme-background-soft: var(--colour-neutral-700);
+  --theme-background-rich: var(--colour-neutral-900);
+  --theme-shadow: inset 0 0 0 2px var(--colour-fuchsia-500);
+  --theme-scrollbar: var(--colour-custom-01) transparent;
+
+}
+
+/* < ===================================================
+< HTML & Body Styling
+< =================================================== */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: var(--theme-background);
+  color: var(--theme-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  scrollbar-color: var(--theme-scrollbar);
+}
+
+/* < =================================================== <
+< Wildcard Styling
+< =================================================== < */
+
+* {
+  scrollbar-color: var(--theme-scrollbar);
+  /* box-sizing: border-box; */
+  /* margin: 0px; */
+  /* padding: 0px; */
+  /* box-shadow: var(--theme-shadow); */
+  /* color-scheme: dark; */
+}
+
+/* < =================================================== <
+< Utility Classes
+< =================================================== < */
+
+.hidden {
+  display: none !important;
+}
+
+/* < =================================================== <
+< Page Element Styling
+< =================================================== < */
+
+#page {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  position: relative;
+  background-color: transparent;
+}
+
+/* < ====================================================== <
+< Split.js Styling
+< ====================================================== < */
+
+.split {
+  display: flex;
+  flex-direction: row;
+}
+
+.gutter {
+  background-color: var(--theme-background-soft);
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+  cursor: col-resize;
+}
+
+/* < ====================================================== <
+< Font Awesome Icon Styling
+< ====================================================== < */
+
+i.fa-brands,
+i.fa-solid {
+  width: 1.2rem;
+  text-align: center;
+  transform: translateY(4%);
+}
+
+/* < ====================================================== <
+< Project
+< ====================================================== < */
+
+#main {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#file-navigator {
+  height: 100%;
+  width: 200px;
+  min-width: 160px;
+  background-color: var(--theme-background-soft);
+  /* border-right: 2px solid var(--theme-accent); */
+  padding: 1.2rem 0.6rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+#file-viewer {
+  background-color: var(--theme-background);
+  width: 100%;
+  min-width: 160px;
+  height: 100%;
+  display: block;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+#file-content {
+  width: 100%;
+  height: 100%;
+  display: block;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: max(18px, 3%);
+  font: inherit;
+  color: currentColor;
+}
+
+#file-content:focus {
+  border: none;
+  outline: none;
+}
+
+.file-button {
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.4rem;
+  user-select: none;
+  color: #ccc;
+}
+
+.file-button span {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.file-button span:focus {
+  border: none;
+  outline: none;
+}
+
+.file-button:hover {
+  background-color: var(--theme-accent-soft);
+  color: var(--theme-background);
+}
+
+.file-button.selected {
+  background-color: var(--theme-accent);
+  color: var(--theme-background);
+}
+
+#action-set {
+  width: 100%;
+  height: 32px;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+  padding: 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: inset 0 -1px 0 0 var(--theme-accent-soft);
+}
