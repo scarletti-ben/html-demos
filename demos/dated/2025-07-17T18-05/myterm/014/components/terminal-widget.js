@@ -248,7 +248,7 @@ const structure = /*html*/`
         <div class="output">Type <span class="themed">help</span> for available commands</div>
         <div id="input-line">
             <span id="prompt" class="themed">$&nbsp;&nbsp;</span>
-            <textarea id="textarea" autocomplete="off" spellcheck="false" rows="1" autocapitalize='false'></textarea>
+            <textarea id="textarea" autocomplete="off" spellcheck="false" rows="1" autocapitalize="off"></textarea>
         </div>
     </div>
 </div>
