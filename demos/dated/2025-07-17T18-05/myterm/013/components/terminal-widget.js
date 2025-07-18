@@ -3,7 +3,7 @@
 // < ======================================================
 
 /** @type {string} */
-const VERSION = 'my-term v0.0.1';
+const VERSION = 'my-term v0.0.13';
 
 /** @type {string} */
 const ATTRIBUTION = '2025 Ben Scarletti - MIT License';
