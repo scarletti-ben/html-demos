@@ -1,5 +1,5 @@
 # html-demos
-A Frankenstein's Monster of random, often unconnected, HTML demos attached together
+A Frankenstein's Monster of random, often unconnected, HTML demos attatched together
 
 # Project Information
 ## `demos`
