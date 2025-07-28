@@ -1,0 +1,292 @@
+/* < ========================
+< Root Variables
+< ======================== */
+
+:root {
+
+  /* > ======================
+  > I: Colour Palettes
+  > ====================== */
+
+  --c-neutral-1: #f5f5f5;
+  --c-neutral-2: #e5e5e5;
+  --c-neutral-3: #d4d4d4;
+  --c-neutral-4: #a3a3a3;
+  --c-neutral-5: #737373;
+  --c-neutral-6: #525252;
+  --c-neutral-7: #404040;
+  --c-neutral-8: #262626;
+  --c-neutral-9: #171717;
+  --c-fuchsia-1: #fae8ff;
+  --c-fuchsia-2: #f5d0fe;
+  --c-fuchsia-3: #f0abfc;
+  --c-fuchsia-4: #e879f9;
+  --c-fuchsia-5: #d946ef;
+  --c-fuchsia-6: #c026d3;
+  --c-fuchsia-7: #a21caf;
+  --c-fuchsia-8: #86198f;
+  --c-fuchsia-9: #701a75;
+  --c-special-5: #545d67;
+
+  /* > ======================
+  > II: Font Variables
+  > ====================== */
+
+  --f-size: 16px;
+  --f-weight: 400;
+  --f-family: monospace;
+
+  /* > ======================
+  > III: Theme Variables
+  > ====================== */
+
+  --t-text-0: var(--c-neutral-4);
+  --t-text-1: var(--c-neutral-3);
+  --t-text-2: var(--c-neutral-2);
+  --t-back-0: var(--c-neutral-7);
+  --t-back-1: var(--c-neutral-8);
+  --t-back-2: var(--c-neutral-9);
+  --t-accent-0: var(--c-fuchsia-8);
+  --t-accent-1: var(--c-fuchsia-6);
+  --t-accent-2: var(--c-fuchsia-5);
+  --t-shadow: inset 0 0 0 2px var(--c-fuchsia-4);
+  --t-scrollbar: var(--c-special-5) transparent;
+
+  /* ~ ======================
+  ~ IV: Project Variables
+  ~ ====================== */
+
+  --c-log: hsla(0, 0%, 88%, 1);
+  --c-info: hsla(212, 100%, 65%, 1);
+  --c-success: hsla(129, 68%, 47%, 1);
+  --c-warning: hsla(41, 100%, 59%, 1);
+  --c-error: hsla(3, 100%, 67%, 1);
+
+}
+
+/* < ========================
+< HTML / Body Styling
+< ======================== */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  display: block;
+  overflow: auto;
+  position: relative;
+  background-color: var(--t-back-1);
+  color: var(--t-text-1);
+  font-family: var(--f-family);
+  font-size: var(--f-size);
+  font-weight: var(--f-weight);
+  scrollbar-color: var(--t-scrollbar);
+}
+
+/* < ========================
+< Wildcard Styling
+< ======================== */
+
+* {
+  box-sizing: border-box;
+}
+
+/* < ========================
+< Utility Classes
+< ======================== */
+
+.hidden {
+  display: none !important;
+}
+
+/* < ========================
+< Page Element Styling
+< ======================== */
+
+#page {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  overflow: auto;
+  background-color: transparent;
+}
+
+/* < ========================
+< Main Element Styling
+< ======================== */
+
+#main {
+  height: 70%;
+  width: 70%;
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 70%;
+  max-height: 70%;
+  margin: 0px;
+  padding: 16px;
+  box-sizing: border-box;
+  display: block;
+  overflow: auto;
+  resize: both;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+}
+
+/* ~ ========================
+~ Project Styling
+~ ======================== */
+
+/* < ========================
+< Terminal Styling
+< ======================== */
+
+#terminal {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  font-size: inherit;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--t-back-1);
+  border-radius: 12px;
+  border: 2px solid var(--t-accent-0);
+  outline: 2px solid var(--t-accent-1);
+}
+
+/* < ========================
+< Header Styling
+< ======================== */
+
+#header {
+  padding: 12px 20px;
+  background: var(--t-back-1);
+  border-bottom: 1px solid var(--t-back-2);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#dot-container {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  color: red;
+}
+
+.dot.red {
+  background: var(--c-error);
+}
+
+.dot.yellow {
+  background: var(--c-warning);
+}
+
+.dot.green {
+  background: var(--c-success);
+}
+
+/* < ========================
+< Display Styling
+< ======================== */
+
+#display {
+  flex: 1;
+  padding: 24px 12px;
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
+  background: var(--t-back-2);
+  position: relative;
+}
+
+/* < ========================
+< Input Styling
+< ======================== */
+
+#input-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+#prompt {
+  white-space: nowrap;
+  line-height: 20px;
+  margin-top: -1px;
+}
+
+#textarea {
+  padding: 0px;
+  margin: 0px;
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--c-log);
+  caret-color: var(--c-success);
+  resize: none;
+  overflow: hidden;
+  min-height: 20px;
+  line-height: 20px;
+}
+
+#textarea:focus {
+  outline: none;
+}
+
+/* < ========================
+< Output Styling
+< ======================== */
+
+.output {
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: inherit;
+  color: var(--c-log);
+  line-height: 20px;
+}
+
+.output a,
+.output a:visited,
+.output a:active {
+  color: currentColor;
+  text-decoration: underline;
+}
+
+.themed {
+  color: var(--t-accent-1) !important;
+}
+
+.error {
+  color: var(--c-error) !important;
+}
+
+.success {
+  color: var(--c-success) !important;
+}
+
+.info {
+  color: var(--c-info) !important;
+}
+
+.warning {
+  color: var(--c-warning) !important;
+} 
