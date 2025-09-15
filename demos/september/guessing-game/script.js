@@ -74,16 +74,25 @@ function createMessage(text, flavour) {
 function sendMessage(text) {
     const message = createMessage(text, 'sent');
     messenger.querySelector('.middle').appendChild(message);
+    scroller();
 }
 
 function receiveMessage(text) {
     const message = createMessage(text, 'received');
     messenger.querySelector('.middle').appendChild(message);
+    scroller();
 }
 
 function addMessage(text, flavour) {
     const message = createMessage(text, flavour);
     messenger.querySelector('.middle').appendChild(message);
+    scroller();
+}
+
+function scroller() {
+    const element = messenger.querySelector('.middle');
+    // element.scrollTop = element.scrollHeight;
+    element.scrollTo(0, element.scrollHeight);
 }
 
 // function thing() {
