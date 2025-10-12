@@ -1,4 +1,10 @@
 // < ======================================================
+// < Imports
+// < ======================================================
+
+import * as tools from "./site-tools.js";
+
+// < ======================================================
 // < Declarations
 // < ======================================================
 
@@ -69,6 +75,42 @@ function createContentButton(text) {
     return div;
 }
 
+/** 
+ * Generate a random username `adjective-colour-animal`
+ * 
+ * @returns {string} The random username
+ */
+function randomUsername() {
+
+    const adjectives = [
+        "happy", "lazy", "sleepy", "brave", "silly",
+        "cheerful", "grumpy", "curious", "shy", "jolly",
+        "calm", "mischievous", "proud", "friendly", "clever",
+        "gentle", "bold", "playful", "quiet", "kind"
+    ];
+
+    const colours = [
+        "red", "blue", "green", "yellow", "orange",
+        "purple", "pink", "brown", "black", "white",
+        "grey", "cyan", "magenta", "lime", "teal",
+        "navy", "maroon", "olive", "violet", "turquoise"
+    ];
+
+    const animals = [
+        "panda", "tiger", "otter", "fox", "koala",
+        "lion", "bear", "wolf", "rabbit", "deer",
+        "elephant", "giraffe", "monkey", "squirrel", "badger",
+        "rhino", "hippo", "lemur", "hedgehog", "camel"
+    ];
+
+    return [
+        tools.choice(adjectives),
+        tools.choice(colours),
+        tools.choice(animals)
+    ].join('-');
+
+}
+
 // ~ ======================================================
 // ~ Entry Point
 // ~ ======================================================
@@ -84,10 +126,18 @@ window.addEventListener('load', async () => {
         page.appendChild(button);
     }
 
-    // Add date string to site
+    // Add current date string to site
     {
         const str = dateToString(new Date());
         console.log('Date string:', str);
+        const button = createContentButton(str);
+        page.appendChild(button);
+    }
+
+    // Add random username string to site
+    {
+        const str = randomUsername();
+        console.log('Random username:', str);
         const button = createContentButton(str);
         page.appendChild(button);
     }
