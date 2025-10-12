@@ -70,15 +70,17 @@ body {
   margin: 0;
   padding: 0;
   overflow: auto;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 /* ~ ======================================================
 ~ Project Styling
 ~ ====================================================== */
 
-#content {
+.content {
   width: auto;
   height: auto;
   margin: 0;
@@ -89,6 +91,6 @@ body {
   transition: background 0.3s ease-in-out;
 }
 
-#content.dimmed {
+.content.dimmed {
   background: rgba(0, 128, 128, 0);
 }
